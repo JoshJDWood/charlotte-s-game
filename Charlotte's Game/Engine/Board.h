@@ -9,6 +9,7 @@ public:
 	void DrawBorder();
 	void DrawWalls();
 	void DrawCell( Vec2& loc, Color c);
+	bool IsInPlay(Vec2& next);
 private:
 	static constexpr int nWalls = 41;
 	Vec2 walls[nWalls] = { {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {1,1}, {9,1}, 

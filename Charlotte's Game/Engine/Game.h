@@ -53,5 +53,6 @@ private:
 	Vec2 delta_loc = { 0,0 };
 	float MoveCounter = 0;
 	float MovePeriod = 1;
+	bool GameIsOver = false;
 	/********************************/
 };

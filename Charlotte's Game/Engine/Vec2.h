@@ -11,6 +11,7 @@ public:
 	Vec2& operator*=( float rhs );
 	Vec2 operator-( const Vec2& rhs ) const;
 	Vec2& operator-=( const Vec2& rhs );
+	bool operator==(const Vec2& rhs)const;
 	float GetLength() const;
 	float GetLengthSq() const;
 	Vec2& Normalize();

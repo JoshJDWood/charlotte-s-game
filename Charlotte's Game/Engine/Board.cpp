@@ -32,3 +32,26 @@ void Board::DrawCell(Vec2& loc, Color c)
 	gfx.DrawRectDim(int(shiftx + loc.x * dim), int(shifty + loc.y * dim),
 		int(dim), int(dim), c);
 }
+
+bool Board::IsInPlay(Vec2& next)
+{
+	if (next.x < 0 || next.x > 10)
+	{
+		return false;
+	}
+	else if (next.y < 0 || next.y > 10)
+	{
+		return false;
+	}
+	else
+	{
+		for (int i = 0; i < nWalls; ++i)
+		{
+			if (next == walls[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}

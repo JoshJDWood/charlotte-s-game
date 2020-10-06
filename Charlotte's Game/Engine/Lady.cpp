@@ -9,3 +9,8 @@ void Lady::Update(Vec2& delta_loc)
 {
 	loc += delta_loc;
 }
+
+Vec2 Lady::GetLocation()
+{
+	return loc;
+}
