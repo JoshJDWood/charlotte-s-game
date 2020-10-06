@@ -145,7 +145,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="Location.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="RectF.h" />

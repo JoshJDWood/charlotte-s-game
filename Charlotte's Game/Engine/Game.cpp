@@ -46,4 +46,5 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	brd.DrawBorder();
+	brd.DrawWalls();
 }
