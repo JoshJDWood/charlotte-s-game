@@ -72,6 +72,9 @@
     <ClInclude Include="Lady.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Charlotte.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -114,6 +117,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Lady.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Charlotte.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

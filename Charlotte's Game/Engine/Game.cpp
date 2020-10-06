@@ -46,33 +46,35 @@ void Game::UpdateModel()
 
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			delta_loc = { 0,-1 };
+			delta_L = { 0,-1 };
 		}
 		if (wnd.kbd.KeyIsPressed(VK_DOWN))
 		{
-			delta_loc = { 0,1 };
+			delta_L = { 0,1 };
 		}
 		if (wnd.kbd.KeyIsPressed(VK_LEFT))
 		{
-			delta_loc = { -1,0 };
+			delta_L = { -1,0 };
 		}
 		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 		{
-			delta_loc = { 1,0 };
+			delta_L = { 1,0 };
 		}
 
 		MoveCounter += dt;
 		if (MoveCounter > MovePeriod)
 		{
-			Vec2 next = lady.GetLocation() + delta_loc;
+			Vec2 next = lady.GetLocation() + delta_L;
+			charlie.Update(lady, brd);
 			if (brd.IsInPlay(next))
 			{
-				lady.Update(delta_loc);
+				lady.Update(delta_L);
 				MoveCounter = 0;
 			}
 			else
 			{
-				GameIsOver = true;
+				delta_L = { 0,0 };
+				MoveCounter = 0;
 			}
 		}
 	}
@@ -83,6 +85,7 @@ void Game::ComposeFrame()
 	brd.DrawBorder();
 	brd.DrawWalls();
 	lady.Draw(brd);
+	charlie.Draw(brd);
 	if (GameIsOver)
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);

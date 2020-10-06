@@ -27,6 +27,7 @@
 #include "Sound.h"
 #include "board.h"
 #include "Lady.h"
+#include "Charlotte.h"
 
 class Game
 {
@@ -50,9 +51,10 @@ private:
 	Board brd;
 	FrameTimer ft;
 	Lady lady;
-	Vec2 delta_loc = { 0,0 };
+	Charlotte charlie;
+	Vec2 delta_L = { 0,0 };
 	float MoveCounter = 0;
-	float MovePeriod = 1;
+	float MovePeriod = 0.75;
 	bool GameIsOver = false;
 	/********************************/
 };

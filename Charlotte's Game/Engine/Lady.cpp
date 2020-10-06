@@ -5,9 +5,9 @@ void Lady::Draw(Board& brd)
 	brd.DrawCell(loc, c);
 }
 
-void Lady::Update(Vec2& delta_loc)
+void Lady::Update(Vec2& delta_L)
 {
-	loc += delta_loc;
+	loc += delta_L;
 }
 
 Vec2 Lady::GetLocation()
