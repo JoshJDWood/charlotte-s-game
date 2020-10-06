@@ -40,11 +40,36 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	
+	float dt = ft.Mark();
+
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		delta_loc = { 0,-1 };
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		delta_loc = { 0,1 };
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		delta_loc = { -1,0 };
+	}
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		delta_loc = { 1,0 };
+	}
+
+	MoveCounter += dt;
+	if (MoveCounter > MovePeriod)
+	{
+		lady.Update(delta_loc);
+		MoveCounter = 0;
+	}
 }
 
 void Game::ComposeFrame()
 {
 	brd.DrawBorder();
 	brd.DrawWalls();
+	lady.Draw(brd);
 }

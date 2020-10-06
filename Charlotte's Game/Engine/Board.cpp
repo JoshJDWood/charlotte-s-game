@@ -26,3 +26,9 @@ void Board::DrawWalls()
 			int(dim), int(dim), bordercolor);
 	}
 }
+
+void Board::DrawCell(Vec2& loc, Color c)
+{
+	gfx.DrawRectDim(int(shiftx + loc.x * dim), int(shifty + loc.y * dim),
+		int(dim), int(dim), c);
+}

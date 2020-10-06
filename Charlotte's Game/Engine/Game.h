@@ -26,6 +26,7 @@
 #include "FrameTimer.h"
 #include "Sound.h"
 #include "board.h"
+#include "Lady.h"
 
 class Game
 {
@@ -47,6 +48,10 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Board brd;
-
+	FrameTimer ft;
+	Lady lady;
+	Vec2 delta_loc = { 0,0 };
+	float MoveCounter = 0;
+	float MovePeriod = 1;
 	/********************************/
 };
