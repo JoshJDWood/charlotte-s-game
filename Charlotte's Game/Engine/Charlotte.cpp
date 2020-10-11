@@ -46,3 +46,8 @@ void Charlotte::Update(Lady& lady, Board& brd)
 	}
 	delta_C = { 0,0 };
 }
+
+Vec2 Charlotte::GetLoction()
+{
+	return loc;
+}

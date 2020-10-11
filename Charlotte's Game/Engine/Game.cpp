@@ -76,6 +76,10 @@ void Game::UpdateModel()
 				delta_L = { 0,0 };
 				MoveCounter = 0;
 			}
+			if (lady.GetLocation() == charlie.GetLoction())
+			{
+				GameIsOver = true;
+			}
 		}
 	}
 }
