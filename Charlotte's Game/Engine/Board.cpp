@@ -33,6 +33,11 @@ void Board::DrawCell(Vec2& loc, Color c)
 		int(dim), int(dim), c);
 }
 
+void Board::DrawLady(Vec2& loc)
+{
+	gfx.DrawSprite(int(shiftx +loc.x * dim), int(shifty + loc.y * dim), surftest);
+}
+
 bool Board::IsInPlay(Vec2& next)
 {
 	if (next.x < 0 || next.x > width - 1)

@@ -10,6 +10,7 @@ public:
 	void DrawBorder();
 	void DrawWalls();
 	void DrawCell( Vec2& loc, Color c);
+	void DrawLady(Vec2& loc);
 	bool IsInPlay(Vec2& next);
 private:
 	static constexpr int nWalls = 41;
@@ -26,4 +27,5 @@ private:
 	static constexpr float shiftx = (400 - width * dim / 2);
 	static constexpr float shifty = (300 - height * dim / 2);
 	Graphics& gfx;
+	Surface surftest = Surface("dog_test2.bmp");
 };

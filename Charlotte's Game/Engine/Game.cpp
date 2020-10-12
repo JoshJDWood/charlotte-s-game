@@ -94,5 +94,4 @@ void Game::ComposeFrame()
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);
 	}
-	gfx.DrawSprite(200, 200, surftest);
 }

@@ -2,7 +2,7 @@
 
 void Lady::Draw(Board& brd)
 {
-	brd.DrawCell(loc, c);
+	brd.DrawLady(loc);
 }
 
 void Lady::Update(Vec2& delta_L)
