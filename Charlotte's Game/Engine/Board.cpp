@@ -33,9 +33,31 @@ void Board::DrawCell(Vec2& loc, Color c)
 		int(dim), int(dim), c);
 }
 
+void Board::DrawTreat(Vec2& loc)
+{
+	int x = int(shiftx + loc.x * dim) + 14;
+	int y = int(shifty + loc.y * dim) + 14;
+	gfx.PutPixel(x, y, treatout);
+	gfx.PutPixel(x + 1, y, treatout);
+	gfx.PutPixel(x + 2, y, treatout);
+	gfx.PutPixel(x + 3, y, treatout);
+	gfx.PutPixel(x, y + 1, treatout);
+	gfx.PutPixel(x + 1, y + 1, treatin);
+	gfx.PutPixel(x + 2, y + 1, treatin);
+	gfx.PutPixel(x + 3, y + 1, treatout);
+	gfx.PutPixel(x, y + 2, treatout);
+	gfx.PutPixel(x + 1, y + 2, treatin);
+	gfx.PutPixel(x + 2, y + 2, treatin);
+	gfx.PutPixel(x + 3, y + 2, treatout);
+	gfx.PutPixel(x, y + 3, treatout);
+	gfx.PutPixel(x + 1, y + 3, treatout);
+	gfx.PutPixel(x + 2, y + 3, treatout);
+	gfx.PutPixel(x + 3, y + 3, treatout);
+}
+
 void Board::DrawLady(Vec2& loc)
 {
-	gfx.DrawSprite(int(shiftx +loc.x * dim), int(shifty + loc.y * dim), surftest);
+	gfx.DrawSprite(int(shiftx +loc.x * dim), int(shifty + loc.y * dim), ladysurf);
 }
 
 bool Board::IsInPlay(Vec2& next)

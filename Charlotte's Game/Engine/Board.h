@@ -10,6 +10,7 @@ public:
 	void DrawBorder();
 	void DrawWalls();
 	void DrawCell( Vec2& loc, Color c);
+	void DrawTreat(Vec2& loc);
 	void DrawLady(Vec2& loc);
 	bool IsInPlay(Vec2& next);
 private:
@@ -26,6 +27,8 @@ private:
 	static constexpr float borderthickness = 3;
 	static constexpr float shiftx = (400 - width * dim / 2);
 	static constexpr float shifty = (300 - height * dim / 2);
+	static constexpr Color treatin = Color(244, 164, 96);
+	static constexpr Color treatout = Color(139, 69, 19);
 	Graphics& gfx;
-	Surface surftest = Surface("dog_test2.bmp");
+	Surface ladysurf = Surface("dog_test2.bmp");
 };

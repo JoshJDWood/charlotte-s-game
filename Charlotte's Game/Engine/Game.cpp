@@ -90,6 +90,10 @@ void Game::ComposeFrame()
 	brd.DrawWalls();
 	lady.Draw(brd);
 	charlie.Draw(brd);
+	for (int i = 0; i < ntreats; i++)
+	{
+		treats[i].Draw(brd);
+	}
 	if (GameIsOver)
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);
