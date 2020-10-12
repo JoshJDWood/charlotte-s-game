@@ -59,6 +59,8 @@ private:
 	Vec2 delta_L = { 0,0 };
 	float MoveCounter = 0;
 	float MovePeriod = 0.75;
+	int TreatsEatenCounter = 0;
 	bool GameIsOver = false;
+	bool GameIsWon = false;
 	/********************************/
 };

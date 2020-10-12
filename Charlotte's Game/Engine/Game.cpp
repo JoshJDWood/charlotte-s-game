@@ -40,7 +40,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (!GameIsOver)
+	if (!GameIsOver && !GameIsWon)
 	{
 		float dt = ft.Mark();
 
@@ -69,6 +69,23 @@ void Game::UpdateModel()
 			if (brd.IsInPlay(next))
 			{
 				lady.Update(delta_L);
+				for (int i = 0; i < ntreats; i++)
+				{
+					if (lady.GetLocation() == treats[i].GetLocation())
+					{
+						if (treats[i].eaten == false)
+						{
+							treats[i].eaten = true;
+							TreatsEatenCounter += 1;
+							if (TreatsEatenCounter == ntreats)
+							{
+								GameIsWon = true;
+							}
+						}
+						
+						break;
+					}
+				}
 				MoveCounter = 0;
 			}
 			else
@@ -92,10 +109,17 @@ void Game::ComposeFrame()
 	charlie.Draw(brd);
 	for (int i = 0; i < ntreats; i++)
 	{
-		treats[i].Draw(brd);
+		if (!treats[i].eaten)
+		{
+			treats[i].Draw(brd);
+		}
 	}
 	if (GameIsOver)
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);
+	}
+	if (GameIsWon)
+	{
+		gfx.DrawRectDim(50, 50, 50, 50, Colors::Green);
 	}
 }

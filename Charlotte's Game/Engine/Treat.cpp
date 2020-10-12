@@ -10,3 +10,8 @@ void Treat::Draw(Board& brd)
 {
 	brd.DrawTreat(loc);
 }
+
+Vec2 Treat::GetLocation()
+{
+	return loc;
+}
