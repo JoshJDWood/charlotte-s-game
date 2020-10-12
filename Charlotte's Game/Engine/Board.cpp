@@ -35,11 +35,11 @@ void Board::DrawCell(Vec2& loc, Color c)
 
 bool Board::IsInPlay(Vec2& next)
 {
-	if (next.x < 0 || next.x > 10)
+	if (next.x < 0 || next.x > width - 1)
 	{
 		return false;
 	}
-	else if (next.y < 0 || next.y > 10)
+	else if (next.y < 0 || next.y > height - 1)
 	{
 		return false;
 	}

@@ -17,7 +17,7 @@ private:
 		{8,4}, {10,4}, {2,5}, {4,5}, {6,5}, {8,5}, {0,6}, {2,6}, {4,6}, {5,6},
 		{6,6}, {8,6}, {10,6}, {5,7}, {1,8}, {3,8}, {5,8}, {7,8}, {9,8},
 		{1,9}, {5,9}, {9,9}, {3,10}, {7,10} };
-	static constexpr float dim = 30;
+	static constexpr float dim = 32;
 	static constexpr float width = 11;
 	static constexpr float height = 11;
 	static constexpr Color bordercolor = Colors::Blue;
