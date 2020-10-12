@@ -28,6 +28,7 @@
 #include "board.h"
 #include "Lady.h"
 #include "Charlotte.h"
+#include "Surface.h"
 
 class Game
 {
@@ -56,5 +57,6 @@ private:
 	float MoveCounter = 0;
 	float MovePeriod = 0.75;
 	bool GameIsOver = false;
+	Surface surftest = Surface("dog_test2.bmp");
 	/********************************/
 };

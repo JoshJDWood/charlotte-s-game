@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Graphics.h"
+#include "Surface.h"
 
 class Board
 {
