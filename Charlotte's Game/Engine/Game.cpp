@@ -81,8 +81,7 @@ void Game::UpdateModel()
 							{
 								GameIsWon = true;
 							}
-						}
-						
+						}						
 						break;
 					}
 				}
@@ -103,6 +102,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	gfx.DrawSprite(16, 12, groundsurf);
 	brd.DrawBorder();
 	brd.DrawWalls();
 	lady.Draw(brd);

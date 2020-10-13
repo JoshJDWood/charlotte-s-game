@@ -304,7 +304,7 @@ void Graphics::EndFrame()
 void Graphics::BeginFrame()
 {
 	// clear the sysbuffer
-	memset( pSysBuffer,220u,sizeof( Color ) * Graphics::ScreenHeight * Graphics::ScreenWidth );
+	memset( pSysBuffer,215u,sizeof( Color ) * Graphics::ScreenHeight * Graphics::ScreenWidth );
 }
 
 RectF Graphics::GetScreenRect()

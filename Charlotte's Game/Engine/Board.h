@@ -21,8 +21,8 @@ private:
 		{6,6}, {8,6}, {10,6}, {5,7}, {1,8}, {3,8}, {5,8}, {7,8}, {9,8},
 		{1,9}, {5,9}, {9,9}, {3,10}, {7,10} };
 	static constexpr float dim = 32;
-	static constexpr float width = 11;
-	static constexpr float height = 11;
+	static constexpr float width = 24;
+	static constexpr float height = 18;
 	static constexpr Color bordercolor = Colors::Blue;
 	static constexpr float borderthickness = 3;
 	static constexpr float shiftx = (400 - width * dim / 2);
