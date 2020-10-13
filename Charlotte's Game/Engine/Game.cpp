@@ -104,7 +104,6 @@ void Game::ComposeFrame()
 {
 	gfx.DrawSprite(16, 12, groundsurf);
 	brd.DrawBorder();
-	brd.DrawWalls();
 	lady.Draw(brd);
 	charlie.Draw(brd);
 	for (int i = 0; i < ntreats; i++)
