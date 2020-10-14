@@ -7,10 +7,12 @@ class Charlotte
 {
 public:
 	void Draw(Board& brd);
-	void Update(Lady& lady, Board& brd);
+	void Update(Vec2& target, Board& brd);
 	Vec2 GetLoction();
 private:
-	Vec2 loc = { 14,7 };
+	Vec2 loc = { 10,14 };
 	Vec2 delta_C = { 0,0 };
 	Color c = Colors::Red;
+	bool moved = false;
+	float MovePrefAlt = 1;
 };
