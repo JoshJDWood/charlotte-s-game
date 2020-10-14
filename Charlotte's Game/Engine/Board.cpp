@@ -57,7 +57,7 @@ void Board::DrawTreat(Vec2& loc)
 
 void Board::DrawLady(Vec2& loc)
 {
-	gfx.DrawSprite(int(shiftx +loc.x * dim), int(shifty + loc.y * dim), ladysurf);
+	gfx.DrawSprite(int(shiftx +loc.x * dim), int(shifty + loc.y * dim), ladysurf, Color(220,220,220));
 }
 
 bool Board::IsInPlay(Vec2& next)

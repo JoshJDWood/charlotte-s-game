@@ -10,7 +10,7 @@ public:
 	void Update(Lady& lady, Board& brd);
 	Vec2 GetLoction();
 private:
-	Vec2 loc = { 4,7 };
+	Vec2 loc = { 14,7 };
 	Vec2 delta_C = { 0,0 };
 	Color c = Colors::Red;
 };

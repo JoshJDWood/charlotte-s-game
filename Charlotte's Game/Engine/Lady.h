@@ -9,6 +9,6 @@ public:
 	void Update(Vec2& delta_L);
 	Vec2 GetLocation();
 private:
-	Vec2 loc = { 2,0 };
+	Vec2 loc = { 8,8 };
 	Color c = Colors::Gray;
 };
