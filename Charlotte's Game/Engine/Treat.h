@@ -6,10 +6,11 @@
 class Treat
 {
 public:
-	Treat(Vec2& locin);
+	Treat(Vec2& locin, float floorin);
 	void Draw(Board& brd);
 	bool eaten = false;
 	Vec2 GetLocation();
 private:
 	Vec2 loc;
+	float floor;
 };

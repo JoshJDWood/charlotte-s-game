@@ -2,7 +2,7 @@
 
 void Charlotte::Draw(Board& brd)
 {
-	brd.DrawCell(loc, c);
+	brd.DrawCell(loc, floor.x, c);
 }
 
 void Charlotte::Update(Vec2& target, Board& brd)
@@ -13,7 +13,7 @@ void Charlotte::Update(Vec2& target, Board& brd)
 	{
 		delta_C.x = diff.x / abs(diff.x);
 		Vec2 next = loc + delta_C;
-		if (brd.IsInPlay(next))
+		if (brd.IsInPlay(next, floor.x))
 		{
 			loc = next;
 			moved = true;
@@ -24,7 +24,7 @@ void Charlotte::Update(Vec2& target, Board& brd)
 			{
 				delta_C = { 0,diff.y / abs(diff.y) };
 				next = loc + delta_C;
-				if (brd.IsInPlay(next))
+				if (brd.IsInPlay(next, floor.x))
 				{
 					loc = next;
 					moved = true;
@@ -36,12 +36,12 @@ void Charlotte::Update(Vec2& target, Board& brd)
 				delta_C = { 0, 1 * MovePrefAlt };
 				next = loc + delta_C;
 				Vec2 altnext = loc - delta_C;
-				if (brd.IsInPlay(next))
+				if (brd.IsInPlay(next, floor.x))
 				{
 					loc = next;
 					moved = true;
 				}
-				else if (brd.IsInPlay(altnext))
+				else if (brd.IsInPlay(altnext, floor.x))
 				{
 					loc = altnext;
 					moved = true;
@@ -50,7 +50,7 @@ void Charlotte::Update(Vec2& target, Board& brd)
 				{
 					delta_C.x = -diff.x / abs(diff.x);
 					next = loc + delta_C;
-					if (brd.IsInPlay(next))
+					if (brd.IsInPlay(next, floor.x))
 					{
 						loc = next;
 						moved = true;
@@ -63,7 +63,7 @@ void Charlotte::Update(Vec2& target, Board& brd)
 	{
 		delta_C.y = diff.y / abs(diff.y);
 		Vec2 next = loc + delta_C;
-		if (brd.IsInPlay(next))
+		if (brd.IsInPlay(next, floor.x))
 		{
 			loc = next;
 			moved = true;
@@ -74,7 +74,7 @@ void Charlotte::Update(Vec2& target, Board& brd)
 			{
 				delta_C = { diff.x / abs(diff.x),0 };
 				next = loc + delta_C;
-				if (brd.IsInPlay(next))
+				if (brd.IsInPlay(next, floor.x))
 				{
 					loc = next;
 					moved = true;
@@ -86,12 +86,12 @@ void Charlotte::Update(Vec2& target, Board& brd)
 				delta_C = { 1 * MovePrefAlt, 0 };
 				next = loc + delta_C;
 				Vec2 altnext = loc - delta_C;
-				if (brd.IsInPlay(next))
+				if (brd.IsInPlay(next, floor.x))
 				{
 					loc = next;
 					moved = true;
 				}
-				else if (brd.IsInPlay(altnext))
+				else if (brd.IsInPlay(altnext, floor.x))
 				{
 					loc = altnext;
 					moved = true;
@@ -100,7 +100,7 @@ void Charlotte::Update(Vec2& target, Board& brd)
 				{
 					delta_C.y = -diff.y / abs(diff.y);
 					next = loc + delta_C;
-					if (brd.IsInPlay(next))
+					if (brd.IsInPlay(next, floor.x))
 					{
 						loc = next;
 						moved = true;

@@ -6,37 +6,45 @@ Board::Board(Graphics& gfx)
 {
 }
 
-void Board::DrawBorder()
-{
-	int left = int(shiftx - borderthickness);
-	int right = int(shiftx + borderthickness + width * dim);
-	int top = int(shifty - borderthickness);
-	int bottom = int(shifty + borderthickness + height * dim);
-	gfx.DrawRect(left, top, right, top + int(borderthickness), bordercolor);
-	gfx.DrawRect(left, top, left + int(borderthickness), bottom, bordercolor);
-	gfx.DrawRect(right - int(borderthickness), top, right, bottom, bordercolor);
-	gfx.DrawRect(left, bottom - int(borderthickness), right, bottom, bordercolor);
-}
-
-void Board::DrawWalls()
-{
+void Board::DrawWalls(float floorindex)
+{;
+	if (floorindex == 0)
+	{
+		sx = shiftx(width0);
+		sy = shifty(height0);
+	}
+	else if (floorindex == 1)
+	{
+		sx = shiftx(width1);
+		sy = shifty(height1);
+	}
 	for (int i = 0; i < nWalls0; i++)
 	{
-		gfx.DrawRectDim(int(shiftx + walls0[i].x * dim), int(shifty + walls0[i].y * dim),
+		gfx.DrawRectDim(int(sx + walls0[i].x * dim), int(sy + walls0[i].y * dim),
 			int(dim), int(dim), bordercolor);
 	}
 }
 
-void Board::DrawCell(Vec2& loc, Color c)
+void Board::DrawCell(Vec2& loc, float floorindex, Color c)
 {
-	gfx.DrawRectDim(int(shiftx + loc.x * dim), int(shifty + loc.y * dim),
+	if (floorindex == 0)
+	{
+		sx = shiftx(width0);
+		sy = shifty(height1);
+	}
+	else if (floorindex == 1)
+	{
+		sx = shiftx(width1);
+		sy = shifty(height1);
+	}
+	gfx.DrawRectDim(int(sx + loc.x * dim), int(sy + loc.y * dim),
 		int(dim), int(dim), c);
 }
 
-void Board::DrawTreat(Vec2& loc)
+void Board::DrawTreat(Vec2& loc, float floorindex)
 {
-	int x = int(shiftx + loc.x * dim) + 14;
-	int y = int(shifty + loc.y * dim) + 14;
+	int x = int(shiftx(width0) + loc.x * dim) + 14;
+	int y = int(shifty(height0) + loc.y * dim) + 14;
 	gfx.PutPixel(x, y, treatout);
 	gfx.PutPixel(x + 1, y, treatout);
 	gfx.PutPixel(x + 2, y, treatout);
@@ -55,26 +63,40 @@ void Board::DrawTreat(Vec2& loc)
 	gfx.PutPixel(x + 3, y + 3, treatout);
 }
 
-void Board::DrawLady(Vec2& loc)
+void Board::DrawLady(Vec2& loc, float floorindex)
 {
-	gfx.DrawSprite(int(shiftx +loc.x * dim), int(shifty + loc.y * dim), ladysurf, Color(220,220,220));
+	
+	if (floorindex == 0)
+	{
+		sx = shiftx(width0);
+		sy = shifty(height0);
+	}
+	else if (floorindex == 1)
+	{
+		sx = shiftx(width1);
+		sy = shifty(height1);
+	}
+	gfx.DrawSprite(int(sx +loc.x * dim), int(sy + loc.y * dim), ladysurf, Color(220,220,220));
 }
 
-bool Board::IsInPlay(Vec2& next)
+bool Board::IsInPlay(Vec2& next, float floorindex)
 {
-	if (next.x < 0 || next.x > width - 1)
-	{
-		return false;
-	}
-	else if (next.y < 0 || next.y > height - 1)
-	{
-		return false;
-	}
-	else
+	if (floorindex == 0)
 	{
 		for (int i = 0; i < nWalls0; ++i)
 		{
 			if (next == walls0[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	else if (floorindex == 1)
+	{
+		for (int i = 0; i < nWalls1; ++i)
+		{
+			if (next == walls1[i])
 			{
 				return false;
 			}

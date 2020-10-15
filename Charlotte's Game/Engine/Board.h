@@ -7,14 +7,14 @@ class Board
 {
 public:
 	Board(Graphics& gfx);
-	void DrawBorder();
-	void DrawWalls();
-	void DrawCell( Vec2& loc, Color c);
-	void DrawTreat(Vec2& loc);
-	void DrawLady(Vec2& loc);
-	bool IsInPlay(Vec2& next);
+	void DrawWalls(float floorindex);
+	void DrawCell( Vec2& loc, float floorindex, Color c);
+	void DrawTreat(Vec2& loc, float floorindex);
+	void DrawLady(Vec2& loc, float floorindex);
+	bool IsInPlay(Vec2& next, float floorindex);
 private:
-	static constexpr int nWalls0 = 175;
+	//floor0
+	static const int nWalls0 = 175;
 	Vec2 walls0[nWalls0] = {
 		{5,0},{6,0},{7,0},{12,0},{14,0},{16,0},{19,0},{20,0},{21,0},
 		{4,1},{8,1},{9,1},{10,1},{11,1},{12,1},{14,1},{15,1},{17,1},{18,1},{22,1},
@@ -35,16 +35,35 @@ private:
 		{0,15},{5,15},{8,15},{9,15},{11,15},{12,15},{17,15},{19,15},{22,15},
 		{1,16},{3,16},{11,16},{14,16},{15,16},{21,16},
 		{2,17},{4,17},{5,17},{6,17},{7,17},{8,17},{9,17},{10,17},{12,17},{13,17},
-		{16,17},{17,17},{18,17},{19,17},{20,17} };
+		{16,17},{17,17},{18,17},{19,17},{20,17} };	
+	static constexpr float width0 = 24;
+	static constexpr float height0 = 18;
+	//floor1
+	static const int nWalls1 = 50;
+	Vec2 walls1[nWalls1] = {
+		{6,0},{7,0},{8,0},{9,0},{10,0},{11,0},{12,0},{13,0},{14,0},{15,0},{20,0},
+		{0,1},{1,1},{2,1},{3,1},{4,1},{5,1},{16,1},{17,1},{18,1},{19,1},{21,1},{22,1},{23,1},
+		{9,2},{10,2},{11,2},
+		{0,3},{4,3},{5,3},{6,3},{15,3},{16,3},{17,3},{18,3},{23,3},
+		{1,4},{2,4},{3,4},{7,4},{8,4},{9,4},{10,4},{11,4},{12,4},{14,4},{19,4},{20,4},{21,4},{22,4}};
+	static constexpr float width1 = 24;
+	static constexpr float height1 = 5;
+
 	static constexpr float dim = 32;
-	static constexpr float width = 24;
-	static constexpr float height = 18;
 	static constexpr Color bordercolor = Colors::Blue;
 	static constexpr float borderthickness = 3;
-	static constexpr float shiftx = (400 - width * dim / 2);
-	static constexpr float shifty = (300 - height * dim / 2);
+	float shiftx(float width)
+	{
+		return 400 - width * dim / 2;
+	}
+	float shifty(float height)
+	{
+		return 300 - height * dim / 2;
+	}
 	static constexpr Color treatin = Color(244, 164, 96);
 	static constexpr Color treatout = Color(139, 69, 19);
+	float sx;
+	float sy;
 	Graphics& gfx;
 	Surface ladysurf = Surface("dog_test2.bmp");
 };

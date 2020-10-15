@@ -55,7 +55,7 @@ private:
 	Lady lady;
 	Charlotte charlie;
 	static constexpr int ntreats = 4;
-	Treat treats[ntreats] = { Vec2(0,0), Vec2(10,0), Vec2(0,10), Vec2(10,10) };
+	Treat treats[ntreats] = { {Vec2(0,0), 0}, {Vec2(10,0), 0}, {Vec2(0,10), 0}, {Vec2(10,10), 0} };
 	Vec2 delta_L = { 0,0 };
 	float MoveCounter = 0;
 	float MovePeriod = 0.6;
@@ -63,5 +63,6 @@ private:
 	bool GameIsOver = false;
 	bool GameIsWon = false;
 	Surface groundsurf = Surface("groundtest2.bmp");
+	Surface alleysurf = Surface("alley_placeholder.bmp");
 	/********************************/
 };

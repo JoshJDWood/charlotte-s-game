@@ -66,7 +66,7 @@ void Game::UpdateModel()
 		{
 			Vec2 next = lady.GetLocation() + delta_L;
 			charlie.Update(charlie.FindTarget(lady, brd), brd);
-			if (brd.IsInPlay(next))
+			if (brd.IsInPlay(next, lady.GetFloor().x))
 			{
 				lady.Update(delta_L);
 				for (int i = 0; i < ntreats; i++)
@@ -102,9 +102,22 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	gfx.DrawSpriteNonChroma(16, 12, groundsurf);
+	if (lady.GetFloor().x == 0)
+	{
+		gfx.DrawSpriteNonChroma(16, 12, groundsurf);
+	}
+	else if (lady.GetFloor().x == 1)
+	{
+		gfx.DrawSpriteNonChroma(16, 220, alleysurf);
+	}
+
 	lady.Draw(brd);
-	charlie.Draw(brd);
+
+	if (charlie.GetFloor().x == lady.GetFloor().x)
+	{
+		charlie.Draw(brd);
+	}
+
 	for (int i = 0; i < ntreats; i++)
 	{
 		if (!treats[i].eaten)

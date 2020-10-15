@@ -1,14 +1,15 @@
 #include "Treat.h"
 
-Treat::Treat(Vec2& locin)
+Treat::Treat(Vec2& locin, float floorin)
 	:
-	loc(locin)
+	loc(locin),
+	floor(floorin)
 {
 }
 
 void Treat::Draw(Board& brd)
 {
-	brd.DrawTreat(loc);
+	brd.DrawTreat(loc, floor);
 }
 
 Vec2 Treat::GetLocation()
