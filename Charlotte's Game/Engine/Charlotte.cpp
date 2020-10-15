@@ -7,6 +7,7 @@ void Charlotte::Draw(Board& brd)
 
 void Charlotte::Update(Vec2& target, Board& brd)
 {
+	oldloc = loc;
 	Vec2 diff = target - loc;
 	if (abs(diff.x) > abs(diff.y))
 	{
@@ -108,13 +109,54 @@ void Charlotte::Update(Vec2& target, Board& brd)
 			}
 		}
 	}
+	UpdateFloor();
 	delta_C = { 0,0 };
 	moved = false;	
+}
+
+Vec2 Charlotte::FindTarget(Lady& lady, Board& brd)
+{
+	Vec2 Lfloor = lady.GetFloor();
+	if (floor == Lfloor)
+	{
+		return lady.GetLocation();
+	}
+	if (floor.x == 0)
+	{
+		if (Lfloor.y > floor.y)
+		{
+			return F0CPH[int(floor.y)];
+		}
+		else
+		{
+			return F0CPL[int(floor.y - 1)];
+		}
+	}
+}
+
+void Charlotte::UpdateFloor()
+{
+	for (int i = 0; i < CPn; i++)
+	{
+		if (oldloc == F0CPL[i] && loc == F0CPH[i])
+		{
+			floor.y = float(i) + 1;
+		}
+		else if (oldloc == F0CPH[i] && loc == F0CPL[i])
+		{
+			floor.y = float(i);
+		}
+	}
 }
 
 Vec2 Charlotte::GetLoction()
 {
 	return loc;
+}
+
+Vec2 Charlotte::GetFloor()
+{
+	return floor;
 }
 
 

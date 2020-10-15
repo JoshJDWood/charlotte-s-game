@@ -14,8 +14,8 @@ public:
 	void DrawLady(Vec2& loc);
 	bool IsInPlay(Vec2& next);
 private:
-	static constexpr int nWalls = 176;
-	Vec2 walls[nWalls] = {
+	static constexpr int nWalls0 = 176;
+	Vec2 walls0[nWalls0] = {
 		{5,0},{6,0},{7,0},{12,0},{14,0},{16,0},{19,0},{20,0},{21,0},
 		{4,1},{8,1},{9,1},{10,1},{11,1},{12,1},{14,1},{15,1},{17,1},{18,1},{22,1},
 		{3,2},{6,2},{8,2},{14,2},{15,2},{18,2},{20,2},{22,2},

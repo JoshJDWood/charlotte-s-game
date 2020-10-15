@@ -65,7 +65,7 @@ void Game::UpdateModel()
 		if (MoveCounter > MovePeriod)
 		{
 			Vec2 next = lady.GetLocation() + delta_L;
-			charlie.Update(lady.GetLocation(), brd);
+			charlie.Update(charlie.FindTarget(lady, brd), brd);
 			if (brd.IsInPlay(next))
 			{
 				lady.Update(delta_L);

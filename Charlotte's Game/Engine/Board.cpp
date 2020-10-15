@@ -20,9 +20,9 @@ void Board::DrawBorder()
 
 void Board::DrawWalls()
 {
-	for (int i = 0; i < nWalls; i++)
+	for (int i = 0; i < nWalls0; i++)
 	{
-		gfx.DrawRectDim(int(shiftx + walls[i].x * dim), int(shifty + walls[i].y * dim),
+		gfx.DrawRectDim(int(shiftx + walls0[i].x * dim), int(shifty + walls0[i].y * dim),
 			int(dim), int(dim), bordercolor);
 	}
 }
@@ -72,9 +72,9 @@ bool Board::IsInPlay(Vec2& next)
 	}
 	else
 	{
-		for (int i = 0; i < nWalls; ++i)
+		for (int i = 0; i < nWalls0; ++i)
 		{
-			if (next == walls[i])
+			if (next == walls0[i])
 			{
 				return false;
 			}
