@@ -11,7 +11,7 @@ public:
 	Vec2 GetLocation();
 	Vec2 GetFloor();
 private:
-	Vec2 loc = { 1,2 };
+	Vec2 loc = { 2,2 };
 	Vec2 oldloc;
 	Vec2 floor = { 1,0 };
 	static constexpr int CPn = 4;

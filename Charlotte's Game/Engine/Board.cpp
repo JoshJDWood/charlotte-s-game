@@ -30,7 +30,7 @@ void Board::DrawCell(Vec2& loc, float floorindex, Color c)
 	if (floorindex == 0)
 	{
 		sx = shiftx(width0);
-		sy = shifty(height1);
+		sy = shifty(height0);
 	}
 	else if (floorindex == 1)
 	{
