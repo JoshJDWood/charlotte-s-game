@@ -16,3 +16,8 @@ Vec2 Treat::GetLocation()
 {
 	return loc;
 }
+
+float Treat::GetFloor()
+{
+	return floor;
+}

@@ -10,6 +10,7 @@ public:
 	void Draw(Board& brd);
 	bool eaten = false;
 	Vec2 GetLocation();
+	float GetFloor();
 private:
 	Vec2 loc;
 	float floor;

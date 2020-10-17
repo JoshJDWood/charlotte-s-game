@@ -12,17 +12,23 @@ void Board::DrawWalls(float floorindex)
 	{
 		sx = shiftx(width0);
 		sy = shifty(height0);
+		for (int i = 0; i < nWalls0; i++)
+		{
+			gfx.DrawRectDim(int(sx + walls0[i].x * dim), int(sy + walls0[i].y * dim),
+				int(dim), int(dim), bordercolor);
+		}
 	}
 	else if (floorindex == 1)
 	{
 		sx = shiftx(width1);
 		sy = shifty(height1);
+		for (int i = 0; i < nWalls1; i++)
+		{
+			gfx.DrawRectDim(int(sx + walls1[i].x * dim), int(sy + walls1[i].y * dim),
+				int(dim), int(dim), bordercolor);
+		}
 	}
-	for (int i = 0; i < nWalls0; i++)
-	{
-		gfx.DrawRectDim(int(sx + walls0[i].x * dim), int(sy + walls0[i].y * dim),
-			int(dim), int(dim), bordercolor);
-	}
+	
 }
 
 void Board::DrawCell(Vec2& loc, float floorindex, Color c)
@@ -43,8 +49,16 @@ void Board::DrawCell(Vec2& loc, float floorindex, Color c)
 
 void Board::DrawTreat(Vec2& loc, float floorindex)
 {
-	int x = int(shiftx(width0) + loc.x * dim) + 14;
-	int y = int(shifty(height0) + loc.y * dim) + 14;
+	if (floorindex == 0)
+	{
+		x = int(shiftx(width0) + loc.x * dim) + 14;
+		y = int(shifty(height0) + loc.y * dim) + 14;
+	}
+	else if (floorindex == 1)
+	{
+		x = int(shiftx(width1) + loc.x * dim) + 14;
+		y = int(shifty(height1) + loc.y * dim) + 14;
+	}
 	gfx.PutPixel(x, y, treatout);
 	gfx.PutPixel(x + 1, y, treatout);
 	gfx.PutPixel(x + 2, y, treatout);

@@ -64,6 +64,8 @@ private:
 	static constexpr Color treatout = Color(139, 69, 19);
 	float sx = 0;
 	float sy = 0;
+	int x = 0;
+	int y = 0;
 	Graphics& gfx;
 	Surface ladysurf = Surface("dog_test2.bmp");
 };

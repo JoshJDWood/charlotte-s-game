@@ -65,13 +65,14 @@ void Game::UpdateModel()
 		if (MoveCounter > MovePeriod)
 		{
 			Vec2 next = lady.GetLocation() + delta_L;
-			charlie.Update(charlie.FindTarget(lady, brd), brd);
+			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()), brd);
 			if (brd.IsInPlay(next, lady.GetFloor().x))
 			{
 				lady.Update(delta_L);
 				for (int i = 0; i < ntreats; i++)
 				{
-					if (lady.GetLocation() == treats[i].GetLocation())
+					if (lady.GetLocation() == treats[i].GetLocation() 
+						&& lady.GetFloor().x == treats[i].GetFloor())
 					{
 						if (treats[i].eaten == false)
 						{
@@ -92,7 +93,7 @@ void Game::UpdateModel()
 				delta_L = { 0,0 };
 				MoveCounter = 0;
 			}
-			if (lady.GetLocation() == charlie.GetLoction())
+			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
 			{
 				GameIsOver = true;
 			}
@@ -122,9 +123,14 @@ void Game::ComposeFrame()
 	{
 		if (!treats[i].eaten)
 		{
-			treats[i].Draw(brd);
+			if (treats[i].GetFloor() == lady.GetFloor().x)
+			{
+				treats[i].Draw(brd);
+			}
 		}
 	}
+	//test to see wall locations
+	//brd.DrawWalls(lady.GetFloor().x);
 	if (GameIsOver)
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);

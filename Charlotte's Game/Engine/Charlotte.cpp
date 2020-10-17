@@ -114,37 +114,97 @@ void Charlotte::Update(Vec2& target, Board& brd)
 	moved = false;	
 }
 
-Vec2 Charlotte::FindTarget(Lady& lady, Board& brd)
+Vec2 Charlotte::FindTarget(Vec2& lfloor, Vec2& lloc)
 {
-	Vec2 Lfloor = lady.GetFloor();
-	if (floor == Lfloor)
+	if (floor == lfloor)
 	{
-		return lady.GetLocation();
+		return lloc;
 	}
 	if (floor.x == 0)
 	{
-		if (Lfloor.y > floor.y)
+		if (lfloor.x == 0)
 		{
-			return F0CPH[int(floor.y)];
+			if (floor.y == 3 && lfloor.y == 5)
+			{
+				return F0CP5H;
+			}
+			else if (floor.y == 5)
+			{
+				return F0CP5L;
+			}
+			else if (lfloor.y > floor.y)
+			{
+				return F0CPH[int(floor.y)];
+			}
+			else
+			{
+				return F0CPL[int(floor.y - 1)];
+			}
 		}
-		else
+		else if (lfloor.x == 1)
 		{
-			return F0CPL[int(floor.y - 1)];
+			if (floor.y != 0)
+			{
+				Vec2 phantomfloor = { 0,0 };
+				return FindTarget( phantomfloor, lloc);
+			}
+			else
+			{
+				return { 13,0 };
+			}
+		}
+		
+	}
+	else if (floor.x == 1)
+	{
+		if (lfloor.x == 0)
+		{
+			return { 13, 4 };
 		}
 	}
 }
 
-void Charlotte::UpdateFloor()
+Vec2 Charlotte::UpdateFloor()
 {
-	for (int i = 0; i < CPn; i++)
+	if (floor.x == 0)
 	{
-		if (oldloc == F0CPL[i] && loc == F0CPH[i])
+		for (int i = 0; i < CPn; i++)
 		{
-			floor.y = float(i) + 1;
+			if (oldloc == F0CPL[i] && loc == F0CPH[i])
+			{
+				floor.y = float(i) + 1;
+				return floor;
+			}
+			else if (oldloc == F0CPH[i] && loc == F0CPL[i])
+			{
+				floor.y = float(i);
+				return floor;
+			}
 		}
-		else if (oldloc == F0CPH[i] && loc == F0CPL[i])
+		if (oldloc == F0CP5L && loc == F0CP5H)
 		{
-			floor.y = float(i);
+			floor.y = 5;
+			return floor;
+		}
+		else if (oldloc == F0CP5H && loc == F0CP5L)
+		{
+			floor.y = 3;
+			return floor;
+		}
+		if (oldloc == loc && loc == Vec2(13, 0))
+		{
+			floor.x = 1;
+			loc = { 13,4 };
+			return floor;
+		}
+	}
+	else if (floor.x == 1)
+	{
+		if (oldloc == loc && loc == Vec2(13, 4))
+		{
+			floor.x = 0;
+			loc = { 13,0 };
+			return floor;
 		}
 	}
 }
