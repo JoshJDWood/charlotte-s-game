@@ -144,6 +144,10 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 	}
 	else if (floorindex == 2)
 	{
+		if (next.x == 0 || next.y == 0 || next.y == 17)
+		{
+			return false;
+		}
 		for (int i = 0; i < nWalls2; ++i)
 		{
 			if (next == walls2[i])
