@@ -153,13 +153,39 @@ Vec2 Charlotte::FindTarget(Vec2& lfloor, Vec2& lloc)
 				return { 13,0 };
 			}
 		}
-		
+		else if (lfloor.x == 2)
+		{
+			if (floor.y != 3)
+			{
+				Vec2 phantomfloor = { 0,3 };
+				return FindTarget(phantomfloor, lloc);
+			}
+			else
+			{
+				return { 2,9 };
+			}
+		}
 	}
 	else if (floor.x == 1)
 	{
 		if (lfloor.x == 0)
 		{
 			return { 13, 4 };
+		}
+		else if (lfloor.x == 2)
+		{
+			return { 0,2 };
+		}
+	}
+	else if (floor.x == 2)
+	{
+		if (lfloor.x == 0)
+		{
+			return { 17,11 };
+		}
+		else if (lfloor.x == 1)
+		{
+			return { 17,2 };
 		}
 	}
 }
@@ -197,13 +223,40 @@ Vec2 Charlotte::UpdateFloor()
 			loc = { 13,4 };
 			return floor;
 		}
+		if (oldloc == loc && loc == Vec2(2, 9))
+		{
+			floor = { 2,0 };
+			loc = { 17,11 };
+			return floor;
+		}
 	}
 	else if (floor.x == 1)
 	{
 		if (oldloc == loc && loc == Vec2(13, 4))
 		{
-			floor.x = 0;
+			floor = { 0,0 };
 			loc = { 13,0 };
+			return floor;
+		}
+		else if (oldloc == loc && loc == Vec2(0, 2))
+		{
+			floor.x = 2;
+			loc = { 17,2 };
+			return floor;
+		}
+	}
+	else if (floor.x == 2)
+	{
+		if (oldloc == loc && loc == Vec2(17, 2))
+		{
+			floor.x = 1;
+			loc = { 0, 2 };
+			return floor;
+		}
+		else if (oldloc == loc && loc == Vec2(17, 11))
+		{
+			floor = { 0,3 };
+			loc = { 2, 9 };
 			return floor;
 		}
 	}

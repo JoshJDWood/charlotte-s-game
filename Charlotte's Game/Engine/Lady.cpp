@@ -45,13 +45,40 @@ Vec2 Lady::UpdateFloor()
 			loc = { 13,4 };
 			return floor;
 		}
+		if (oldloc == loc && loc == Vec2(2, 9))
+		{
+			floor = { 2,0 };
+			loc = { 17,11 };
+			return floor;
+		}
 	}
 	else if (floor.x == 1)
 	{
 		if (oldloc == loc && loc == Vec2(13, 4))
 		{
-			floor.x = 0;
+			floor = { 0,0 };
 			loc = { 13,0 };
+			return floor;
+		}
+		else if (oldloc == loc && loc == Vec2(0, 2))
+		{
+			floor.x = 2;
+			loc = { 17,2 };
+			return floor;
+		}
+	}
+	else if (floor.x == 2)
+	{
+		if (oldloc == loc && loc == Vec2(17, 2))
+		{
+			floor.x = 1;
+			loc = { 0, 2 };
+			return floor;
+		}
+		else if (oldloc == loc && loc == Vec2(17, 11))
+		{
+			floor = { 0,3 };
+			loc = { 2, 9 };
 			return floor;
 		}
 	}
