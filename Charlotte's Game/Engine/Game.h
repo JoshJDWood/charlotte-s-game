@@ -64,5 +64,6 @@ private:
 	bool GameIsWon = false;
 	Surface groundsurf = Surface("groundtest2.bmp");
 	Surface alleysurf = Surface("alley_placeholder.bmp");
+	Surface frontsurf = Surface("front_placeholder.bmp");
 	/********************************/
 };

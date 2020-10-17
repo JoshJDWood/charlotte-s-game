@@ -13,7 +13,7 @@ public:
 	void DrawLady(Vec2& loc, float floorindex);
 	bool IsInPlay(Vec2& next, float floorindex);
 private:
-	//floor0
+	//floor0 - ground floor
 	static const int nWalls0 = 175;
 	Vec2 walls0[nWalls0] = {
 		{5,0},{6,0},{7,0},{12,0},{14,0},{16,0},{19,0},{20,0},{21,0},
@@ -38,7 +38,7 @@ private:
 		{16,17},{17,17},{18,17},{19,17},{20,17} };	
 	static constexpr float width0 = 24;
 	static constexpr float height0 = 18;
-	//floor1
+	//floor1 - alleyway
 	static const int nWalls1 = 50;
 	Vec2 walls1[nWalls1] = {
 		{6,0},{7,0},{8,0},{9,0},{10,0},{11,0},{12,0},{13,0},{14,0},{15,0},{20,0},
@@ -48,10 +48,30 @@ private:
 		{1,4},{2,4},{3,4},{7,4},{8,4},{9,4},{10,4},{11,4},{12,4},{14,4},{19,4},{20,4},{21,4},{22,4}};
 	static constexpr float width1 = 24;
 	static constexpr float height1 = 5;
+	//floor2 - front garden
+	static const int nWalls2 = 98;
+	Vec2 walls2[nWalls2] = {
+		{7,1},{8,1},{17,1},
+		{1,2},{3,2},{5,2},{10,2},{11,2},{12,2},{13,2},{14,2},
+		{10,3},{14,3},{17,3},
+		{10,4},{11,4},{12,4},{13,4},{14,4},{17,4},
+		{2,5},{3,5},{4,5},{5,5},{6,5},{7,5},{17,5},
+		{2,6},{7,6},{11,6},{12,6},{13,6},{14,6},{15,6},{17,6},
+		{2,7},{3,7},{4,7},{5,7},{6,7},{7,7},{11,7},{15,7},{17,7},
+		{11,8},{12,8},{13,8},{14,8},{15,8},{17,8},
+		{17,9},
+		{3,10},{4,10},{5,10},{12,10},{13,10},{14,10},{17,10},
+		{2,11},{5,11},{8,11},{9,11},{10,11},{12,11},{14,11},
+		{3,12},{5,12},{8,12},{10,12},{12,12},{15,12},{17,12},
+		{3,13},{6,13},{8,13},{10,13},{12,13},{14,13},{17,13},
+		{1,14},{3,14},{5,14},{8,14},{10,14},{12,14},{13,14},{14,14},{17,14},
+		{1,15},{3,15},{4,15},{5,15},{8,15},{9,15},{10,15},{16,15},
+		{1,16},{15,16} };
+	static constexpr float width2 = 18;
+	static constexpr float height2 = 18;
 
 	static constexpr float dim = 32;
 	static constexpr Color bordercolor = Colors::Blue;
-	static constexpr float borderthickness = 3;
 	float shiftx(float width)
 	{
 		return 400 - width * dim / 2;
