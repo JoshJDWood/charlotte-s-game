@@ -13,7 +13,7 @@ public:
 	Vec2 GetLoction();
 	Vec2 GetFloor();
 private:
-	Vec2 loc = { 2,2 };
+	Vec2 loc = { 1,2 };
 	Vec2 oldloc;
 	Vec2 floor = { 1, 0 };
 	Vec2 delta_C = { 0,0 };

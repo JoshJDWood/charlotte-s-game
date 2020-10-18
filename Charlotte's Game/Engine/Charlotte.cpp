@@ -9,7 +9,12 @@ void Charlotte::Update(Vec2& target, Board& brd)
 {
 	oldloc = loc;
 	Vec2 diff = target - loc;
-	if (abs(diff.x) > abs(diff.y))
+	if (diff == Vec2(0, 0))
+	{
+		//fake move so it can change floor
+		moved = true;
+	}
+	else if (abs(diff.x) > abs(diff.y))
 	{
 		delta_C.x = diff.x / abs(diff.x);
 		Vec2 next = loc + delta_C;
