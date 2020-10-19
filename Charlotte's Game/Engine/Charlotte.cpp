@@ -155,7 +155,7 @@ Vec2 Charlotte::FindTarget(Vec2& lfloor, Vec2& lloc)
 			}
 			else
 			{
-				return { 13,0 };
+				return F0T1;
 			}
 		}
 		else if (lfloor.x == 2)
@@ -167,7 +167,19 @@ Vec2 Charlotte::FindTarget(Vec2& lfloor, Vec2& lloc)
 			}
 			else
 			{
-				return { 0,9 };
+				return F0T2;
+			}
+		}
+		else if (lfloor.x == 3)
+		{
+			if (floor.y != 4)
+			{
+				Vec2 phantomfloor = { 0,4 };
+				return FindTarget(phantomfloor, lloc);
+			}
+			else
+			{
+				return F0T3;
 			}
 		}
 	}
@@ -175,22 +187,45 @@ Vec2 Charlotte::FindTarget(Vec2& lfloor, Vec2& lloc)
 	{
 		if (lfloor.x == 0)
 		{
-			return { 13, 4 };
+			return F1T0;
 		}
 		else if (lfloor.x == 2)
 		{
-			return { 0,2 };
+			return F1T2;
+		}
+		else if (lfloor.x == 3)
+		{
+			return F1T3;
 		}
 	}
 	else if (floor.x == 2)
 	{
 		if (lfloor.x == 0)
 		{
-			return { 17,11 };
+			return F2T0;
 		}
 		else if (lfloor.x == 1)
 		{
-			return { 17,2 };
+			return F2T1;
+		}
+		else if (lfloor.x == 3)
+		{
+			return F2T1;
+		}
+	}
+	else if (floor.x == 3)
+	{
+		if (lfloor.x == 0)
+		{
+			return F3T0;
+		}
+		else if (lfloor.x == 1)
+		{
+			return F3T1;
+		}
+		else if (lfloor.x == 2)
+		{
+			return F3T1;
 		}
 	}
 }

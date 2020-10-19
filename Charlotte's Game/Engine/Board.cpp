@@ -147,6 +147,10 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 {
 	if (floorindex == 0)
 	{
+		if (next.y == 17)
+		{
+			return false;
+		}
 		for (int i = 0; i < nWalls0; ++i)
 		{
 			if (next == walls0[i])
@@ -158,6 +162,10 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 	}
 	else if (floorindex == 1)
 	{
+		if (next.y == 0)
+		{
+			return false;
+		}
 		for (int i = 0; i < nWalls1; ++i)
 		{
 			if (next == walls1[i])
@@ -222,41 +230,64 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 		{
 			floor.y = 3;
 		}
-		if (oldloc == loc && loc == Vec2(13, 0))
+		else if (oldloc == loc && loc == F0T1)
 		{
 			floor.x = 1;
-			loc = { 13,4 };
+			loc = F1T0;
 		}
-		if (oldloc == loc && loc == Vec2(0, 9))
+		else if (oldloc == loc && loc == F0T2)
 		{
 			floor = { 2,0 };
-			loc = { 17,11 };
+			loc = F2T0;
+		}
+		else if (oldloc == loc && loc == F0T3)
+		{
+			floor = { 3,0 };
+			loc = F3T0;
 		}
 	}
 	else if (floor.x == 1)
 	{
-		if (oldloc == loc && loc == Vec2(13, 4))
+		if (oldloc == loc && loc == F1T0)
 		{
 			floor = { 0,0 };
-			loc = { 13,0 };
+			loc = F0T1;
 		}
-		else if (oldloc == loc && loc == Vec2(0, 2))
+		else if (oldloc == loc && loc == F1T2)
 		{
 			floor.x = 2;
-			loc = { 17,2 };
+			loc = F2T1;
+		}
+		else if (oldloc == loc && loc == F1T3)
+		{
+			floor.x = 3;
+			loc = F3T1;
 		}
 	}
 	else if (floor.x == 2)
 	{
-		if (oldloc == loc && loc == Vec2(17, 2))
+		if (oldloc == loc && loc == F2T1)
 		{
 			floor.x = 1;
-			loc = { 0, 2 };
+			loc = F1T2;
 		}
-		else if (oldloc == loc && loc == Vec2(17, 11))
+		else if (oldloc == loc && loc == F2T0)
 		{
 			floor = { 0,3 };
-			loc = { 0, 9 };
+			loc = F0T2;
+		}
+	}
+	else if (floor.x == 3)
+	{
+		if (oldloc == loc && loc == F3T1)
+		{
+			floor.x = 1;
+			loc = F1T3;
+		}
+		else if (oldloc == loc && loc == F3T0)
+		{
+			floor = { 0,4 };
+			loc = F0T3;
 		}
 	}
 }

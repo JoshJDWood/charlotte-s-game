@@ -21,7 +21,18 @@ private:
 	Vec2 F0CPL[CPn] = { {11,4}, {18,4}, {20,7}, {13,11} };
 	Vec2 F0CP5H = { 7,11 };
 	Vec2 F0CP5L = { 7,10 };
+	Vec2 F0T2 = { 0, 9 };
+	Vec2 F2T0 = { 17, 11 };
+	Vec2 F2T1 = { 17, 2 };
+	Vec2 F1T2 = { 0, 2 };
+	Vec2 F0T1 = { 13,0 };
+	Vec2 F1T0 = { 13, 4 };
+	Vec2 F1T3 = { 23, 2 };
+	Vec2 F3T1 = { 0, 2 };
+	Vec2 F0T3 = { 23, 13 };
+	Vec2 F3T0 = { 0, 13 };
 	Color c = Colors::Red;
 	bool moved = false;
 	float MovePrefAlt = 1;
+	float FloorPrefAlt = 1;
 };

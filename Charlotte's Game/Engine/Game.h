@@ -58,7 +58,7 @@ private:
 	Treat treats[ntreats] = { {Vec2(0,0), 0}, {Vec2(10,0), 0}, {Vec2(0,10), 0}, {Vec2(10,10), 0} };
 	Vec2 delta_L = { 0,0 };
 	float MoveCounter = 0;
-	float MovePeriod = 0.6;
+	float MovePeriod = 0.5;
 	int TreatsEatenCounter = 0;
 	bool GameIsOver = false;
 	bool GameIsWon = false;
