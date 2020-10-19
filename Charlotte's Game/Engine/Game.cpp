@@ -68,7 +68,7 @@ void Game::UpdateModel()
 			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()), brd);
 			if (brd.IsInPlay(next, lady.GetFloor().x))
 			{
-				lady.Update(delta_L);
+				lady.Update(delta_L, brd);
 				for (int i = 0; i < ntreats; i++)
 				{
 					if (lady.GetLocation() == treats[i].GetLocation() 
@@ -138,7 +138,7 @@ void Game::ComposeFrame()
 		}
 	}
 	//test to see wall locations
-	brd.DrawWalls(lady.GetFloor().x);
+	//brd.DrawWalls(lady.GetFloor().x);
 	if (GameIsOver)
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);

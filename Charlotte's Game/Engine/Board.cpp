@@ -201,4 +201,62 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 
 void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 {
+	if (floor.x == 0)
+	{
+		for (int i = 0; i < CPn; i++)
+		{
+			if (oldloc == F0CPL[i] && loc == F0CPH[i])
+			{
+				floor.y = float(i) + 1;				
+			}
+			else if (oldloc == F0CPH[i] && loc == F0CPL[i])
+			{
+				floor.y = float(i);
+			}
+		}
+		if (oldloc == F0CP5L && loc == F0CP5H)
+		{
+			floor.y = 5;
+		}
+		else if (oldloc == F0CP5H && loc == F0CP5L)
+		{
+			floor.y = 3;
+		}
+		if (oldloc == loc && loc == Vec2(13, 0))
+		{
+			floor.x = 1;
+			loc = { 13,4 };
+		}
+		if (oldloc == loc && loc == Vec2(0, 9))
+		{
+			floor = { 2,0 };
+			loc = { 17,11 };
+		}
+	}
+	else if (floor.x == 1)
+	{
+		if (oldloc == loc && loc == Vec2(13, 4))
+		{
+			floor = { 0,0 };
+			loc = { 13,0 };
+		}
+		else if (oldloc == loc && loc == Vec2(0, 2))
+		{
+			floor.x = 2;
+			loc = { 17,2 };
+		}
+	}
+	else if (floor.x == 2)
+	{
+		if (oldloc == loc && loc == Vec2(17, 2))
+		{
+			floor.x = 1;
+			loc = { 0, 2 };
+		}
+		else if (oldloc == loc && loc == Vec2(17, 11))
+		{
+			floor = { 0,3 };
+			loc = { 0, 9 };
+		}
+	}
 }

@@ -9,13 +9,12 @@ public:
 	void Draw(Board& brd);
 	void Update(Vec2& target, Board& brd);
 	Vec2 FindTarget(Vec2& lfloor, Vec2& lloc);
-	Vec2 UpdateFloor();
 	Vec2 GetLoction();
 	Vec2 GetFloor();
 private:
-	Vec2 loc = { 1,2 };
+	Vec2 loc = { 19,9 };
 	Vec2 oldloc;
-	Vec2 floor = { 1, 0 };
+	Vec2 floor = { 0, 3 };
 	Vec2 delta_C = { 0,0 };
 	static constexpr int CPn = 4;
 	Vec2 F0CPH[CPn] = { {12,4}, {19,4}, {20,8}, {13,12} };

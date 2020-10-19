@@ -93,6 +93,12 @@ private:
 		{2,16},{3,16},{18,16}, };
 	static constexpr float width3 = 24;
 	static constexpr float height3 = 18;
+	//update floor values
+	static constexpr int CPn = 4;
+	Vec2 F0CPH[CPn] = { {12,4}, {19,4}, {20,8}, {13,12} };
+	Vec2 F0CPL[CPn] = { {11,4}, {18,4}, {20,7}, {13,11} };
+	Vec2 F0CP5H = { 7,11 };
+	Vec2 F0CP5L = { 7,10 };
 
 	static constexpr float dim = 32;
 	static constexpr Color bordercolor = Colors::Blue;
