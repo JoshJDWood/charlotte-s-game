@@ -158,3 +158,7 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 		return true;
 	}
 }
+
+void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
+{
+}

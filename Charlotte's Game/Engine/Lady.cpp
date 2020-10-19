@@ -45,7 +45,7 @@ Vec2 Lady::UpdateFloor()
 			loc = { 13,4 };
 			return floor;
 		}
-		if (oldloc == loc && loc == Vec2(2, 9))
+		if (oldloc == loc && loc == Vec2(0, 9))
 		{
 			floor = { 2,0 };
 			loc = { 17,11 };
@@ -78,7 +78,7 @@ Vec2 Lady::UpdateFloor()
 		else if (oldloc == loc && loc == Vec2(17, 11))
 		{
 			floor = { 0,3 };
-			loc = { 2, 9 };
+			loc = { 0, 9 };
 			return floor;
 		}
 	}
