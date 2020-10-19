@@ -115,6 +115,10 @@ void Game::ComposeFrame()
 	{
 		gfx.DrawSpriteNonChroma(112, 12, frontsurf);
 	}
+	else if (lady.GetFloor().x == 3)
+	{
+		gfx.DrawSpriteNonChroma(16, 12, backsurf);
+	}
 
 	lady.Draw(brd);
 
@@ -134,7 +138,7 @@ void Game::ComposeFrame()
 		}
 	}
 	//test to see wall locations
-	//brd.DrawWalls(lady.GetFloor().x);
+	brd.DrawWalls(lady.GetFloor().x);
 	if (GameIsOver)
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);

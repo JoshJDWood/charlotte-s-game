@@ -65,5 +65,6 @@ private:
 	Surface groundsurf = Surface("ground_placeholder.bmp");
 	Surface alleysurf = Surface("alley_placeholder.bmp");
 	Surface frontsurf = Surface("front_placeholder.bmp");
+	Surface backsurf = Surface("back_layout.bmp");
 	/********************************/
 };
