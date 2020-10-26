@@ -62,8 +62,8 @@ private:
 	int TreatsEatenCounter = 0;
 	bool GameIsOver = false;
 	bool GameIsWon = false;
-	Surface groundsurf = Surface("ground_placeholder.bmp");
-	Surface alleysurf = Surface("alley_placeholder.bmp");
+	Surface groundsurf = Surface("ground_textured.bmp");
+	Surface alleysurf = Surface("alley_textured.bmp");
 	Surface frontsurf = Surface("front_placeholder.bmp");
 	Surface backsurf = Surface("back_layout.bmp");
 	/********************************/
