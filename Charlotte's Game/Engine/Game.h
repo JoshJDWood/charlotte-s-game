@@ -65,6 +65,6 @@ private:
 	Surface groundsurf = Surface("ground_textured.bmp");
 	Surface alleysurf = Surface("alley_textured.bmp");
 	Surface frontsurf = Surface("front_textured.bmp");
-	Surface backsurf = Surface("back_layout.bmp");
+	Surface backsurf = Surface("back_textured.bmp");
 	/********************************/
 };
