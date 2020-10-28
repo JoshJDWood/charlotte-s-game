@@ -64,23 +64,6 @@ void Board::DrawTreat(Vec2& loc, float floorindex)
 {		
 	x = int(shiftx(width[int(floorindex)]) + loc.x * dim) + 14;
 	y = int(shifty(height[int(floorindex)]) + loc.y * dim) + 14;
-
-	gfx.PutPixel(x, y, treatout);
-	gfx.PutPixel(x + 1, y, treatout);
-	gfx.PutPixel(x + 2, y, treatout);
-	gfx.PutPixel(x + 3, y, treatout);
-	gfx.PutPixel(x, y + 1, treatout);
-	gfx.PutPixel(x + 1, y + 1, treatin);
-	gfx.PutPixel(x + 2, y + 1, treatin);
-	gfx.PutPixel(x + 3, y + 1, treatout);
-	gfx.PutPixel(x, y + 2, treatout);
-	gfx.PutPixel(x + 1, y + 2, treatin);
-	gfx.PutPixel(x + 2, y + 2, treatin);
-	gfx.PutPixel(x + 3, y + 2, treatout);
-	gfx.PutPixel(x, y + 3, treatout);
-	gfx.PutPixel(x + 1, y + 3, treatout);
-	gfx.PutPixel(x + 2, y + 3, treatout);
-	gfx.PutPixel(x + 3, y + 3, treatout);
 }
 
 void Board::DrawPoo(Vec2& loc, float floorindex)

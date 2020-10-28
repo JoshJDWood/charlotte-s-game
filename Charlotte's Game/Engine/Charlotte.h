@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Board.h"
-#include "Lady.h"
 
 class Charlotte
 {
@@ -13,7 +12,7 @@ public:
 	Vec2 GetFloor();
 private:
 	Vec2 loc = { 19,9 };
-	Vec2 oldloc;
+	Vec2 oldloc = { 0,0 };
 	Vec2 floor = { 0, 3 };
 	Vec2 delta_C = { 0,0 };
 	static constexpr int CPn = 4;

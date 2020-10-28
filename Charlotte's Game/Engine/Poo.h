@@ -15,8 +15,8 @@ public:
 	bool IsRolledIn();
 	void SetToRolledIn();
 private:
-	Vec2 loc;
-	float floor;
+	Vec2 loc = { 0,0 };
+	float floor = 0;
 	bool RolledIn = false;
 	Color poocolor = Color(138, 77, 0);
 };
