@@ -38,6 +38,11 @@ Game::Game( MainWindow& wnd )
 	{
 		treats[i] = Treat(rng, brd, FDist(rng));
 	}
+	Color c_in[3] = { Colors::Blue, Colors::Green, Colors::White };
+	for (int i = 0; i < nFamily; ++i)
+	{
+		familymem[i] = Family(i, c_in[i], rng);
+	}
 }
 
 void Game::Go()
@@ -82,6 +87,11 @@ void Game::UpdateModel()
 			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
 				lady.GetFloor().x, lady.IsSmelly(), brd);
 			
+			for (int i = 0; i < nFamily; ++i)
+			{
+				familymem[i].Update(brd);
+			}
+
 			lady.Update(delta_L, brd);
 			if (lady.DidMove())
 			{				
@@ -157,7 +167,15 @@ void Game::ComposeFrame()
 		charlie.Draw(brd);
 	}
 
-	for (int i = 0; i < ntreats; i++)
+	for (int i = 0; i < nFamily; ++i)
+	{
+		if (familymem[i].GetFloor().x == lady.GetFloor().x)
+		{
+			familymem[i].Draw(brd);
+		}
+	}
+
+	for (int i = 0; i < ntreats; ++i)
 	{
 		if (!treats[i].GetEaten() && treats[i].GetFloor() == lady.GetFloor().x)
 		{

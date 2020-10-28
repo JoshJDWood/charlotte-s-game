@@ -14,9 +14,9 @@ public:
 	void SetToSmelly();
 	void SetSmellyOver();
 private:
-	Vec2 loc = { 1,1 };
+	Vec2 loc = { 10,9 };
 	Vec2 oldloc = { 0,0 };
-	Vec2 floor = { 3,0 };
+	Vec2 floor = { 0,3 };
 	bool moved = false;
 	bool smelly = false;
 	bool caught = false;

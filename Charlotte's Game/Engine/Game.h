@@ -30,6 +30,7 @@
 #include "Charlotte.h"
 #include "Treat.h"
 #include "Poo.h"
+#include "Family.h"
 #include "Surface.h"
 #include <random>
 
@@ -62,6 +63,8 @@ private:
 	Treat treats[ntreats];
 	static constexpr int nPoos = 5;
 	Poo poos[nPoos];
+	static constexpr int nFamily = 3;
+	Family familymem[nFamily];
 
 	//counters
 	float MoveCounter = 0;

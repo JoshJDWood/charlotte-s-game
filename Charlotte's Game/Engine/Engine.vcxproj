@@ -164,6 +164,7 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Charlotte.cpp" />
     <ClCompile Include="DXErr.cpp" />
+    <ClCompile Include="Family.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
