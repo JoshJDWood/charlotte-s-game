@@ -16,6 +16,10 @@ public:
 	bool IsInPlay(Vec2& next, float floorindex);
 	void UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc);
 private:
+	
+	static constexpr int nFloors = 4;
+	static constexpr float width[nFloors] = { 24,24,18,24 };
+	static constexpr float height[nFloors] = { 18,5,18,18 };
 	//floor0 - ground floor
 	static const int nWalls0 = 170;
 	Vec2 walls0[nWalls0] = {{13,-1}, //floorchange in row

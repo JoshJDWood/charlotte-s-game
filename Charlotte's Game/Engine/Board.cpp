@@ -53,52 +53,18 @@ void Board::DrawWalls(float floorindex)
 
 void Board::DrawCell(Vec2& loc, float floorindex, Color c)
 {
-	if (floorindex == 0)
-	{
-		sx = shiftx(width0);
-		sy = shifty(height0);
-	}
-	else if (floorindex == 1)
-	{
-		sx = shiftx(width1);
-		sy = shifty(height1);
-	}
-	else if (floorindex == 2)
-	{
-		sx = shiftx(width2);
-		sy = shifty(height2);
-	}
-	else if (floorindex == 3)
-	{
-		sx = shiftx(width3);
-		sy = shifty(height3);
-	}
+	sx = shiftx(width[int(floorindex)]);
+	sy = shifty(height[int(floorindex)]);
+	
 	gfx.DrawRectDim(int(sx + loc.x * dim), int(sy + loc.y * dim),
 		int(dim), int(dim), c);
 }
 
 void Board::DrawTreat(Vec2& loc, float floorindex)
-{
-	if (floorindex == 0)
-	{
-		x = int(shiftx(width0) + loc.x * dim) + 14;
-		y = int(shifty(height0) + loc.y * dim) + 14;
-	}
-	else if (floorindex == 1)
-	{
-		x = int(shiftx(width1) + loc.x * dim) + 14;
-		y = int(shifty(height1) + loc.y * dim) + 14;
-	}
-	else if (floorindex == 2)
-	{
-		x = int(shiftx(width2) + loc.x * dim) + 14;
-		y = int(shifty(height2) + loc.y * dim) + 14;
-	}
-	else if (floorindex == 3)
-	{
-		x = int(shiftx(width3) + loc.x * dim) + 14;
-		y = int(shifty(height3) + loc.y * dim) + 14;
-	}
+{		
+	x = int(shiftx(width[int(floorindex)]) + loc.x * dim) + 14;
+	y = int(shifty(height[int(floorindex)]) + loc.y * dim) + 14;
+
 	gfx.PutPixel(x, y, treatout);
 	gfx.PutPixel(x + 1, y, treatout);
 	gfx.PutPixel(x + 2, y, treatout);
@@ -118,52 +84,16 @@ void Board::DrawTreat(Vec2& loc, float floorindex)
 }
 
 void Board::DrawPoo(Vec2& loc, float floorindex)
-{
-	if (floorindex == 0)
-	{
-		x = int(shiftx(width0) + loc.x * dim) + 16;
-		y = int(shifty(height0) + loc.y * dim) + 16;
-	}
-	else if (floorindex == 1)
-	{
-		x = int(shiftx(width1) + loc.x * dim) + 16;
-		y = int(shifty(height1) + loc.y * dim) + 16;
-	}
-	else if (floorindex == 2)
-	{
-		x = int(shiftx(width2) + loc.x * dim) + 16;
-		y = int(shifty(height2) + loc.y * dim) + 16;
-	}
-	else if (floorindex == 3)
-	{
-		x = int(shiftx(width3) + loc.x * dim) + 16;
-		y = int(shifty(height3) + loc.y * dim) + 16;
-	}
+{	
+	x = int(shiftx(width[int(floorindex)]) + loc.x * dim) + 16;
+	y = int(shifty(height[int(floorindex)]) + loc.y * dim) + 16;
 }
 
 void Board::DrawLady(Vec2& loc, float floorindex, bool smelly)
-{
+{	
+	sx = shiftx(width[int(floorindex)]);
+	sy = shifty(height[int(floorindex)]);
 	
-	if (floorindex == 0)
-	{
-		sx = shiftx(width0);
-		sy = shifty(height0);
-	}
-	else if (floorindex == 1)
-	{
-		sx = shiftx(width1);
-		sy = shifty(height1);
-	}
-	else if (floorindex == 2)
-	{
-		sx = shiftx(width2);
-		sy = shifty(height2);
-	}
-	else if (floorindex == 3)
-	{
-		sx = shiftx(width3);
-		sy = shifty(height3);
-	}
 	if (!smelly)
 	{
 		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), ladysurf, Color(220, 220, 220));
