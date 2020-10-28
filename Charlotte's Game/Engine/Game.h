@@ -58,8 +58,8 @@ private:
 	Vec2 delta_L = { 0,0 };
 	Charlotte charlie;
 	std::mt19937 rng;
-	static constexpr int ntreats = 4;
-	Treat treats[ntreats] = { {Vec2(0,0), 0}, {Vec2(10,0), 0}, {Vec2(0,10), 0}, {Vec2(10,10), 0} };
+	static constexpr int ntreats = 10;
+	Treat treats[ntreats];
 	static constexpr int nPoos = 5;
 	Poo poos[nPoos];
 

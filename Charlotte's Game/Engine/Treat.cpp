@@ -1,15 +1,23 @@
 #include "Treat.h"
 
-Treat::Treat(Vec2& locin, float floorin)
-	:
-	loc(locin),
-	floor(floorin)
+Treat::Treat(std::mt19937& rng, Board& brd, int floorin)
 {
+	std::uniform_int_distribution<int> xDist(0, int(brd.GetWidth(floorin) - 1));
+	std::uniform_int_distribution<int> yDist(0, int(brd.GetHeight(floorin) - 1));
+
+	Vec2 newloc;
+	do
+	{
+		newloc.x = float(xDist(rng));
+		newloc.y = float(yDist(rng));
+	} while (!brd.IsInPlay(newloc, float(floorin)));
+	loc = newloc;
+	floor = float(floorin);
 }
 
 void Treat::Draw(Board& brd)
 {
-	brd.DrawTreat(loc, floor);
+	brd.DrawCell(loc, floor, c);
 }
 
 Vec2 Treat::GetLocation()

@@ -34,6 +34,10 @@ Game::Game( MainWindow& wnd )
 	{
 		poos[i] = Poo(rng, brd, FDist(rng));
 	}
+	for (int i = 0; i < ntreats; ++i)
+	{
+		treats[i] = Treat(rng, brd, FDist(rng));
+	}
 }
 
 void Game::Go()

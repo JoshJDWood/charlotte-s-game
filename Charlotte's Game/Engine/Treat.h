@@ -2,18 +2,21 @@
 
 #include "Vec2.h"
 #include "Board.h"
+#include <random>
 
 class Treat
 {
 public:
-	Treat(Vec2& locin, float floorin);
+	Treat() = default;
+	Treat(std::mt19937 & rng, Board & brd, int floorin);
 	void Draw(Board& brd);	
 	Vec2 GetLocation();
 	float GetFloor();
 	bool GetEaten();
 	void SetToEaten();
 private:
-	Vec2 loc;
-	float floor;
+	Vec2 loc = { 0,0 };
+	float floor = 0;
 	bool eaten = false;
+	Color c = Colors::Cyan;
 };
