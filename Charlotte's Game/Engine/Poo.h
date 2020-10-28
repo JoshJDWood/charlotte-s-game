@@ -2,15 +2,17 @@
 
 #include "Vec2.h"
 #include "Board.h"
+#include <random>
 
 class Poo
 {
 public:
-	Poo(Vec2& locin, float floorin);
+	Poo() = default;
+	Poo(std::mt19937& rng, Board& brd, int floorin);
 	void Draw(Board& brd);
 	Vec2 GetLocation();
 	float GetFloor();
-	bool GetRolledIn();
+	bool IsRolledIn();
 	void SetToRolledIn();
 private:
 	Vec2 loc;

@@ -26,8 +26,14 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	brd( gfx )
+	brd( gfx ),
+	rng( std::random_device()())
 {
+	std::uniform_int_distribution<int> FDist(0, 3);
+	for (int i = 0; i < nPoos; ++i)
+	{
+		poos[i] = Poo(rng, brd, FDist(rng));
+	}
 }
 
 void Game::Go()
@@ -92,11 +98,16 @@ void Game::UpdateModel()
 						break;
 					}
 				}
-				if (lady.GetLocation() == poo.GetLocation()
-					&& lady.GetFloor().x == poo.GetFloor())
+				for (int i = 0; i < nPoos; ++i)
 				{
-					poo.SetToRolledIn();
-					lady.SetToSmelly();
+					if (lady.GetLocation() == poos[i].GetLocation()
+						&& lady.GetFloor().x == poos[i].GetFloor()
+						&& !poos[i].IsRolledIn())
+					{				
+						poos[i].SetToRolledIn();
+						lady.SetToSmelly();
+						break;
+					}
 				}
 			}
 			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
@@ -150,9 +161,12 @@ void Game::ComposeFrame()
 		}
 	}
 
-	if (!poo.GetRolledIn() && lady.GetFloor().x == poo.GetFloor())
+	for (int i = 0; i < nPoos; ++i)
 	{
-		poo.Draw(brd);
+		if (!poos[i].IsRolledIn() && lady.GetFloor().x == poos[i].GetFloor())
+		{
+			poos[i].Draw(brd);
+		}
 	}
 	//test to see wall locations
 	//brd.DrawWalls(lady.GetFloor().x);

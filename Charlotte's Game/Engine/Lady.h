@@ -19,4 +19,5 @@ private:
 	Vec2 floor = { 3,0 };
 	bool moved = false;
 	bool smelly = false;
+	bool caught = false;
 };

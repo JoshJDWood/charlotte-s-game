@@ -31,6 +31,7 @@
 #include "Treat.h"
 #include "Poo.h"
 #include "Surface.h"
+#include <random>
 
 class Game
 {
@@ -56,10 +57,11 @@ private:
 	Lady lady;
 	Vec2 delta_L = { 0,0 };
 	Charlotte charlie;
+	std::mt19937 rng;
 	static constexpr int ntreats = 4;
 	Treat treats[ntreats] = { {Vec2(0,0), 0}, {Vec2(10,0), 0}, {Vec2(0,10), 0}, {Vec2(10,10), 0} };
-	
-	Poo poo = { Vec2(11,9), 3 };
+	static constexpr int nPoos = 5;
+	Poo poos[nPoos];
 
 	//counters
 	float MoveCounter = 0;

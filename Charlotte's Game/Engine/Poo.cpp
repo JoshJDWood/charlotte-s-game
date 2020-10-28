@@ -1,10 +1,18 @@
 #include "Poo.h"
 
-Poo::Poo(Vec2& locin, float floorin)
-	:
-	loc(locin),
-	floor(floorin)
+Poo::Poo(std::mt19937& rng,Board& brd, int floorin)	
 {
+	std::uniform_int_distribution<int> xDist(0, int(brd.GetWidth(floorin)-1));
+	std::uniform_int_distribution<int> yDist(0, int(brd.GetHeight(floorin)-1));
+
+	Vec2 newloc;
+	do
+	{
+		newloc.x = float(xDist(rng));
+		newloc.y = float(yDist(rng));
+	} while (!brd.IsInPlay(newloc, float(floorin)));
+	loc = newloc;
+	floor = float(floorin);
 }
 
 void Poo::Draw(Board& brd)
@@ -22,7 +30,7 @@ float Poo::GetFloor()
 	return floor;
 }
 
-bool Poo::GetRolledIn()
+bool Poo::IsRolledIn()
 {
 	return RolledIn;
 }
