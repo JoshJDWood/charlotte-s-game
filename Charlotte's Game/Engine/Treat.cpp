@@ -21,3 +21,13 @@ float Treat::GetFloor()
 {
 	return floor;
 }
+
+bool Treat::GetEaten()
+{
+	return eaten;
+}
+
+void Treat::SetToEaten()
+{
+	eaten = true;
+}

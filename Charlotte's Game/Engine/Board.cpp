@@ -117,7 +117,31 @@ void Board::DrawTreat(Vec2& loc, float floorindex)
 	gfx.PutPixel(x + 3, y + 3, treatout);
 }
 
-void Board::DrawLady(Vec2& loc, float floorindex)
+void Board::DrawPoo(Vec2& loc, float floorindex)
+{
+	if (floorindex == 0)
+	{
+		x = int(shiftx(width0) + loc.x * dim) + 16;
+		y = int(shifty(height0) + loc.y * dim) + 16;
+	}
+	else if (floorindex == 1)
+	{
+		x = int(shiftx(width1) + loc.x * dim) + 16;
+		y = int(shifty(height1) + loc.y * dim) + 16;
+	}
+	else if (floorindex == 2)
+	{
+		x = int(shiftx(width2) + loc.x * dim) + 16;
+		y = int(shifty(height2) + loc.y * dim) + 16;
+	}
+	else if (floorindex == 3)
+	{
+		x = int(shiftx(width3) + loc.x * dim) + 16;
+		y = int(shifty(height3) + loc.y * dim) + 16;
+	}
+}
+
+void Board::DrawLady(Vec2& loc, float floorindex, bool smelly)
 {
 	
 	if (floorindex == 0)
@@ -140,7 +164,14 @@ void Board::DrawLady(Vec2& loc, float floorindex)
 		sx = shiftx(width3);
 		sy = shifty(height3);
 	}
-	gfx.DrawSprite(int(sx +loc.x * dim), int(sy + loc.y * dim), ladysurf, Color(220,220,220));
+	if (!smelly)
+	{
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), ladysurf, Color(220, 220, 220));
+	}
+	else
+	{
+		gfx.DrawSpriteNonChroma(int(sx + loc.x * dim), int(sy + loc.y * dim), ladysurf);
+	}
 }
 
 bool Board::IsInPlay(Vec2& next, float floorindex)

@@ -81,6 +81,9 @@
     <ClInclude Include="Treat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Poo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -132,6 +135,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Treat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Poo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

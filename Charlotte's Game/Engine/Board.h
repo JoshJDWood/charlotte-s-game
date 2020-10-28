@@ -2,6 +2,7 @@
 
 #include "Graphics.h"
 #include "Surface.h"
+#include "SpriteCodex.h"
 
 class Board
 {
@@ -10,7 +11,8 @@ public:
 	void DrawWalls(float floorindex);
 	void DrawCell( Vec2& loc, float floorindex, Color c);
 	void DrawTreat(Vec2& loc, float floorindex);
-	void DrawLady(Vec2& loc, float floorindex);
+	void DrawPoo(Vec2& loc, float floorindex);
+	void DrawLady(Vec2& loc, float floorindex, bool smelly);
 	bool IsInPlay(Vec2& next, float floorindex);
 	void UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc);
 private:

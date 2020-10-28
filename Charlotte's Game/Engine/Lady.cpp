@@ -2,7 +2,7 @@
 
 void Lady::Draw(Board& brd)
 {
-	brd.DrawLady(loc, floor.x);
+	brd.DrawLady(loc, floor.x, smelly);
 }
 
 void Lady::Update(Vec2& delta_L, Board& brd)
@@ -36,4 +36,19 @@ Vec2 Lady::GetFloor()
 bool Lady::DidMove()
 {
 	return moved;
+}
+
+bool Lady::IsSmelly()
+{
+	return smelly;
+}
+
+void Lady::SetToSmelly()
+{
+	smelly = true;
+}
+
+void Lady::SetSmellyOver()
+{
+	smelly = false;
 }

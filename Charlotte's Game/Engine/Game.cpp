@@ -61,6 +61,11 @@ void Game::UpdateModel()
 			delta_L = { 1,0 };
 		}
 
+		if (lady.IsSmelly())
+		{
+			SmellyCounter += dt;
+		}
+
 		MoveCounter += dt;
 		if (MoveCounter > MovePeriod)
 		{
@@ -74,9 +79,9 @@ void Game::UpdateModel()
 					if (lady.GetLocation() == treats[i].GetLocation() 
 						&& lady.GetFloor().x == treats[i].GetFloor())
 					{
-						if (treats[i].eaten == false)
+						if (treats[i].GetEaten() == false)
 						{
-							treats[i].eaten = true;
+							treats[i].SetToEaten();
 							TreatsEatenCounter += 1;
 							if (TreatsEatenCounter == ntreats)
 							{
@@ -86,10 +91,24 @@ void Game::UpdateModel()
 						break;
 					}
 				}
+				if (lady.GetLocation() == poo.GetLocation()
+					&& lady.GetFloor().x == poo.GetFloor())
+				{
+					poo.SetToRolledIn();
+					lady.SetToSmelly();
+				}
 			}
 			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
 			{
-				GameIsOver = true;
+				if (!lady.IsSmelly())
+				{
+					GameIsOver = true;
+				}				
+			}
+			if (SmellyCounter > SmellyPeriod)
+			{
+				lady.SetSmellyOver();
+				SmellyCounter = 0;
 			}
 			MoveCounter = 0;
 		}
@@ -124,16 +143,19 @@ void Game::ComposeFrame()
 
 	for (int i = 0; i < ntreats; i++)
 	{
-		if (!treats[i].eaten)
+		if (!treats[i].GetEaten() && treats[i].GetFloor() == lady.GetFloor().x)
 		{
-			if (treats[i].GetFloor() == lady.GetFloor().x)
-			{
-				treats[i].Draw(brd);
-			}
+			treats[i].Draw(brd);			
 		}
+	}
+
+	if (!poo.GetRolledIn() && lady.GetFloor().x == poo.GetFloor())
+	{
+		poo.Draw(brd);
 	}
 	//test to see wall locations
 	//brd.DrawWalls(lady.GetFloor().x);
+
 	if (GameIsOver)
 	{
 		gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);
