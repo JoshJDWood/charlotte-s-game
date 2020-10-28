@@ -143,6 +143,10 @@ void Family::Update(Board& brd)
 		}
 	}
 	brd.UpdateFloor(floor, loc, oldloc);
+	if (loc == Destination[0] && floor == Destination[1])
+	{
+		resting = true;
+	}
 	delta_F = { 0,0 };
 	moved = false;
 }
@@ -266,4 +270,19 @@ Vec2 Family::GetLoction()
 Vec2 Family::GetFloor()
 {
 	return floor;
+}
+
+bool Family::IsResting()
+{
+	return resting;
+}
+
+void Family::SetToResting()
+{
+	resting = true;
+}
+
+void Family::SetRestingEnd()
+{
+	resting = false;
 }

@@ -15,7 +15,21 @@ public:
 	Vec2 FindTarget(Vec2& targetloc, Vec2& targetfloor);
 	Vec2 GetLoction();
 	Vec2 GetFloor();
+	bool IsResting();
+	void SetToResting();
+	void SetRestingEnd();
 private:
+	//family specific
+	int selfindex;
+	static constexpr int nDestinations = 8;
+	Vec2 Destinationloc[nDestinations] = { {21,15}, {4,14}, {6,1}, {15,1}, {2,2}, {2,9}, {8,14}, {21,7} };
+	Vec2 Destinationfloor[nDestinations] = { {0,4}, {0,5}, {1,0}, {1,0}, {2,0}, {2,0}, {3,0}, {3,0} };
+	Vec2 Destination[2] = { {0,0}, {0,0} };
+	int Destinationindex;
+	Color c;
+	bool resting = false;
+	
+	//shared with charlotte
 	Vec2 loc = { 8,9 };
 	Vec2 oldloc = { 0,0 };
 	Vec2 floor = { 0, 3 };
@@ -38,13 +52,4 @@ private:
 	bool moved = false;
 	float MovePrefAlt = 1;
 	float FloorPrefAlt = 1;
-	//family specific
-	int selfindex;
-	static constexpr int nDestinations = 4;
-	Vec2 Destinationloc[nDestinations] = { {4,14}, {8,14}, {6,1}, {1,3} };
-	Vec2 Destinationfloor[nDestinations] = { {0,5}, {3,0}, {1,0}, {2,0} };
-	Vec2 Destination[2] = { {0,0}, {0,0} };
-	int Destinationindex;
-	Color c;
-
 };

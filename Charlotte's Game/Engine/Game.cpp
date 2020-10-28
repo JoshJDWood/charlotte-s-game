@@ -81,6 +81,14 @@ void Game::UpdateModel()
 			SmellyCounter += dt;
 		}
 
+		for (int i = 0; i < nFamily; ++i)
+		{
+			if (familymem[i].IsResting())
+			{
+				RestingCounter[i] += dt;
+			}
+		}
+
 		MoveCounter += dt;
 		if (MoveCounter > MovePeriod)
 		{
@@ -90,6 +98,15 @@ void Game::UpdateModel()
 			for (int i = 0; i < nFamily; ++i)
 			{
 				familymem[i].Update(brd);
+				if (familymem[i].IsResting())
+				{
+					if (RestingCounter[i] > RestingPeriod)
+					{
+						familymem[i].FindNewDestination(rng);
+						familymem[i].SetRestingEnd();
+						RestingCounter[i] = 0;
+					}
+				}
 			}
 
 			lady.Update(delta_L, brd);
