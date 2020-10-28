@@ -54,17 +54,18 @@ private:
 	Board brd;
 	FrameTimer ft;
 	Lady lady;
+	Vec2 delta_L = { 0,0 };
 	Charlotte charlie;
 	static constexpr int ntreats = 4;
 	Treat treats[ntreats] = { {Vec2(0,0), 0}, {Vec2(10,0), 0}, {Vec2(0,10), 0}, {Vec2(10,10), 0} };
-	Vec2 delta_L = { 0,0 };
+	
 	Poo poo = { Vec2(11,9), 3 };
 
 	//counters
 	float MoveCounter = 0;
 	float MovePeriod = 0.5;
 	float SmellyCounter = 0;
-	float SmellyPeriod = 15;
+	float SmellyPeriod = 10;
 	int TreatsEatenCounter = 0;
 	bool GameIsOver = false;
 	bool GameIsWon = false;

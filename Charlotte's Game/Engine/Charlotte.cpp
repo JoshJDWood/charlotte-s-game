@@ -5,10 +5,19 @@ void Charlotte::Draw(Board& brd)
 	brd.DrawCell(loc, floor.x, c);
 }
 
-void Charlotte::Update(Vec2& target, Board& brd)
+void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, Board& brd)
 {
 	oldloc = loc;
-	Vec2 diff = target - loc;
+	Vec2 diff;
+	if (smelly && floor.x == Lfloor)
+	{
+		diff = loc - target;
+	}
+	else
+	{
+		diff = target - loc;
+	}
+	
 	if (diff == Vec2(0, 0))
 	{
 		//fake move so it can change floor

@@ -7,7 +7,7 @@ class Charlotte
 {
 public:
 	void Draw(Board& brd);
-	void Update(Vec2& target, Board& brd);
+	void Update(Vec2& target, float Lfloor, bool smelly, Board& brd);
 	Vec2 FindTarget(Vec2& lfloor, Vec2& lloc);
 	Vec2 GetLoction();
 	Vec2 GetFloor();

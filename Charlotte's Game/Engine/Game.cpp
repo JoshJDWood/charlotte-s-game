@@ -69,7 +69,8 @@ void Game::UpdateModel()
 		MoveCounter += dt;
 		if (MoveCounter > MovePeriod)
 		{
-			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()), brd);
+			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
+				lady.GetFloor().x, lady.IsSmelly(), brd);
 			
 			lady.Update(delta_L, brd);
 			if (lady.DidMove())
