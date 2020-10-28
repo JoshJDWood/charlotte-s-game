@@ -64,11 +64,11 @@ void Game::UpdateModel()
 		MoveCounter += dt;
 		if (MoveCounter > MovePeriod)
 		{
-			Vec2 next = lady.GetLocation() + delta_L;
 			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()), brd);
-			if (brd.IsInPlay(next, lady.GetFloor().x))
-			{
-				lady.Update(delta_L, brd);
+			
+			lady.Update(delta_L, brd);
+			if (lady.DidMove())
+			{				
 				for (int i = 0; i < ntreats; i++)
 				{
 					if (lady.GetLocation() == treats[i].GetLocation() 
@@ -86,17 +86,12 @@ void Game::UpdateModel()
 						break;
 					}
 				}
-				MoveCounter = 0;
-			}
-			else
-			{
-				delta_L = { 0,0 };
-				MoveCounter = 0;
 			}
 			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
 			{
 				GameIsOver = true;
 			}
+			MoveCounter = 0;
 		}
 	}
 }

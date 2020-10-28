@@ -9,10 +9,12 @@ public:
 	void Update(Vec2& delta_L, Board& brd);
 	Vec2 GetLocation();
 	Vec2 GetFloor();
+	bool DidMove();
 private:
 	Vec2 loc = { 1,1 };
 	Vec2 oldloc = { 0,0 };
 	Vec2 floor = { 3,0 };
+	bool moved = false;
 	static constexpr int CPn = 4;
 	Vec2 F0CPH[CPn] = { {12,4}, {19,4}, {20,8}, {13,12} };
 	Vec2 F0CPL[CPn] = { {11,4}, {18,4}, {20,7}, {13,11} };
