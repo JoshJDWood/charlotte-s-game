@@ -252,3 +252,13 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 		}
 	}
 }
+
+float Board::GetWidth(int floorindex)
+{
+	return width[floorindex];
+}
+
+float Board::GetHeight(int floorindex)
+{
+	return height[floorindex];
+}

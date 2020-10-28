@@ -15,6 +15,8 @@ public:
 	void DrawLady(Vec2& loc, float floorindex, bool smelly);
 	bool IsInPlay(Vec2& next, float floorindex);
 	void UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc);
+	float GetWidth(int floorindex);
+	float GetHeight(int floorindex);
 private:
 	
 	static constexpr int nFloors = 4;
