@@ -80,7 +80,7 @@ private:
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
 	float RestingCounter[nFamily] = { 0, 0, 0 };
-	float RestingPeriod = 10;
+	float RestingPeriod = 2;
 	int TreatsEatenCounter = 0;
 	bool GameIsOver = false;
 	bool GameIsWon = false;

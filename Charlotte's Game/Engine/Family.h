@@ -8,7 +8,7 @@ class Family
 public:
 	Family() = default;
 	Family(int index, Color c_in, std::mt19937& rng);
-	void FindNewDestination(std::mt19937& rng);
+	void FindNewDestination(std::mt19937& rng, int des1, int des2);
 	bool DestinationVacant(int newDI_in);
 	void Draw(Board& brd);
 	void Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd);
@@ -18,6 +18,7 @@ public:
 	bool IsResting();
 	void SetToResting();
 	void SetRestingEnd();
+	int GetDI();
 private:
 	//family specific
 	int selfindex = 10;
@@ -37,8 +38,8 @@ private:
 	static constexpr int CPn = 4;
 	Vec2 F0CPH[CPn] = { {12,4}, {19,4}, {20,8}, {13,12} };
 	Vec2 F0CPL[CPn] = { {11,4}, {18,4}, {20,7}, {13,11} };
-	Vec2 F0CP5H = { 7,11 };
-	Vec2 F0CP5L = { 7,10 };
+	Vec2 F0CP5H = { 7,12 };
+	Vec2 F0CP5L = { 7,11 };
 	Vec2 F0T2 = { 0, 9 };
 	Vec2 F2T0 = { 17, 11 };
 	Vec2 F2T1 = { 17, 2 };

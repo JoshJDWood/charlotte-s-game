@@ -100,7 +100,8 @@ void Game::UpdateModel()
 				{
 					if (RestingCounter[i] > RestingPeriod)
 					{
-						familymem[i].FindNewDestination(rng);
+						familymem[i].FindNewDestination(rng, 
+							familymem[(i+1)%3].GetDI(), familymem[(i + 1) % 3].GetDI());
 						familymem[i].SetRestingEnd();
 						RestingCounter[i] = 0;
 					}

@@ -5,14 +5,20 @@ Family::Family(int index, Color c_in, std::mt19937& rng)
 	selfindex = index;
 	c = c_in;
 	loc.x += index;
-	FindNewDestination(rng);
+	int fakedes = 100;
+	FindNewDestination(rng, fakedes, fakedes);
 }
 
-void Family::FindNewDestination(std::mt19937& rng)
+void Family::FindNewDestination(std::mt19937& rng, int des1, int des2)
 {
 	std::uniform_int_distribution<int> DDist(0, nDestinations-1);
-	//int newDI;	
-	Destinationindex = DDist(rng);
+	int newDI = DDist(rng);
+	do
+	{
+		newDI = DDist(rng);
+	} while (newDI == des1 || newDI ==des2);
+
+	Destinationindex = newDI;
 	Destination[0] = Destinationloc[Destinationindex];
 	Destination[1] = Destinationfloor[Destinationindex];
 }
@@ -42,7 +48,7 @@ void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 		//fake move so it can change floor
 		moved = true;
 	}
-	else if (abs(diff.x) > abs(diff.y))
+	else if (abs(diff.x) >= abs(diff.y))
 	{
 		delta_F.x = diff.x / abs(diff.x);
 		Vec2 next = loc + delta_F;
@@ -285,4 +291,9 @@ void Family::SetToResting()
 void Family::SetRestingEnd()
 {
 	resting = false;
+}
+
+int Family::GetDI()
+{
+	return Destinationindex;
 }
