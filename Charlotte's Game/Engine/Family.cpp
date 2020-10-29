@@ -31,7 +31,7 @@ void Family::Draw(Board& brd)
 	brd.DrawCell(loc, floor.x, c);
 }
 
-void Family::Update(Board& brd)
+void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 {
 	Vec2 target = FindTarget(Destination[0], Destination[1]);
 	oldloc = loc;
@@ -46,7 +46,7 @@ void Family::Update(Board& brd)
 	{
 		delta_F.x = diff.x / abs(diff.x);
 		Vec2 next = loc + delta_F;
-		if (brd.IsInPlay(next, floor.x))
+		if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 		{
 			loc = next;
 			moved = true;
@@ -57,7 +57,7 @@ void Family::Update(Board& brd)
 			{
 				delta_F = { 0,diff.y / abs(diff.y) };
 				next = loc + delta_F;
-				if (brd.IsInPlay(next, floor.x))
+				if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 				{
 					loc = next;
 					moved = true;
@@ -69,12 +69,12 @@ void Family::Update(Board& brd)
 				delta_F = { 0, 1 * MovePrefAlt };
 				next = loc + delta_F;
 				Vec2 altnext = loc - delta_F;
-				if (brd.IsInPlay(next, floor.x))
+				if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 				{
 					loc = next;
 					moved = true;
 				}
-				else if (brd.IsInPlay(altnext, floor.x))
+				else if (brd.IsInPlay(altnext, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 				{
 					loc = altnext;
 					moved = true;
@@ -83,7 +83,7 @@ void Family::Update(Board& brd)
 				{
 					delta_F.x = -diff.x / abs(diff.x);
 					next = loc + delta_F;
-					if (brd.IsInPlay(next, floor.x))
+					if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 					{
 						loc = next;
 						moved = true;
@@ -96,7 +96,7 @@ void Family::Update(Board& brd)
 	{
 		delta_F.y = diff.y / abs(diff.y);
 		Vec2 next = loc + delta_F;
-		if (brd.IsInPlay(next, floor.x))
+		if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 		{
 			loc = next;
 			moved = true;
@@ -107,7 +107,7 @@ void Family::Update(Board& brd)
 			{
 				delta_F = { diff.x / abs(diff.x),0 };
 				next = loc + delta_F;
-				if (brd.IsInPlay(next, floor.x))
+				if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 				{
 					loc = next;
 					moved = true;
@@ -119,12 +119,12 @@ void Family::Update(Board& brd)
 				delta_F = { 1 * MovePrefAlt, 0 };
 				next = loc + delta_F;
 				Vec2 altnext = loc - delta_F;
-				if (brd.IsInPlay(next, floor.x))
+				if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 				{
 					loc = next;
 					moved = true;
 				}
-				else if (brd.IsInPlay(altnext, floor.x))
+				else if (brd.IsInPlay(altnext, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 				{
 					loc = altnext;
 					moved = true;
@@ -133,7 +133,7 @@ void Family::Update(Board& brd)
 				{
 					delta_F.y = -diff.y / abs(diff.y);
 					next = loc + delta_F;
-					if (brd.IsInPlay(next, floor.x))
+					if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 					{
 						loc = next;
 						moved = true;

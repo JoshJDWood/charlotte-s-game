@@ -11,7 +11,7 @@ public:
 	void FindNewDestination(std::mt19937& rng);
 	bool DestinationVacant(int newDI_in);
 	void Draw(Board& brd);
-	void Update(Board& brd);
+	void Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd);
 	Vec2 FindTarget(Vec2& targetloc, Vec2& targetfloor);
 	Vec2 GetLoction();
 	Vec2 GetFloor();

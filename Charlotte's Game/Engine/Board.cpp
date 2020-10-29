@@ -192,7 +192,7 @@ bool Board::IsInPlayCon(Vec2& next, float floorindex)
 	}
 	else if (floorindex == 1)
 	{
-		if (next.y == 0 || next.y == 5 || next.x == 0 || next.x == 23)
+		if (next.y == 0 || next.y == 4 || next.x == 0 || next.x == 23)
 		{
 			return false;
 		}

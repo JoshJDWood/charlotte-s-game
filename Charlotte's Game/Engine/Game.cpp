@@ -88,13 +88,14 @@ void Game::UpdateModel()
 				RestingCounter[i] += dt;
 			}
 		}
-
-		FMoveCounter += dt;
-		if (FMoveCounter > FMovePeriod)
+		for (int i = 0; i < nFamily; ++i)
+		{		
+			FMoveCounter[i] += dt;
+		}
+		for (int i = 0; i < nFamily; ++i)
 		{
-			for (int i = 0; i < nFamily; ++i)
-			{
-				familymem[i].Update(brd);
+			if (FMoveCounter[i] > FMovePeriod[i])
+			{				
 				if (familymem[i].IsResting())
 				{
 					if (RestingCounter[i] > RestingPeriod)
@@ -104,8 +105,40 @@ void Game::UpdateModel()
 						RestingCounter[i] = 0;
 					}
 				}
+				else
+				{
+					for (int a = 0; a < nFamily; ++a)
+					{
+						if (i == 0)
+						{
+							MWx[a] = familymem[a].GetLoction().x;
+							MWy[a] = familymem[a].GetLoction().y;
+							MWf[a] = familymem[a].GetFloor().x;
+						}
+						else if (i == 1)
+						{
+							MWx[(a - 1) % 3] = familymem[a].GetLoction().x;
+							MWy[(a - 1) % 3] = familymem[a].GetLoction().y;
+							MWf[(a - 1) % 3] = familymem[a].GetFloor().x;
+						}
+						else if (i == 2)
+						{
+							MWx[(i + 1) % 3] = familymem[a].GetLoction().x;
+							MWy[(i + 1) % 3] = familymem[a].GetLoction().y;
+							MWf[(i + 1) % 3] = familymem[a].GetFloor().x;
+						}
+					}
+					MWx[3] = lady.GetLocation().x;
+					MWy[3] = lady.GetLocation().y;
+					MWf[3] = lady.GetFloor().x;
+					MWx[4] = charlie.GetLoction().x;
+					MWy[4] = charlie.GetLoction().y;
+					MWf[4] = charlie.GetFloor().x;
+					familymem[i].Update(&MWx[1], &MWy[1], &MWf[1], nMW - 1, brd);
+				}
+				
+				FMoveCounter[i] = 0;
 			}
-			FMoveCounter = 0;
 		}
 		 
 		CMoveCounter += dt;
@@ -117,9 +150,8 @@ void Game::UpdateModel()
 				MWy[i] = familymem[i].GetLoction().y;
 				MWf[i] = familymem[i].GetFloor().x;
 			}
-
 			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
-				lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nMW, brd);
+				lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nFamily, brd);
 
 			CMoveCounter = 0;
 		}
@@ -134,7 +166,7 @@ void Game::UpdateModel()
 				MWf[i] = familymem[i].GetFloor().x;
 			}
 
-			lady.Update(delta_L, MWx, MWy, MWf, nMW, brd);
+			lady.Update(delta_L, MWx, MWy, MWf, nFamily, brd);
 			if (lady.DidMove())
 			{				
 				for (int i = 0; i < ntreats; i++)

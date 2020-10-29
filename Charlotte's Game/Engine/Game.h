@@ -65,7 +65,7 @@ private:
 	Poo poos[nPoos];
 	static constexpr int nFamily = 3;
 	Family familymem[nFamily];
-	static constexpr int nMW = 4;
+	static constexpr int nMW = nFamily + 2;
 	float MWx[nMW];
 	float MWy[nMW];
 	float MWf[nMW];
@@ -75,8 +75,8 @@ private:
 	float LMovePeriod = 0.5;
 	float CMoveCounter = 0;
 	float CMovePeriod = 0.6;
-	float FMoveCounter = 0;
-	float FMovePeriod = 0.8;
+	float FMoveCounter[nFamily] = { 0,0,0 };
+	float FMovePeriod[nFamily] = { 0.8,0.85,0.9 };
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
 	float RestingCounter[nFamily] = { 0, 0, 0 };
