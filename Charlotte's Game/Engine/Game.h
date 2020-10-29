@@ -65,7 +65,7 @@ private:
 	Poo poos[nPoos];
 	static constexpr int nFamily = 3;
 	Family familymem[nFamily];
-	static constexpr int nMW = nFamily;
+	static constexpr int nMW = 4;
 	float MWx[nMW];
 	float MWy[nMW];
 	float MWf[nMW];

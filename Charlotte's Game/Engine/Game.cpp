@@ -114,7 +114,7 @@ void Game::UpdateModel()
 			}
 
 			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
-				lady.GetFloor().x, lady.IsSmelly(), brd);
+				lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nMW, brd);
 			
 			
 
