@@ -92,9 +92,6 @@ void Game::UpdateModel()
 		MoveCounter += dt;
 		if (MoveCounter > MovePeriod)
 		{
-			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
-				lady.GetFloor().x, lady.IsSmelly(), brd);
-			
 			for (int i = 0; i < nFamily; ++i)
 			{
 				familymem[i].Update(brd);
@@ -109,7 +106,19 @@ void Game::UpdateModel()
 				}
 			}
 
-			lady.Update(delta_L, brd);
+			for (int i = 0; i < nFamily; ++i)
+			{
+				MWx[i] = familymem[i].GetLoction().x;
+				MWy[i] = familymem[i].GetLoction().y;
+				MWf[i] = familymem[i].GetFloor().x;
+			}
+
+			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
+				lady.GetFloor().x, lady.IsSmelly(), brd);
+			
+			
+
+			lady.Update(delta_L, MWx, MWy, MWf, nMW, brd);
 			if (lady.DidMove())
 			{				
 				for (int i = 0; i < ntreats; i++)

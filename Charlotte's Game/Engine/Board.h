@@ -14,6 +14,7 @@ public:
 	void DrawPoo(Vec2& loc, float floorindex);
 	void DrawLady(Vec2& loc, float floorindex, bool smelly);
 	bool IsInPlay(Vec2& next, float floorindex);
+	bool IsInPlayMW(Vec2& next, float floorindex, float* MWx, float* MWy, float* MWf, int nMW);
 	bool IsInPlayCon(Vec2& next, float floorindex);
 	void UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc);
 	float GetWidth(int floorindex);

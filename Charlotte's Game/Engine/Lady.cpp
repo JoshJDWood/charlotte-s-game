@@ -5,11 +5,11 @@ void Lady::Draw(Board& brd)
 	brd.DrawLady(loc, floor.x, smelly);
 }
 
-void Lady::Update(Vec2& delta_L, Board& brd)
+void Lady::Update(Vec2& delta_L, float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 {
 	oldloc = loc;
 	Vec2 next = loc + delta_L;
-	if (brd.IsInPlay(next, floor.x))
+	if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 	{
 		loc = next;
 		moved = true;

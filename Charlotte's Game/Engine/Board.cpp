@@ -151,6 +151,18 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 	}
 }
 
+bool Board::IsInPlayMW(Vec2& next, float floorindex, float* MWx, float* MWy, float* MWf, int nMW)
+{
+	for (int i = 0; i < nMW; ++i)
+	{
+		if (floorindex == MWf[i] && next.x == MWx[i] && next.y == MWy[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 bool Board::IsInPlayCon(Vec2& next, float floorindex)
 {
 	if (floorindex == 0)

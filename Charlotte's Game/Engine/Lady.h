@@ -6,7 +6,7 @@ class Lady
 {
 public:
 	void Draw(Board& brd);
-	void Update(Vec2& delta_L, Board& brd);
+	void Update(Vec2& delta_L, float* MWx, float* MWy, float* MWf, int nMW, Board& brd);
 	Vec2 GetLocation();
 	Vec2 GetFloor();
 	bool DidMove();
