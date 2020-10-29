@@ -10,7 +10,7 @@ Treat::Treat(std::mt19937& rng, Board& brd, int floorin)
 	{
 		newloc.x = float(xDist(rng));
 		newloc.y = float(yDist(rng));
-	} while (!brd.IsInPlay(newloc, float(floorin)));
+	} while (!brd.IsInPlayCon(newloc, float(floorin)));
 	loc = newloc;
 	floor = float(floorin);
 }

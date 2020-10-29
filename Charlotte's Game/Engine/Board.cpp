@@ -121,7 +121,7 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 	}
 	else if (floorindex == 2)
 	{
-		if (next.x == 0 || next.y == 0 || next.y == 17)
+		if (next.x == -1 || next.y == 0 || next.y == 17)
 		{
 			return false;
 		}
@@ -148,6 +148,99 @@ bool Board::IsInPlay(Vec2& next, float floorindex)
 			}
 		}
 		return true;
+	}
+}
+
+bool Board::IsInPlayCon(Vec2& next, float floorindex)
+{
+	if (floorindex == 0)
+	{
+		if (next.y == 17 || next.y == 0 || next.x == 0 || next.x == 23)
+		{
+			return false;
+		}
+		else if (next.x > 0 && next.x < 3 && next.y > 0 && next.y < 7)
+		{
+			return false;
+		}
+		else if (next == Vec2(6, 6) || next == Vec2(4, 7) || next == Vec2(1, 11) ||
+			next == Vec2(22, 7) || next == Vec2(6, 6) || next == Vec2(22, 16) ||
+			next == Vec2(19, 14) || next == Vec2(17, 14))
+		{
+			return false;
+		}
+		for (int i = 0; i < nWalls0; ++i)
+		{
+			if (next == walls0[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	else if (floorindex == 1)
+	{
+		if (next.y == 0 || next.y == 5 || next.x == 0 || next.x == 23)
+		{
+			return false;
+		}
+		for (int i = 0; i < nWalls1; ++i)
+		{
+			if (next == walls1[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	else if (floorindex == 2)
+	{
+		if ((next.x == 0 && next.y > 7) || next.y == 0 || next.y == 17 || next.x == 17)
+		{
+			return false;
+		}
+		else if (
+			(next.y == 3 && next.x > 10 && next.x < 14) || next == Vec2(12, 15) || next == Vec2(16, 16) ||
+			(next.y == 6 && next.x > 2 && next.x < 7) || (next.y == 7 && next.x > 11 && next.x < 15) ||
+			(next.x == 4 && next.y > 10 && next.y < 15) || (next.x == 9 && next.y > 11 && next.y < 15) ||
+			(next.x == 13 && next.y > 10 && next.y < 14) || next == Vec2(3, 11) || next == Vec2(5, 13))
+		{
+			return false;
+		}
+		for (int i = 0; i < nWalls2; ++i)
+		{
+			if (next == walls2[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	else if (floorindex == 3)
+	{
+		if (next.y == 0 || next.y == 17 || next.x == 0 || next.x == 23)
+		{
+			return false;
+		}
+		else if ((next.x > 7 && next.x < 11 && next.y > 3 && next.y < 7) || next == Vec2(6, 1) ||
+			(next.x > 9 && next.x < 16 && next.y > 11 && next.y < 15) || next == Vec2(13, 1) ||
+			(next.x > 18 && next.x < 23 && next.y > 13 && next.y < 16) ||
+			next == Vec2(1, 5) || next == Vec2(1, 16))
+		{
+			return false;
+		}
+		for (int i = 0; i < nWalls3; ++i)
+		{
+			if (next == walls3[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
