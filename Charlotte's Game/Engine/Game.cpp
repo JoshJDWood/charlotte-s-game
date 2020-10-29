@@ -89,8 +89,8 @@ void Game::UpdateModel()
 			}
 		}
 
-		MoveCounter += dt;
-		if (MoveCounter > MovePeriod)
+		FMoveCounter += dt;
+		if (FMoveCounter > FMovePeriod)
 		{
 			for (int i = 0; i < nFamily; ++i)
 			{
@@ -105,7 +105,12 @@ void Game::UpdateModel()
 					}
 				}
 			}
-
+			FMoveCounter = 0;
+		}
+		 
+		CMoveCounter += dt;
+		if (CMoveCounter > CMovePeriod)
+		{
 			for (int i = 0; i < nFamily; ++i)
 			{
 				MWx[i] = familymem[i].GetLoction().x;
@@ -115,8 +120,19 @@ void Game::UpdateModel()
 
 			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
 				lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nMW, brd);
-			
-			
+
+			CMoveCounter = 0;
+		}
+
+		LMoveCounter += dt;
+		if (LMoveCounter > LMovePeriod)
+		{
+			for (int i = 0; i < nFamily; ++i)
+			{
+				MWx[i] = familymem[i].GetLoction().x;
+				MWy[i] = familymem[i].GetLoction().y;
+				MWf[i] = familymem[i].GetFloor().x;
+			}
 
 			lady.Update(delta_L, MWx, MWy, MWf, nMW, brd);
 			if (lady.DidMove())
@@ -149,20 +165,20 @@ void Game::UpdateModel()
 						break;
 					}
 				}
-			}
-			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
-			{
-				if (!lady.IsSmelly())
-				{
-					GameIsOver = true;
-				}				
-			}
+			}			
 			if (SmellyCounter > SmellyPeriod)
 			{
 				lady.SetSmellyOver();
 				SmellyCounter = 0;
 			}
-			MoveCounter = 0;
+			LMoveCounter = 0;
+		}
+		if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
+		{
+			if (!lady.IsSmelly())
+			{
+				GameIsOver = true;
+			}
 		}
 	}
 }

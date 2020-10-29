@@ -71,8 +71,12 @@ private:
 	float MWf[nMW];
 
 	//counters
-	float MoveCounter = 0;
-	float MovePeriod = 0.5;
+	float LMoveCounter = 0;
+	float LMovePeriod = 0.5;
+	float CMoveCounter = 0;
+	float CMovePeriod = 0.6;
+	float FMoveCounter = 0;
+	float FMovePeriod = 0.8;
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
 	float RestingCounter[nFamily] = { 0, 0, 0 };
