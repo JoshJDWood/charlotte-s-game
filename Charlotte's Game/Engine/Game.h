@@ -61,7 +61,7 @@ private:
 	std::mt19937 rng;
 	static constexpr int ntreats = 10;
 	Treat treats[ntreats];
-	static constexpr int nPoos = 5;
+	static constexpr int nPoos = 3;
 	Poo poos[nPoos];
 	static constexpr int nFamily = 3;
 	Family familymem[nFamily];
@@ -76,7 +76,7 @@ private:
 	float CMoveCounter = 0;
 	float CMovePeriod = 0.6;
 	float FMoveCounter[nFamily] = { 0,0,0 };
-	float FMovePeriod[nFamily] = { 0.8,0.85,0.9 };
+	float FMovePeriod[nFamily] = { 0.4,0.45,0.3 };
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
 	float RestingCounter[nFamily] = { 0, 0, 0 };
