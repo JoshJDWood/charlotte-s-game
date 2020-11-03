@@ -18,5 +18,4 @@ private:
 	Vec2 loc = { 0,0 };
 	float floor = 0;
 	bool eaten = false;
-	Color c = Colors::Cyan;
 };

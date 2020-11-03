@@ -17,7 +17,7 @@ Treat::Treat(std::mt19937& rng, Board& brd, int floorin)
 
 void Treat::Draw(Board& brd)
 {
-	brd.DrawCell(loc, floor, c);
+	brd.DrawTreat(loc, floor);
 }
 
 Vec2 Treat::GetLocation()

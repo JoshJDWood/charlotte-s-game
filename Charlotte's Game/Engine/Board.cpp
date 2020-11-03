@@ -62,14 +62,18 @@ void Board::DrawCell(Vec2& loc, float floorindex, Color c)
 
 void Board::DrawTreat(Vec2& loc, float floorindex)
 {		
-	x = int(shiftx(width[int(floorindex)]) + loc.x * dim) + 14;
-	y = int(shifty(height[int(floorindex)]) + loc.y * dim) + 14;
+	sx = shiftx(width[int(floorindex)]);
+	sy = shifty(height[int(floorindex)]);
+
+	gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), sockssurf, Color(200, 0, 200));
 }
 
 void Board::DrawPoo(Vec2& loc, float floorindex)
 {	
-	x = int(shiftx(width[int(floorindex)]) + loc.x * dim) + 16;
-	y = int(shifty(height[int(floorindex)]) + loc.y * dim) + 16;
+	sx = shiftx(width[int(floorindex)]);
+	sy = shifty(height[int(floorindex)]);
+
+	gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), poosurf, Color(200, 0, 200));
 }
 
 void Board::DrawLady(Vec2& loc, float floorindex, bool smelly)
@@ -79,7 +83,7 @@ void Board::DrawLady(Vec2& loc, float floorindex, bool smelly)
 	
 	if (!smelly)
 	{
-		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), ladysurf, Color(220, 220, 220));
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), ladysurf, Color(200, 0, 200));
 	}
 	else
 	{

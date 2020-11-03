@@ -86,9 +86,9 @@ private:
 	bool GameIsWon = false;
 
 	//surfaces
-	Surface groundsurf = Surface("ground_textured.bmp");
-	Surface alleysurf = Surface("alley_textured.bmp");
-	Surface frontsurf = Surface("front_textured.bmp");
-	Surface backsurf = Surface("back_textured.bmp");
+	Surface groundsurf = Surface("ground_Ftextured.bmp");
+	Surface alleysurf = Surface("alley_Ftextured.bmp");
+	Surface frontsurf = Surface("front_Ftextured.bmp");
+	Surface backsurf = Surface("back_Ftextured.bmp");
 	/********************************/
 };

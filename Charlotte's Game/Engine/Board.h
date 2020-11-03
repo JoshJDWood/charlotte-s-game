@@ -134,5 +134,7 @@ private:
 	int x = 0;
 	int y = 0;
 	Graphics& gfx;
-	Surface ladysurf = Surface("dog_test2.bmp");
+	Surface ladysurf = Surface("lady_profile2.bmp");
+	Surface poosurf = Surface("poo.bmp");
+	Surface sockssurf = Surface("socks.bmp");
 };

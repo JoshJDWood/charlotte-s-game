@@ -235,26 +235,11 @@ void Game::ComposeFrame()
 		gfx.DrawSpriteNonChroma(16, 12, backsurf);
 	}
 
-	lady.Draw(brd);
-
-	if (charlie.GetFloor().x == lady.GetFloor().x)
-	{
-		charlie.Draw(brd);
-	}
-
-	for (int i = 0; i < nFamily; ++i)
-	{
-		if (familymem[i].GetFloor().x == lady.GetFloor().x)
-		{
-			familymem[i].Draw(brd);
-		}
-	}
-
 	for (int i = 0; i < ntreats; ++i)
 	{
 		if (!treats[i].GetEaten() && treats[i].GetFloor() == lady.GetFloor().x)
 		{
-			treats[i].Draw(brd);			
+			treats[i].Draw(brd);
 		}
 	}
 
@@ -265,6 +250,23 @@ void Game::ComposeFrame()
 			poos[i].Draw(brd);
 		}
 	}
+
+	for (int i = 0; i < nFamily; ++i)
+	{
+		if (familymem[i].GetFloor().x == lady.GetFloor().x)
+		{
+			familymem[i].Draw(brd);
+		}
+	}
+
+	if (charlie.GetFloor().x == lady.GetFloor().x)
+	{
+		charlie.Draw(brd);
+	}
+
+	lady.Draw(brd);
+
+	
 	//test to see wall locations
 	//brd.DrawWalls(lady.GetFloor().x);
 

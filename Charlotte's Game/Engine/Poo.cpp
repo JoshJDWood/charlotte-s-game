@@ -17,7 +17,7 @@ Poo::Poo(std::mt19937& rng,Board& brd, int floorin)
 
 void Poo::Draw(Board& brd)
 {
-	brd.DrawCell(loc, floor, poocolor);
+	brd.DrawPoo(loc, floor);
 }
 
 Vec2 Poo::GetLocation()
