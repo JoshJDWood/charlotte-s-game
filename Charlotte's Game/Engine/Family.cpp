@@ -50,7 +50,7 @@ void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 	}
 	else if (abs(diff.x) >= abs(diff.y))
 	{
-		delta_F.x = diff.x / abs(diff.x);
+		delta_F = { diff.x / abs(diff.x), 0 };
 		Vec2 next = loc + delta_F;
 		if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 		{
@@ -87,7 +87,7 @@ void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 				}
 				if (!moved)
 				{
-					delta_F.x = -diff.x / abs(diff.x);
+					delta_F = { -diff.x / abs(diff.x), 0 };
 					next = loc + delta_F;
 					if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 					{
@@ -100,7 +100,7 @@ void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 	}
 	else
 	{
-		delta_F.y = diff.y / abs(diff.y);
+		delta_F = { 0, diff.y / abs(diff.y) };
 		Vec2 next = loc + delta_F;
 		if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 		{
@@ -137,7 +137,7 @@ void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 				}
 				if (!moved)
 				{
-					delta_F.y = -diff.y / abs(diff.y);
+					delta_F = { 0, -diff.y / abs(diff.y) };
 					next = loc + delta_F;
 					if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 					{

@@ -25,7 +25,7 @@ void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, float* MWx, floa
 	}
 	else if (abs(diff.x) > abs(diff.y))
 	{
-		delta_C.x = diff.x / abs(diff.x);
+		delta_C = { diff.x / abs(diff.x), 0 };
 		Vec2 next = loc + delta_C;
 		if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 		{
@@ -62,7 +62,7 @@ void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, float* MWx, floa
 				}
 				if (!moved)
 				{
-					delta_C.x = -diff.x / abs(diff.x);
+					delta_C = { -diff.x / abs(diff.x), 0 };
 					next = loc + delta_C;
 					if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 					{
@@ -75,7 +75,7 @@ void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, float* MWx, floa
 	}
 	else
 	{
-		delta_C.y = diff.y / abs(diff.y);
+		delta_C = { 0, diff.y / abs(diff.y) };
 		Vec2 next = loc + delta_C;
 		if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 		{
@@ -112,7 +112,7 @@ void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, float* MWx, floa
 				}
 				if (!moved)
 				{
-					delta_C.y = -diff.y / abs(diff.y);
+					delta_C = { 0, -diff.y / abs(diff.y) };
 					next = loc + delta_C;
 					if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
 					{

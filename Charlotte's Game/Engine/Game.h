@@ -74,9 +74,12 @@ private:
 	float LMoveCounter = 0;
 	float LMovePeriod = 0.5;
 	float CMoveCounter = 0;
-	float CMovePeriod = 0.6;
+	float CMovePeriod = 0.65;
+	float CMovePeriodMax = 0.65;
+	float CMovePeriodMin = 0.4;
+	float CMovePeriodCR = 0.01;
 	float FMoveCounter[nFamily] = { 0,0,0 };
-	float FMovePeriod[nFamily] = { 0.4,0.45,0.3 };
+	float FMovePeriod[nFamily] = { 0.4,0.45,0.4 };
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
 	float RestingCounter[nFamily] = { 0, 0, 0 };
