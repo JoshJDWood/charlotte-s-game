@@ -5,17 +5,17 @@ Family::Family(int index, std::mt19937& rng)
 	selfindex = index;
 	loc.x += index;
 	int fakedes = 100;
-	FindNewDestination(rng, fakedes, fakedes);
+	FindNewDestination(rng, fakedes, fakedes, fakedes);
 }
 
-void Family::FindNewDestination(std::mt19937& rng, int des1, int des2)
+void Family::FindNewDestination(std::mt19937& rng, int des1, int des2, int des3)
 {
 	std::uniform_int_distribution<int> DDist(0, nDestinations-1);
 	int newDI = DDist(rng);
 	do
 	{
 		newDI = DDist(rng);
-	} while (newDI == des1 || newDI ==des2);
+	} while (newDI == des1 || newDI == des2 || newDI == des3);
 
 	Destinationindex = newDI;
 	Destination[0] = Destinationloc[Destinationindex];

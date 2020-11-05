@@ -8,7 +8,7 @@ class Family
 public:
 	Family() = default;
 	Family(int index, std::mt19937& rng);
-	void FindNewDestination(std::mt19937& rng, int des1, int des2);
+	void FindNewDestination(std::mt19937& rng, int des1, int des2, int des3);
 	bool DestinationVacant(int newDI_in);
 	void Draw(Board& brd);
 	void Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd);

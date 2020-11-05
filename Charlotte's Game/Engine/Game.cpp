@@ -99,8 +99,8 @@ void Game::UpdateModel()
 				{
 					if (RestingCounter[i] > RestingPeriod)
 					{
-						familymem[i].FindNewDestination(rng, 
-							familymem[(i+1)%3].GetDI(), familymem[(i + 1) % 3].GetDI());
+						familymem[i].FindNewDestination(rng, familymem[(i+1)%3].GetDI(), 
+							familymem[(i + 2) % 3].GetDI(), familymem[(i + 3) % 3].GetDI());
 						familymem[i].SetRestingEnd();
 						RestingCounter[i] = 0;
 					}
@@ -108,32 +108,17 @@ void Game::UpdateModel()
 				else
 				{
 					for (int a = 0; a < nFamily; ++a)
-					{
-						if (i == 0)
-						{
-							MWx[a] = familymem[a].GetLoction().x;
-							MWy[a] = familymem[a].GetLoction().y;
-							MWf[a] = familymem[a].GetFloor().x;
-						}
-						else if (i == 1)
-						{
-							MWx[(a - 1) % 3] = familymem[a].GetLoction().x;
-							MWy[(a - 1) % 3] = familymem[a].GetLoction().y;
-							MWf[(a - 1) % 3] = familymem[a].GetFloor().x;
-						}
-						else if (i == 2)
-						{
-							MWx[(i + 1) % 3] = familymem[a].GetLoction().x;
-							MWy[(i + 1) % 3] = familymem[a].GetLoction().y;
-							MWf[(i + 1) % 3] = familymem[a].GetFloor().x;
-						}
+					{						
+						MWx[a] = familymem[(a - i) % 4].GetLoction().x;
+						MWy[a] = familymem[(a - i) % 4].GetLoction().y;
+						MWf[a] = familymem[(a - i) % 4].GetFloor().x;
 					}
-					MWx[3] = lady.GetLocation().x;
-					MWy[3] = lady.GetLocation().y;
-					MWf[3] = lady.GetFloor().x;
-					MWx[4] = charlie.GetLoction().x;
-					MWy[4] = charlie.GetLoction().y;
-					MWf[4] = charlie.GetFloor().x;
+					MWx[4] = lady.GetLocation().x;
+					MWy[4] = lady.GetLocation().y;
+					MWf[4] = lady.GetFloor().x;
+					MWx[5] = charlie.GetLoction().x;
+					MWy[5] = charlie.GetLoction().y;
+					MWf[5] = charlie.GetFloor().x;
 					familymem[i].Update(&MWx[1], &MWy[1], &MWf[1], nMW - 1, brd);
 				}
 				

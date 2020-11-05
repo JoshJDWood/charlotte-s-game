@@ -63,7 +63,7 @@ private:
 	Treat treats[ntreats];
 	static constexpr int nPoos = 3;
 	Poo poos[nPoos];
-	static constexpr int nFamily = 3;
+	static constexpr int nFamily = 4;
 	Family familymem[nFamily];
 	static constexpr int nMW = nFamily + 2;
 	float MWx[nMW];
@@ -72,17 +72,17 @@ private:
 
 	//counters
 	float LMoveCounter = 0;
-	float LMovePeriod = 0.5;
+	float LMovePeriod = 0.25;
 	float CMoveCounter = 0;
 	float CMovePeriod = 0.65;
 	float CMovePeriodMax = 0.65;
 	float CMovePeriodMin = 0.4;
 	float CMovePeriodCR = 0.01;
-	float FMoveCounter[nFamily] = { 0,0,0 };
-	float FMovePeriod[nFamily] = { 0.4,0.45,0.4 };
+	float FMoveCounter[nFamily] = { 0,0,0,0 };
+	float FMovePeriod[nFamily] = { 0.9,0.85,0.7,0.8 };
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
-	float RestingCounter[nFamily] = { 0, 0, 0 };
+	float RestingCounter[nFamily] = { 0, 0, 0, 0 };
 	float RestingPeriod = 2;
 	int TreatsEatenCounter = 0;
 	bool GameIsOver = false;
