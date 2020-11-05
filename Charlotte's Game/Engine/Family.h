@@ -7,7 +7,7 @@ class Family
 {
 public:
 	Family() = default;
-	Family(int index, Color c_in, std::mt19937& rng);
+	Family(int index, std::mt19937& rng);
 	void FindNewDestination(std::mt19937& rng, int des1, int des2);
 	bool DestinationVacant(int newDI_in);
 	void Draw(Board& brd);
@@ -27,7 +27,6 @@ private:
 	Vec2 Destinationfloor[nDestinations] = { {0,4}, {0,5}, {1,0}, {1,0}, {2,0}, {2,0}, {3,0}, {3,0} };
 	Vec2 Destination[2] = { {0,0}, {0,0} };
 	int Destinationindex = 0;
-	Color c;
 	bool resting = false;
 	
 	//shared with charlotte

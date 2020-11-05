@@ -91,6 +91,37 @@ void Board::DrawLady(Vec2& loc, float floorindex, bool smelly)
 	}
 }
 
+void Board::DrawCharlotte(Vec2& loc, float floorindex)
+{
+	sx = shiftx(width[int(floorindex)]);
+	sy = shifty(height[int(floorindex)]);
+
+	gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), charlottesurf, Color(200, 0, 200));
+}
+
+void Board::DrawFamily(Vec2& loc, float floorindex, int famindex)
+{
+	sx = shiftx(width[int(floorindex)]);
+	sy = shifty(height[int(floorindex)]);
+
+	if (famindex == 0)
+	{
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), mumsurf, Color(200, 0, 200));
+	}
+	else if (famindex == 1)
+	{
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), dadsurf, Color(200, 0, 200));
+	}
+	else if (famindex == 2)
+	{
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), joshsurf, Color(200, 0, 200));
+	}
+	else if (famindex == 3)
+	{
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), izzysurf, Color(200, 0, 200));
+	}
+}
+
 bool Board::IsInPlay(Vec2& next, float floorindex)
 {
 	if (floorindex == 0)

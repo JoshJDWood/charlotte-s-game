@@ -1,9 +1,8 @@
 #include "Family.h"
 
-Family::Family(int index, Color c_in, std::mt19937& rng)
+Family::Family(int index, std::mt19937& rng)
 {
 	selfindex = index;
-	c = c_in;
 	loc.x += index;
 	int fakedes = 100;
 	FindNewDestination(rng, fakedes, fakedes);
@@ -34,7 +33,7 @@ bool Family::DestinationVacant(int newDI_in)
 
 void Family::Draw(Board& brd)
 {
-	brd.DrawCell(loc, floor.x, c);
+	brd.DrawFamily(loc, floor.x, selfindex);
 }
 
 void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)

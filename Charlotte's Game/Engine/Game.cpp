@@ -38,10 +38,9 @@ Game::Game( MainWindow& wnd )
 	{
 		treats[i] = Treat(rng, brd, FDist(rng));
 	}
-	Color c_in[3] = { Colors::Blue, Colors::Green, Colors::White };
 	for (int i = 0; i < nFamily; ++i)
 	{
-		familymem[i] = Family(i, c_in[i], rng);
+		familymem[i] = Family(i, rng);
 	}
 }
 

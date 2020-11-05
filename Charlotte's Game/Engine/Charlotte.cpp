@@ -2,7 +2,7 @@
 
 void Charlotte::Draw(Board& brd)
 {
-	brd.DrawCell(loc, floor.x, c);
+	brd.DrawCharlotte(loc, floor.x);
 }
 
 void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, float* MWx, float* MWy, float* MWf, int nMW, Board& brd)

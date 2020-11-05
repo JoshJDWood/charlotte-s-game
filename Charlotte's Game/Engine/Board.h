@@ -13,6 +13,8 @@ public:
 	void DrawTreat(Vec2& loc, float floorindex);
 	void DrawPoo(Vec2& loc, float floorindex);
 	void DrawLady(Vec2& loc, float floorindex, bool smelly);
+	void DrawCharlotte(Vec2& loc, float floorindex);
+	void DrawFamily(Vec2& loc, float floorindex, int famindex);
 	bool IsInPlay(Vec2& next, float floorindex);
 	bool IsInPlayMW(Vec2& next, float floorindex, float* MWx, float* MWy, float* MWf, int nMW);
 	bool IsInPlayCon(Vec2& next, float floorindex);
@@ -127,14 +129,19 @@ private:
 	{
 		return 300 - height * dim / 2;
 	}
-	static constexpr Color treatin = Color(244, 164, 96);
-	static constexpr Color treatout = Color(139, 69, 19);
 	float sx = 0;
 	float sy = 0;
 	int x = 0;
 	int y = 0;
 	Graphics& gfx;
+	//textures for characters
 	Surface ladysurf = Surface("lady_profile2.bmp");
 	Surface poosurf = Surface("poo.bmp");
 	Surface sockssurf = Surface("socks.bmp");
+	Surface charlottesurf = Surface("Charlotte_Profile.bmp");
+	Surface mumsurf = Surface("mum_profile.bmp");
+	Surface dadsurf = Surface("dad_profile.bmp");
+	Surface joshsurf = Surface("josh_profile.bmp");
+	Surface izzysurf = Surface("izzy_profile.bmp");
+
 };
