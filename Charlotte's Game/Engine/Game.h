@@ -72,7 +72,7 @@ private:
 
 	//counters
 	float LMoveCounter = 0;
-	float LMovePeriod = 0.25;
+	float LMovePeriod = 0.5;
 	float CMoveCounter = 0;
 	float CMovePeriod = 0.65;
 	float CMovePeriodMax = 0.65;

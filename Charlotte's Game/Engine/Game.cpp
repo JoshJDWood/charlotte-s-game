@@ -40,7 +40,8 @@ Game::Game( MainWindow& wnd )
 	}
 	for (int i = 0; i < nFamily; ++i)
 	{
-		familymem[i] = Family(i, rng);
+		familymem[i] = Family(i, rng, familymem[(i + 1) % nFamily].GetDI(),
+			familymem[(i + 2) % nFamily].GetDI(), familymem[(i + 3) % nFamily].GetDI());
 	}
 }
 
@@ -99,8 +100,8 @@ void Game::UpdateModel()
 				{
 					if (RestingCounter[i] > RestingPeriod)
 					{
-						familymem[i].FindNewDestination(rng, familymem[(i+1)%3].GetDI(), 
-							familymem[(i + 2) % 3].GetDI(), familymem[(i + 3) % 3].GetDI());
+						familymem[i].FindNewDestination(rng, familymem[(i+1)% nFamily].GetDI(), 
+							familymem[(i + 2) % nFamily].GetDI(), familymem[(i + 3) % nFamily].GetDI());
 						familymem[i].SetRestingEnd();
 						RestingCounter[i] = 0;
 					}

@@ -1,11 +1,10 @@
 #include "Family.h"
 
-Family::Family(int index, std::mt19937& rng)
+Family::Family(int index, std::mt19937& rng, int des1, int des2, int des3)
 {
 	selfindex = index;
 	loc.x += index;
-	int fakedes = 100;
-	FindNewDestination(rng, fakedes, fakedes, fakedes);
+	FindNewDestination(rng, des1, des2, des3);
 }
 
 void Family::FindNewDestination(std::mt19937& rng, int des1, int des2, int des3)
@@ -20,15 +19,6 @@ void Family::FindNewDestination(std::mt19937& rng, int des1, int des2, int des3)
 	Destinationindex = newDI;
 	Destination[0] = Destinationloc[Destinationindex];
 	Destination[1] = Destinationfloor[Destinationindex];
-}
-
-bool Family::DestinationVacant(int newDI_in)
-{
-	for (int i = 0; i < 3; ++i)
-	{
-		//use when not allowing same destination
-	}
-	return true;
 }
 
 void Family::Draw(Board& brd)
