@@ -306,21 +306,21 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 				floor.y = float(i);
 			}
 		}
-		if (oldloc == F0CP5L && loc == F0CP5H)
-		{
-			floor.y = 5;
-		}
-		else if (oldloc == F0CP5H && loc == F0CP5L)
-		{
-			floor.y = 3;
-		}
-		else if (oldloc == F0CP6L && loc == F0CP6H)
+		if (oldloc == F0CP6L && loc == F0CP6H)
 		{
 			floor.y = 6;
 		}
 		else if (oldloc == F0CP6H && loc == F0CP6L)
 		{
-			floor.y = 3;
+			floor.y = 4;
+		}
+		else if (oldloc == F0CP7L && loc == F0CP7H)
+		{
+			floor.y = 7;
+		}
+		else if (oldloc == F0CP7H && loc == F0CP7L)
+		{
+			floor.y = 4;
 		}
 		else if (oldloc == loc && loc == F0T1)
 		{
@@ -365,7 +365,7 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 		}
 		else if (oldloc == loc && loc == F2T0)
 		{
-			floor = { 0,3 };
+			floor = { 0,4 };
 			loc = F0T2;
 		}
 	}
@@ -378,7 +378,7 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 		}
 		else if (oldloc == loc && loc == F3T0)
 		{
-			floor = { 0,4 };
+			floor = { 0,5 };
 			loc = F0T3;
 		}
 	}
@@ -394,21 +394,21 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 	{
 		if (targetfloor.x == 0)
 		{
-			if (floor.y == 3 && targetfloor.y == 5)
-			{
-				return F0CP5H;
-			}
-			else if (floor.y == 3 && targetfloor.y == 6)
+			if (floor.y == 4 && targetfloor.y == 6)
 			{
 				return F0CP6H;
 			}
-			else if (floor.y == 5)
+			else if (floor.y == 4 && targetfloor.y == 7)
 			{
-				return F0CP5L;
+				return F0CP7H;
 			}
 			else if (floor.y == 6)
 			{
 				return F0CP6L;
+			}
+			else if (floor.y == 7)
+			{
+				return F0CP7L;
 			}
 			else if (targetfloor.y > floor.y)
 			{
@@ -433,9 +433,9 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 		}
 		else if (targetfloor.x == 2)
 		{
-			if (floor.y != 3)
+			if (floor.y != 4)
 			{
-				Vec2 phantomfloor = { 0,3 };
+				Vec2 phantomfloor = { 0,4 };
 				return FindTarget(floor, targetloc, phantomfloor);
 			}
 			else
@@ -445,9 +445,9 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 		}
 		else if (targetfloor.x == 3)
 		{
-			if (floor.y != 4)
+			if (floor.y != 5)
 			{
-				Vec2 phantomfloor = { 0,4 };
+				Vec2 phantomfloor = { 0,5 };
 				return FindTarget(floor, targetloc, phantomfloor);
 			}
 			else

@@ -22,7 +22,7 @@ private:
 	int selfindex = 10;
 	static constexpr int nDestinations = 8;
 	Vec2 Destinationloc[nDestinations] = { {21,15}, {4,14}, {6,1}, {15,1}, {2,2}, {2,9}, {8,14}, {21,7} };
-	Vec2 Destinationfloor[nDestinations] = { {0,4}, {0,5}, {1,0}, {1,0}, {2,0}, {2,0}, {3,0}, {3,0} };
+	Vec2 Destinationfloor[nDestinations] = { {0,5}, {0,6}, {1,0}, {1,0}, {2,0}, {2,0}, {3,0}, {3,0} };
 	Vec2 Destination[2] = { {0,0}, {0,0} };
 	int Destinationindex = 0;
 	bool resting = false;
