@@ -136,12 +136,12 @@ void Game::UpdateModel()
 				MWy[i] = familymem[i].GetLoction().y;
 				MWf[i] = familymem[i].GetFloor().x;
 			}
-			charlie.Update(charlie.FindTarget(lady.GetFloor(), lady.GetLocation()),
+			charlie.Update(brd.FindTarget(charlie.GetFloor(), lady.GetLocation(), lady.GetFloor()),
 				lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nFamily, brd);
 
 			CMoveCounter = 0;
 		}
-
+		
 		LMoveCounter += dt;
 		if (LMoveCounter > LMovePeriod)
 		{
@@ -186,7 +186,7 @@ void Game::UpdateModel()
 			}			
 			if (SmellyCounter > SmellyPeriod)
 			{
-				lady.SetSmellyOver();
+				//lady.SetSmellyOver();
 				SmellyCounter = 0;
 			}
 			LMoveCounter = 0;

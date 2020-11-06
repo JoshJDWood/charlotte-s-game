@@ -5,7 +5,8 @@ void Charlotte::Draw(Board& brd)
 	brd.DrawCharlotte(loc, floor.x);
 }
 
-void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
+void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, 
+	float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 {
 	oldloc = loc;
 	Vec2 diff;
@@ -126,125 +127,6 @@ void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, float* MWx, floa
 	brd.UpdateFloor(floor, loc, oldloc);
 	delta_C = { 0,0 };
 	moved = false;	
-}
-
-Vec2 Charlotte::FindTarget(Vec2& lfloor, Vec2& lloc)
-{
-	if (floor == lfloor)
-	{
-		return lloc;
-	}
-	if (floor.x == 0)
-	{
-		if (lfloor.x == 0)
-		{
-			if (floor.y == 3 && lfloor.y == 5)
-			{
-				return F0CP5H;
-			}
-			else if (floor.y == 3 && lfloor.y == 6)
-			{
-				return F0CP6H;
-			}
-			else if (floor.y == 5)
-			{
-				return F0CP5L;
-			}
-			else if (floor.y == 6)
-			{
-				return F0CP6L;
-			}
-			else if (lfloor.y > floor.y)
-			{
-				return F0CPH[int(floor.y)];
-			}
-			else
-			{
-				return F0CPL[int(floor.y - 1)];
-			}
-		}
-		else if (lfloor.x == 1)
-		{
-			if (floor.y != 0)
-			{
-				Vec2 phantomfloor = { 0,0 };
-				return FindTarget( phantomfloor, lloc);
-			}
-			else
-			{
-				return F0T1;
-			}
-		}
-		else if (lfloor.x == 2)
-		{
-			if (floor.y != 3)
-			{
-				Vec2 phantomfloor = { 0,3 };
-				return FindTarget(phantomfloor, lloc);
-			}
-			else
-			{
-				return F0T2;
-			}
-		}
-		else if (lfloor.x == 3)
-		{
-			if (floor.y != 4)
-			{
-				Vec2 phantomfloor = { 0,4 };
-				return FindTarget(phantomfloor, lloc);
-			}
-			else
-			{
-				return F0T3;
-			}
-		}
-	}
-	else if (floor.x == 1)
-	{
-		if (lfloor.x == 0)
-		{
-			return F1T0;
-		}
-		else if (lfloor.x == 2)
-		{
-			return F1T2;
-		}
-		else if (lfloor.x == 3)
-		{
-			return F1T3;
-		}
-	}
-	else if (floor.x == 2)
-	{
-		if (lfloor.x == 0)
-		{
-			return F2T0;
-		}
-		else if (lfloor.x == 1)
-		{
-			return F2T1;
-		}
-		else if (lfloor.x == 3)
-		{
-			return F2T1;
-		}
-	}
-	else if (floor.x == 3)
-	{
-		if (lfloor.x == 0)
-		{
-			return F3T0;
-		}
-		else if (lfloor.x == 1)
-		{
-			return F3T1;
-		}
-		else if (lfloor.x == 2)
-		{
-			return F3T1;
-		}
-	}
 }
 
 Vec2 Charlotte::GetLoction()

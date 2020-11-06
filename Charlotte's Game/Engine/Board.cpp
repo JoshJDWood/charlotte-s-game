@@ -384,6 +384,125 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 	}
 }
 
+Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
+{
+	if (floor == targetfloor)
+	{
+		return targetloc;
+	}
+	if (floor.x == 0)
+	{
+		if (targetfloor.x == 0)
+		{
+			if (floor.y == 3 && targetfloor.y == 5)
+			{
+				return F0CP5H;
+			}
+			else if (floor.y == 3 && targetfloor.y == 6)
+			{
+				return F0CP6H;
+			}
+			else if (floor.y == 5)
+			{
+				return F0CP5L;
+			}
+			else if (floor.y == 6)
+			{
+				return F0CP6L;
+			}
+			else if (targetfloor.y > floor.y)
+			{
+				return F0CPH[int(floor.y)];
+			}
+			else
+			{
+				return F0CPL[int(floor.y - 1)];
+			}
+		}
+		else if (targetfloor.x == 1)
+		{
+			if (floor.y != 0)
+			{
+				Vec2 phantomfloor = { 0,0 };
+				return FindTarget(floor, targetloc, phantomfloor);
+			}
+			else
+			{
+				return F0T1;
+			}
+		}
+		else if (targetfloor.x == 2)
+		{
+			if (floor.y != 3)
+			{
+				Vec2 phantomfloor = { 0,3 };
+				return FindTarget(floor, targetloc, phantomfloor);
+			}
+			else
+			{
+				return F0T2;
+			}
+		}
+		else if (targetfloor.x == 3)
+		{
+			if (floor.y != 4)
+			{
+				Vec2 phantomfloor = { 0,4 };
+				return FindTarget(floor, targetloc, phantomfloor);
+			}
+			else
+			{
+				return F0T3;
+			}
+		}
+	}
+	else if (floor.x == 1)
+	{
+		if (targetfloor.x == 0)
+		{
+			return F1T0;
+		}
+		else if (targetfloor.x == 2)
+		{
+			return F1T2;
+		}
+		else if (targetfloor.x == 3)
+		{
+			return F1T3;
+		}
+	}
+	else if (floor.x == 2)
+	{
+		if (targetfloor.x == 0)
+		{
+			return F2T0;
+		}
+		else if (targetfloor.x == 1)
+		{
+			return F2T1;
+		}
+		else if (targetfloor.x == 3)
+		{
+			return F2T1;
+		}
+	}
+	else if (floor.x == 3)
+	{
+		if (targetfloor.x == 0)
+		{
+			return F3T0;
+		}
+		else if (targetfloor.x == 1)
+		{
+			return F3T1;
+		}
+		else if (targetfloor.x == 2)
+		{
+			return F3T1;
+		}
+	}
+}
+
 float Board::GetWidth(int floorindex)
 {
 	return width[floorindex];
