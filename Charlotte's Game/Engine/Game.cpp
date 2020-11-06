@@ -110,9 +110,9 @@ void Game::UpdateModel()
 				{
 					for (int a = 0; a < nFamily; ++a)
 					{						
-						MWx[a] = familymem[(a - i) % 4].GetLoction().x;
-						MWy[a] = familymem[(a - i) % 4].GetLoction().y;
-						MWf[a] = familymem[(a - i) % 4].GetFloor().x;
+						MWx[a] = familymem[(a + (4 - i)) % nFamily].GetLoction().x;
+						MWy[a] = familymem[(a + (4 - i)) % nFamily].GetLoction().y;
+						MWf[a] = familymem[(a + (4 - i)) % nFamily].GetFloor().x;
 					}
 					MWx[4] = lady.GetLocation().x;
 					MWy[4] = lady.GetLocation().y;
