@@ -210,7 +210,7 @@ bool Board::IsInPlayCon(Vec2& next, float floorindex)
 		{
 			return false;
 		}
-		else if (next == Vec2(6, 6) || next == Vec2(4, 7) || next == Vec2(1, 11) ||
+		else if (next == Vec2(3, 1) || next == Vec2(4, 7) || next == Vec2(1, 11) ||
 			next == Vec2(22, 7) || next == Vec2(6, 6) || next == Vec2(22, 16) ||
 			next == Vec2(19, 14) || next == Vec2(17, 14))
 		{
