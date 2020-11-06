@@ -11,7 +11,7 @@ public:
 	Vec2 GetLoction();
 	Vec2 GetFloor();
 private:
-	Vec2 loc = { 22,1 };
+	Vec2 loc = { 21,1 };
 	Vec2 oldloc = { 0,0 };
 	Vec2 floor = { 3, 0 };
 	Vec2 delta_C = { 0,0 };
@@ -20,6 +20,8 @@ private:
 	Vec2 F0CPL[CPn] = { {11,4}, {18,4}, {20,7}, {13,10} };
 	Vec2 F0CP5H = { 7,12 };
 	Vec2 F0CP5L = { 7,11 };
+	Vec2 F0CP6H = { 7,7 };
+	Vec2 F0CP6L = { 7,8 };
 	Vec2 F0T2 = { 0, 9 };
 	Vec2 F2T0 = { 17, 11 };
 	Vec2 F2T1 = { 17, 2 };

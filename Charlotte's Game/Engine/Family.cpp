@@ -157,12 +157,20 @@ Vec2 Family::FindTarget(Vec2& targetloc, Vec2& targetfloor)
 		if (targetfloor.x == 0)
 		{
 			if (floor.y == 3 && targetfloor.y == 5)
+			{				
+				return F0CP5H;				
+			}
+			else if (floor.y == 3 && targetfloor.y == 6)
 			{
-				return F0CP5H;
+				return F0CP6H;
 			}
 			else if (floor.y == 5)
 			{
 				return F0CP5L;
+			}
+			else if (floor.y == 6)
+			{
+				return F0CP6L;
 			}
 			else if (targetfloor.y > floor.y)
 			{

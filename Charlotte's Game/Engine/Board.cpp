@@ -247,7 +247,7 @@ bool Board::IsInPlayCon(Vec2& next, float floorindex)
 			return false;
 		}
 		else if (
-			(next.y == 3 && next.x > 10 && next.x < 14) || next == Vec2(12, 15) || next == Vec2(16, 16) ||
+			(next.y == 3 && next.x > 10 && next.x < 14) || next == Vec2(14, 12) || next == Vec2(16, 16) ||
 			(next.y == 6 && next.x > 2 && next.x < 7) || (next.y == 7 && next.x > 11 && next.x < 15) ||
 			(next.x == 4 && next.y > 10 && next.y < 15) || (next.x == 9 && next.y > 11 && next.y < 15) ||
 			(next.x == 13 && next.y > 10 && next.y < 14) || next == Vec2(3, 11) || next == Vec2(5, 13))
@@ -311,6 +311,14 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 			floor.y = 5;
 		}
 		else if (oldloc == F0CP5H && loc == F0CP5L)
+		{
+			floor.y = 3;
+		}
+		else if (oldloc == F0CP6L && loc == F0CP6H)
+		{
+			floor.y = 6;
+		}
+		else if (oldloc == F0CP6H && loc == F0CP6L)
 		{
 			floor.y = 3;
 		}

@@ -142,9 +142,17 @@ Vec2 Charlotte::FindTarget(Vec2& lfloor, Vec2& lloc)
 			{
 				return F0CP5H;
 			}
+			else if (floor.y == 3 && lfloor.y == 6)
+			{
+				return F0CP6H;
+			}
 			else if (floor.y == 5)
 			{
 				return F0CP5L;
+			}
+			else if (floor.y == 6)
+			{
+				return F0CP6L;
 			}
 			else if (lfloor.y > floor.y)
 			{
