@@ -126,7 +126,18 @@ void Game::UpdateModel()
 				FMoveCounter[i] = 0;
 			}
 		}
-		 
+		
+		CMovePeriod += CMovePeriodCR * dt;
+		if (CMovePeriod > CMovePeriodMax)
+		{
+			CMovePeriod = CMovePeriodMax;
+			CMovePeriodCR = -CMovePeriodCR;
+		}
+		else if (CMovePeriod < CMovePeriodMin)
+		{
+			CMovePeriod = CMovePeriodMin;
+			CMovePeriodCR = -CMovePeriodCR;
+		}
 		CMoveCounter += dt;
 		if (CMoveCounter > CMovePeriod)
 		{
@@ -198,6 +209,7 @@ void Game::UpdateModel()
 				GameIsOver = true;
 			}
 		}
+		delta_L = { 0, 0 };
 	}
 }
 
