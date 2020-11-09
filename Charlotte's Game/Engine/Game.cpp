@@ -186,7 +186,7 @@ void Game::UpdateModel()
 			}			
 			if (SmellyCounter > SmellyPeriod)
 			{
-				//lady.SetSmellyOver();
+				lady.SetSmellyOver();
 				SmellyCounter = 0;
 			}
 			LMoveCounter = 0;
