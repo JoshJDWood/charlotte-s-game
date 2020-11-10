@@ -20,6 +20,7 @@ public:
 	bool IsInPlayCon(Vec2& next, float floorindex);
 	void UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc);
 	Vec2 FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor);
+	int FindBestExit(Vec2* exits, int nexits, Vec2& targetloc);
 	float GetWidth(int floorindex);
 	float GetHeight(int floorindex);
 private:
@@ -104,6 +105,7 @@ private:
 	static constexpr float width3 = 24;
 	static constexpr float height3 = 18;
 	//update floor values
+	//floor 0
 	static constexpr int CPn = 5;
 	Vec2 F0CPH[CPn] = { {12,4}, {19,4}, {20,8}, {16,9}, {13,11} };
 	Vec2 F0CPL[CPn] = { {11,4}, {18,4}, {20,7}, {17,9}, {13,10} };
@@ -111,6 +113,28 @@ private:
 	Vec2 F0CP6L = { 7,11 };
 	Vec2 F0CP7H = { 7,7 };
 	Vec2 F0CP7L = { 7,8 };
+	//floor 2
+	Vec2 F2CP1Ha = { 15,15 };
+	Vec2 F2CP1La = { 15,14 };
+	Vec2 F2CP1Hb = { 11,11 };
+	Vec2 F2CP1Lb = { 11,10 };
+	Vec2 F2CP2H = { 7,14 };
+	Vec2 F2CP2L = { 7,13 };
+	Vec2 F2CP3H = { 1,11 };
+	Vec2 F2CP3L = { 1,10 };
+	Vec2 F2CP122H = { 10,16 };
+	Vec2 F2CP122L = { 11,16 };
+	Vec2 F2CP223H = { 2,16 };
+	Vec2 F2CP223L = { 3,16 };
+	static constexpr int F2R0En = 4;
+	static constexpr int F2R1En = 3;
+	static constexpr int F2R2En = 3;
+	static constexpr int F2R3En = 2;
+	Vec2 F2R0E[F2R0En] = { F2CP1Ha, F2CP1Hb, F2CP2H, F2CP3H };
+	Vec2 F2R1E[F2R1En] = { F2CP1La, F2CP1Lb, F2CP122H };
+	Vec2 F2R2E[F2R2En] = { F2CP2L, F2CP122L, F2CP223H };
+	Vec2 F2R3E[F2R3En] = { F2CP3L, F2CP223L };
+	//between floors
 	Vec2 F0T2 = { 0, 9 };
 	Vec2 F2T0 = { 17, 11 };
 	Vec2 F2T1 = { 17, 2 };

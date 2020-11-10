@@ -358,15 +358,67 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 	}
 	else if (floor.x == 2)
 	{
-		if (oldloc == loc && loc == F2T1)
+		if (floor.y == 0)
 		{
-			floor.x = 1;
-			loc = F1T2;
+			if (oldloc == F2CP1La && loc == F2CP1Ha || oldloc == F2CP1Lb && loc == F2CP1Hb)
+			{
+				floor.y = 1;
+			}
+			else if (oldloc == F2CP2L && loc == F2CP2H)
+			{
+				floor.y = 2;
+			}
+			else if (oldloc == F2CP3L && loc == F2CP3H)
+			{
+				floor.y = 3;
+			}
+			else if (oldloc == loc && loc == F2T1)
+			{
+				floor.x = 1;
+				loc = F1T2;
+			}
+			else if (oldloc == loc && loc == F2T0)
+			{
+				floor = { 0,4 };
+				loc = F0T2;
+			}
 		}
-		else if (oldloc == loc && loc == F2T0)
+		else if (floor.y == 1)
 		{
-			floor = { 0,4 };
-			loc = F0T2;
+			if ((oldloc == F2CP1Ha && loc == F2CP1La) || (oldloc == F2CP1Hb && loc == F2CP1Lb))
+			{
+				floor.y = 0;
+			}
+			else if (oldloc == F2CP122L && loc == F2CP122H)
+			{
+				floor.y = 2;
+			}
+		}
+		else if (floor.y == 2)
+		{
+			if (oldloc == F2CP2H && loc == F2CP2L)
+			{
+				floor.y = 0;
+			}
+			else if (oldloc == F2CP122H && loc == F2CP122L)
+			{
+				floor.y = 1;
+			}
+			else if (oldloc == F2CP223L && loc == F2CP223H)
+			{
+				floor.y = 3;
+			}
+		}
+		else if (floor.y == 3)
+		{
+			if (oldloc == F2CP3H && loc == F2CP3L)
+			{
+				floor.y = 0;
+			}
+			else if (oldloc == F2CP223H && loc == F2CP223L)
+			{
+				floor.y = 2;
+			}
 		}
 	}
 	else if (floor.x == 3)
@@ -473,17 +525,50 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 	}
 	else if (floor.x == 2)
 	{
+		if (targetfloor.x == 2)
+		{
+			if (floor.y == 0)
+			{
+				return F2R0E[FindBestExit(F2R0E, F2R0En, targetloc)];				
+			}
+			else if (floor.y == 1)
+			{
+				return F2R1E[FindBestExit(F2R1E, F2R1En, targetloc)];
+			}
+			else if (floor.y == 2)
+			{
+				return F2R2E[FindBestExit(F2R2E, F2R2En, targetloc)];
+			}
+			else if (floor.y == 3)
+			{
+				return F2R3E[FindBestExit(F2R3E, F2R3En, targetloc)];
+			}
+		}
 		if (targetfloor.x == 0)
 		{
-			return F2T0;
-		}
-		else if (targetfloor.x == 1)
+			if (floor.y != 0)
+			{
+				Vec2 phantomfloor = { 2,0 };
+				Vec2 phantomloc = F2T0;
+				return FindTarget(floor, phantomloc, phantomfloor);
+			}
+			else
+			{
+				return F2T0;
+			}
+		}		
+		else if (targetfloor.x == 1 || targetfloor.x == 3)
 		{
-			return F2T1;
-		}
-		else if (targetfloor.x == 3)
-		{
-			return F2T1;
+			if (floor.y != 0)
+			{
+				Vec2 phantomfloor = { 2,0 };
+				Vec2 phantomloc = F2T1;
+				return FindTarget(floor, phantomloc, phantomfloor);
+			}
+			else
+			{
+				return F2T1;
+			}
 		}
 	}
 	else if (floor.x == 3)
@@ -501,6 +586,23 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 			return F3T1;
 		}
 	}
+}
+
+int Board::FindBestExit(Vec2* exits, int nexits, Vec2& targetloc)
+{
+	int best = 0;	
+	float bestD = abs(targetloc.x - exits[0].x) + abs(targetloc.y - exits[0].y);	
+	float challengerD;
+	for (int i = 1; i < nexits; ++i)
+	{
+		challengerD = abs(targetloc.x - exits[i].x) + abs(targetloc.y - exits[i].y);
+		if (challengerD < bestD)
+		{
+			bestD = challengerD;
+			best = i;
+		}
+	}
+	return best;
 }
 
 float Board::GetWidth(int floorindex)

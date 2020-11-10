@@ -29,14 +29,24 @@ Game::Game( MainWindow& wnd )
 	brd( gfx ),
 	rng( std::random_device()())
 {
-	std::uniform_int_distribution<int> FDist(0, 3);
+	std::uniform_int_distribution<int> FDist(0, 7);
 	for (int i = 0; i < nPoos; ++i)
 	{
-		poos[i] = Poo(rng, brd, FDist(rng));
+		int setfloor;
+		do
+		{
+			setfloor = FDist(rng);
+		} while (setfloor == 5);
+		poos[i] = Poo(rng, brd, setfloor % 4);
 	}
 	for (int i = 0; i < ntreats; ++i)
 	{
-		treats[i] = Treat(rng, brd, FDist(rng));
+		int setfloor;
+		do
+		{
+			setfloor = FDist(rng);
+		} while (setfloor == 5);
+		treats[i] = Treat(rng, brd, setfloor % 4);
 	}
 	for (int i = 0; i < nFamily; ++i)
 	{
