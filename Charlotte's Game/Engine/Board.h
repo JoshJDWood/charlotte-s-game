@@ -19,7 +19,7 @@ public:
 	bool IsInPlayMW(Vec2& next, float floorindex, float* MWx, float* MWy, float* MWf, int nMW);
 	bool IsInPlayCon(Vec2& next, float floorindex);
 	void UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc);
-	Vec2 FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor);
+	Vec2 FindTarget(Vec2& loc, Vec2& floor, Vec2& targetloc, Vec2& targetfloor);
 	int FindBestExit(Vec2* exits, int nexits, Vec2& targetloc);
 	float GetWidth(int floorindex);
 	float GetHeight(int floorindex);

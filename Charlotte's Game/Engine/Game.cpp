@@ -157,8 +157,8 @@ void Game::UpdateModel()
 				MWy[i] = familymem[i].GetLoction().y;
 				MWf[i] = familymem[i].GetFloor().x;
 			}
-			charlie.Update(brd.FindTarget(charlie.GetFloor(), lady.GetLocation(), lady.GetFloor()),
-				lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nFamily, brd);
+			charlie.Update(brd.FindTarget(charlie.GetLoction(), charlie.GetFloor(), lady.GetLocation(), lady.GetFloor()),
+				lady.GetLocation(), lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nFamily, brd);
 
 			CMoveCounter = 0;
 		}
@@ -211,6 +211,17 @@ void Game::UpdateModel()
 				SmellyCounter = 0;
 			}
 			LMoveCounter = 0;
+			if (wnd.kbd.KeyIsPressed(VK_SPACE))
+			{
+				if (!lady.IsSmelly())
+				{
+					lady.SetToSmelly();
+				}
+				else
+				{
+					lady.SetSmellyOver();
+				}
+			}
 		}
 		if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
 		{
@@ -219,7 +230,7 @@ void Game::UpdateModel()
 				GameIsOver = true;
 			}
 		}
-		delta_L = { 0, 0 };
+		delta_L = { 0, 0 };		
 	}
 }
 

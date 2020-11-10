@@ -5,14 +5,14 @@ void Charlotte::Draw(Board& brd)
 	brd.DrawCharlotte(loc, floor.x);
 }
 
-void Charlotte::Update(Vec2& target, float Lfloor, bool smelly, 
+void Charlotte::Update(Vec2& target, Vec2& Lloc, float Lfloor, bool smelly, 
 	float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 {
-	oldloc = loc;
+	oldloc = loc;	
 	Vec2 diff;
-	if (smelly && floor.x == Lfloor)
+	if (smelly && floor.x == Lfloor && (abs(Lloc.x - loc.x) + abs(Lloc.y - loc.y)) < 5)
 	{
-		diff = loc - target;
+		diff = loc - Lloc;		
 	}
 	else
 	{

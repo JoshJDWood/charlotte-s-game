@@ -28,7 +28,7 @@ void Family::Draw(Board& brd)
 
 void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
 {
-	Vec2 target = brd.FindTarget(floor, Destination[0], Destination[1]);
+	Vec2 target = brd.FindTarget(loc, floor, Destination[0], Destination[1]);
 	oldloc = loc;
 	Vec2 diff = target - loc;	
 

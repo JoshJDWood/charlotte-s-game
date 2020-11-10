@@ -436,7 +436,7 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 	}
 }
 
-Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
+Vec2 Board::FindTarget(Vec2& loc, Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 {
 	if (floor == targetfloor)
 	{
@@ -476,7 +476,7 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 			if (floor.y != 0)
 			{
 				Vec2 phantomfloor = { 0,0 };
-				return FindTarget(floor, targetloc, phantomfloor);
+				return FindTarget(loc, floor, targetloc, phantomfloor);
 			}
 			else
 			{
@@ -488,7 +488,7 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 			if (floor.y != 4)
 			{
 				Vec2 phantomfloor = { 0,4 };
-				return FindTarget(floor, targetloc, phantomfloor);
+				return FindTarget(loc, floor, targetloc, phantomfloor);
 			}
 			else
 			{
@@ -500,7 +500,7 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 			if (floor.y != 5)
 			{
 				Vec2 phantomfloor = { 0,5 };
-				return FindTarget(floor, targetloc, phantomfloor);
+				return FindTarget(loc, floor, targetloc, phantomfloor);
 			}
 			else
 			{
@@ -527,9 +527,18 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 	{
 		if (targetfloor.x == 2)
 		{
+			
 			if (floor.y == 0)
 			{
-				return F2R0E[FindBestExit(F2R0E, F2R0En, targetloc)];				
+				if ((targetfloor.y == 2 || targetfloor.y == 3) && loc.x > 14 && loc.y > 8)
+				{
+					return { 14,9 };
+					//inelegant solution to the chase problem on floor 2
+				}
+				else
+				{
+					return F2R0E[FindBestExit(F2R0E, F2R0En, targetloc)];
+				}
 			}
 			else if (floor.y == 1)
 			{
@@ -550,7 +559,7 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 			{
 				Vec2 phantomfloor = { 2,0 };
 				Vec2 phantomloc = F2T0;
-				return FindTarget(floor, phantomloc, phantomfloor);
+				return FindTarget(loc, floor, phantomloc, phantomfloor);
 			}
 			else
 			{
@@ -563,7 +572,7 @@ Vec2 Board::FindTarget(Vec2& floor, Vec2& targetloc, Vec2& targetfloor)
 			{
 				Vec2 phantomfloor = { 2,0 };
 				Vec2 phantomloc = F2T1;
-				return FindTarget(floor, phantomloc, phantomfloor);
+				return FindTarget(loc, floor, phantomloc, phantomfloor);
 			}
 			else
 			{
