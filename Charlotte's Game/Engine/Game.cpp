@@ -141,11 +141,18 @@ void Game::UpdateModel()
 						MWf[5] = charlie.GetFloor().x;
 						familymem[i].Update(&MWx[1], &MWy[1], &MWf[1], nMW - 1, brd);
 					}
-
 					FMoveCounter[i] = 0;
 				}
 			}
 
+			if (charlie.IsStunned())
+			{
+				CStunnedCounter += dt;
+				if (CStunnedCounter > StunnedPeriod)
+				{
+					charlie.UnStun();
+				}
+			}
 			CMovePeriod += CMovePeriodCR * dt;
 			if (CMovePeriod > CMovePeriodMax)
 			{
@@ -158,7 +165,7 @@ void Game::UpdateModel()
 				CMovePeriodCR = -CMovePeriodCR;
 			}
 			CMoveCounter += dt;
-			if (CMoveCounter > CMovePeriod)
+			if (CMoveCounter > CMovePeriod && !charlie.IsStunned())
 			{
 				for (int i = 0; i < nFamily; ++i)
 				{
@@ -241,6 +248,11 @@ void Game::UpdateModel()
 				if (!lady.IsSmelly())
 				{
 					GameIsOver = true;
+				}
+				else if (!charlie.IsStunned())
+				{
+					charlie.Stun();
+					CStunnedCounter = 0;
 				}
 			}
 			delta_L = { 0, 0 };

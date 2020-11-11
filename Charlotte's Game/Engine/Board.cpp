@@ -91,12 +91,19 @@ void Board::DrawLady(Vec2& loc, float floorindex, bool smelly)
 	}
 }
 
-void Board::DrawCharlotte(Vec2& loc, float floorindex)
+void Board::DrawCharlotte(Vec2& loc, float floorindex, bool stunned)
 {
 	sx = shiftx(width[int(floorindex)]);
 	sy = shifty(height[int(floorindex)]);
 
-	gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), charlottesurf, Color(200, 0, 200));
+	if (!stunned)
+	{
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), charlottesurf, Color(200, 0, 200));
+	}
+	else
+	{
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), charlottesmellysurf, Color(200, 0, 200));
+	}
 }
 
 void Board::DrawFamily(Vec2& loc, float floorindex, int famindex)

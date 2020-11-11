@@ -2,7 +2,7 @@
 
 void Charlotte::Draw(Board& brd)
 {
-	brd.DrawCharlotte(loc, floor.x);
+	brd.DrawCharlotte(loc, floor.x, stunned);
 }
 
 void Charlotte::Update(Vec2& target, Vec2& Lloc, float Lfloor, bool smelly, 
@@ -137,6 +137,21 @@ Vec2 Charlotte::GetLoction()
 Vec2 Charlotte::GetFloor()
 {
 	return floor;
+}
+
+bool Charlotte::IsStunned()
+{
+	return stunned;
+}
+
+void Charlotte::Stun()
+{
+	stunned = true;
+}
+
+void Charlotte::UnStun()
+{
+	stunned = false;
 }
 
 
