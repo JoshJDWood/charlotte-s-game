@@ -175,13 +175,18 @@ private:
 	int y = 0;
 	Graphics& gfx;
 	//textures for characters
-	Surface ladysurf = Surface("lady_profile2.bmp");
+	Surface ladysurf = Surface("lady_profile.bmp");
+	Surface ladysmellysurf = Surface("lady_smelly.bmp");
 	Surface poosurf = Surface("poo.bmp");
 	Surface sockssurf = Surface("socks.bmp");
 	Surface charlottesurf = Surface("Charlotte_Profile.bmp");
+	Surface charlottesmellysurf = Surface("Charlotte_smelly.bmp");
 	Surface mumsurf = Surface("mum_profile.bmp");
+	Surface mumsmellysurf = Surface("mum_smelly.bmp");
 	Surface dadsurf = Surface("dad_profile.bmp");
+	Surface dadsmellysurf = Surface("dad_smelly.bmp");
 	Surface joshsurf = Surface("josh_profile.bmp");
+	Surface joshsmellysurf = Surface("josh_smelly.bmp");
 	Surface izzysurf = Surface("izzy_profile.bmp");
-
+	Surface izzysmellysurf = Surface("izzy_smelly.bmp");
 };

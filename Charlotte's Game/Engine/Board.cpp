@@ -87,7 +87,7 @@ void Board::DrawLady(Vec2& loc, float floorindex, bool smelly)
 	}
 	else
 	{
-		gfx.DrawSpriteNonChroma(int(sx + loc.x * dim), int(sy + loc.y * dim), ladysurf);
+		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), ladysmellysurf, Color(200, 0, 200));
 	}
 }
 

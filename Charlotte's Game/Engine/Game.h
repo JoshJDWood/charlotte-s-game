@@ -69,6 +69,9 @@ private:
 	float MWx[nMW];
 	float MWy[nMW];
 	float MWf[nMW];
+	bool GameIsOver = false;
+	bool GameIsWon = false;
+	bool GameIsStarted = false;
 
 	//counters
 	float LMoveCounter = 0;
@@ -86,13 +89,12 @@ private:
 	float RestingCounter[nFamily] = { 0, 0, 0, 0 };
 	float RestingPeriod = 2;
 	int TreatsEatenCounter = 0;
-	bool GameIsOver = false;
-	bool GameIsWon = false;
 
 	//surfaces
 	Surface groundsurf = Surface("ground_Ftextured.bmp");
 	Surface alleysurf = Surface("alley_Ftextured.bmp");
 	Surface frontsurf = Surface("front_Ftextured.bmp");
 	Surface backsurf = Surface("back_Ftextured.bmp");
+	Surface titlesurf = Surface("title_screen.bmp");
 	/********************************/
 };
