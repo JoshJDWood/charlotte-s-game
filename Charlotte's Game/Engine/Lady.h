@@ -14,7 +14,7 @@ public:
 	void SetToSmelly();
 	void SetSmellyOver();
 private:
-	Vec2 loc = { 2,9 };
+	Vec2 loc = { 13,9 };
 	Vec2 oldloc = { 0,0 };
 	Vec2 floor = { 0,4 };
 	bool moved = false;

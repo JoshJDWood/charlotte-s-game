@@ -423,15 +423,35 @@ void Board::UpdateFloor(Vec2& floor, Vec2& loc, Vec2& oldloc)
 	}
 	else if (floor.x == 3)
 	{
-		if (oldloc == loc && loc == F3T1)
+		if (floor.y == 0)
 		{
-			floor.x = 1;
-			loc = F1T3;
+			if ((oldloc == F3CPLa && loc == F3CPHa) ||
+				(oldloc == F3CPLb && loc == F3CPHb) ||
+				(oldloc == F3CPLc && loc == F3CPHc) ||
+				(oldloc == F3CPLd && loc == F3CPHd))
+			{
+				floor.y = 1;
+			}
+			else if (oldloc == loc && loc == F3T1)
+			{
+				floor.x = 1;
+				loc = F1T3;
+			}
+			else if (oldloc == loc && loc == F3T0)
+			{
+				floor = { 0,5 };
+				loc = F0T3;
+			}
 		}
-		else if (oldloc == loc && loc == F3T0)
+		else if (floor.y == 1)
 		{
-			floor = { 0,5 };
-			loc = F0T3;
+			if ((oldloc == F3CPHa && loc == F3CPLa) ||
+				(oldloc == F3CPHb && loc == F3CPLb) ||
+				(oldloc == F3CPHc && loc == F3CPLc) ||
+				(oldloc == F3CPHd && loc == F3CPLd))
+			{
+				floor.y = 0;
+			}
 		}
 	}
 }
@@ -526,8 +546,7 @@ Vec2 Board::FindTarget(Vec2& loc, Vec2& floor, Vec2& targetloc, Vec2& targetfloo
 	else if (floor.x == 2)
 	{
 		if (targetfloor.x == 2)
-		{
-			
+		{			
 			if (floor.y == 0)
 			{
 				if ((targetfloor.y == 2 || targetfloor.y == 3) && loc.x > 14 && loc.y > 8)
@@ -582,17 +601,46 @@ Vec2 Board::FindTarget(Vec2& loc, Vec2& floor, Vec2& targetloc, Vec2& targetfloo
 	}
 	else if (floor.x == 3)
 	{
+		if (targetfloor.x == 3)
+		{
+			if (floor.y == 0 && loc.x < 10 && loc.y > 10)
+			{
+				return F3CPHa;
+			}
+			else if (floor.y == 0)
+			{
+				return F3R0E[FindBestExit(F3R0E, F3R0En, targetloc)];
+			}
+			else if (floor.y == 1)
+			{
+				return F3R1E[FindBestExit(F3R1E, F3R1En, targetloc)];
+			}
+		}
 		if (targetfloor.x == 0)
 		{
-			return F3T0;
+			if (floor.y != 0)
+			{
+				Vec2 phantomloc = F3T0;
+				Vec2 phantomfloor = { 3,0 };
+				return FindTarget(loc, floor, phantomloc, phantomfloor);
+			}
+			else
+			{
+				return F3T0;
+			}
 		}
-		else if (targetfloor.x == 1)
+		else if (targetfloor.x == 1 || targetfloor.x == 2)
 		{
-			return F3T1;
-		}
-		else if (targetfloor.x == 2)
-		{
-			return F3T1;
+			if (floor.y != 0 && loc.x > 12)
+			{
+				Vec2 phantomloc = F3T1;
+				Vec2 phantomfloor = { 3,0 };
+				return FindTarget(loc, floor, phantomloc, phantomfloor);
+			}
+			else
+			{
+				return F3T1;
+			}
 		}
 	}
 }

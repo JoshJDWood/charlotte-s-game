@@ -134,6 +134,19 @@ private:
 	Vec2 F2R1E[F2R1En] = { F2CP1La, F2CP1Lb, F2CP122H };
 	Vec2 F2R2E[F2R2En] = { F2CP2L, F2CP122L, F2CP223H };
 	Vec2 F2R3E[F2R3En] = { F2CP3L, F2CP223L };
+	//floor 3
+	Vec2 F3CPHa = { 4,16 };
+	Vec2 F3CPLa = { 4,15 };
+	Vec2 F3CPHb = { 16,11 };
+	Vec2 F3CPLb = { 16,10 };
+	Vec2 F3CPHc = { 18,8 };
+	Vec2 F3CPLc = { 18,7 };
+	Vec2 F3CPHd = { 17,13 };
+	Vec2 F3CPLd = { 18,13 };
+	static constexpr int F3R0En = 4;
+	static constexpr int F3R1En = 4;
+	Vec2 F3R0E[F3R0En] = { F3CPHa, F3CPHb, F3CPHc, F3CPHd };
+	Vec2 F3R1E[F3R1En] = { F3CPLa, F3CPLb, F3CPLc, F3CPLd };
 	//between floors
 	Vec2 F0T2 = { 0, 9 };
 	Vec2 F2T0 = { 17, 11 };

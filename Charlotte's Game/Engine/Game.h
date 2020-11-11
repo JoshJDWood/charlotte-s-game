@@ -73,6 +73,7 @@ private:
 	//counters
 	float LMoveCounter = 0;
 	float LMovePeriod = 0.5;
+	float smellyboost = 0.8;
 	float CMoveCounter = 0;
 	float CMovePeriod = 0.65;
 	float CMovePeriodMax = 0.65;

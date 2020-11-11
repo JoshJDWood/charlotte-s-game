@@ -201,6 +201,8 @@ void Game::UpdateModel()
 					{				
 						poos[i].SetToRolledIn();
 						lady.SetToSmelly();
+						LMovePeriod *= smellyboost;
+
 						break;
 					}
 				}
@@ -208,6 +210,7 @@ void Game::UpdateModel()
 			if (SmellyCounter > SmellyPeriod)
 			{
 				lady.SetSmellyOver();
+				LMovePeriod /= smellyboost;
 				SmellyCounter = 0;
 			}
 			LMoveCounter = 0;
@@ -216,10 +219,12 @@ void Game::UpdateModel()
 				if (!lady.IsSmelly())
 				{
 					lady.SetToSmelly();
+					LMovePeriod *= smellyboost;
 				}
 				else
 				{
 					lady.SetSmellyOver();
+					LMovePeriod /= smellyboost;
 				}
 			}
 		}
