@@ -77,17 +77,20 @@ private:
 	float LMoveCounter = 0;
 	float LMovePeriod = 0.5;
 	float smellyboost = 0.8;
+	float SmellyCounter = 0;
+	float SmellyPeriod = 8;
+
 	float CMoveCounter = 0;
 	float CMovePeriod = 0.65;
 	float CMovePeriodMax = 0.65;
 	float CMovePeriodMin = 0.4;
 	float CMovePeriodCR = 0.02;
 	float CStunnedCounter = 0;
+
 	float FMoveCounter[nFamily] = { 0,0,0,0 };
-	float FMovePeriod[nFamily] = { 0.7,0.8,0.85,0.9 };
-	float SmellyCounter = 0;
-	float SmellyPeriod = 8;
-	float RestingCounter[nFamily] = { 0, 0, 0, 0 };
+	float FMovePeriod[nFamily] = { 0.7,0.8,0.85,0.9 };	
+	float RestingCounter[nFamily] = { 0,0,0,0 };
+	float FStunnedCounter[nFamily] = { 0,0,0,0 };
 	float RestingPeriod = 2;
 	float StunnedPeriod = 3;
 	int TreatsEatenCounter = 0;

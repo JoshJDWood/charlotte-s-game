@@ -14,7 +14,7 @@ public:
 	void DrawPoo(Vec2& loc, float floorindex);
 	void DrawLady(Vec2& loc, float floorindex, bool smelly);
 	void DrawCharlotte(Vec2& loc, float floorindex, bool stunned);
-	void DrawFamily(Vec2& loc, float floorindex, int famindex);
+	void DrawFamily(Vec2& loc, float floorindex, int famindex, bool stunned);
 	bool IsInPlay(Vec2& next, float floorindex);
 	bool IsInPlayMW(Vec2& next, float floorindex, float* MWx, float* MWy, float* MWf, int nMW);
 	bool IsInPlayCon(Vec2& next, float floorindex);

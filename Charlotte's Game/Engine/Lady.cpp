@@ -9,18 +9,34 @@ void Lady::Update(Vec2& delta_L, float* MWx, float* MWy, float* MWf, int nMW, Bo
 {
 	oldloc = loc;
 	Vec2 next = loc + delta_L;
-	if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
+	if (smelly)
 	{
-		loc = next;
-		moved = true;
-		brd.UpdateFloor(floor, loc, oldloc);
+		if (brd.IsInPlay(next, floor.x))
+		{
+			loc = next;
+			moved = true;
+			brd.UpdateFloor(floor, loc, oldloc);
+		}
+		else
+		{
+			brd.UpdateFloor(floor, loc, oldloc);
+			moved = false;
+		}
 	}
 	else
 	{
-		brd.UpdateFloor(floor, loc, oldloc);
-		moved = false;
+		if (brd.IsInPlay(next, floor.x) && brd.IsInPlayMW(next, floor.x, MWx, MWy, MWf, nMW))
+		{
+			loc = next;
+			moved = true;
+			brd.UpdateFloor(floor, loc, oldloc);
+		}
+		else
+		{
+			brd.UpdateFloor(floor, loc, oldloc);
+			moved = false;
+		}
 	}
-	
 }
 
 Vec2 Lady::GetLocation()

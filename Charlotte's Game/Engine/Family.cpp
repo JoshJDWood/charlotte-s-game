@@ -23,7 +23,7 @@ void Family::FindNewDestination(std::mt19937& rng, int des1, int des2, int des3)
 
 void Family::Draw(Board& brd)
 {
-	brd.DrawFamily(loc, floor.x, selfindex);
+	brd.DrawFamily(loc, floor.x, selfindex, stunned);
 }
 
 void Family::Update(float* MWx, float* MWy, float* MWf, int nMW, Board& brd)
@@ -169,6 +169,21 @@ void Family::SetToResting()
 void Family::SetRestingEnd()
 {
 	resting = false;
+}
+
+bool Family::IsStunned()
+{
+	return stunned;
+}
+
+void Family::Stun()
+{
+	stunned = true;
+}
+
+void Family::UnStun()
+{
+	stunned = false;
 }
 
 int Family::GetDI()

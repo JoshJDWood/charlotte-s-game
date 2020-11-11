@@ -106,26 +106,54 @@ void Board::DrawCharlotte(Vec2& loc, float floorindex, bool stunned)
 	}
 }
 
-void Board::DrawFamily(Vec2& loc, float floorindex, int famindex)
+void Board::DrawFamily(Vec2& loc, float floorindex, int famindex, bool stunned)
 {
 	sx = shiftx(width[int(floorindex)]);
 	sy = shifty(height[int(floorindex)]);
 
 	if (famindex == 0)
 	{
-		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), mumsurf, Color(200, 0, 200));
+		if (!stunned)
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), joshsurf, Color(200, 0, 200));
+		}
+		else
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), joshsmellysurf, Color(200, 0, 200));
+		}
 	}
 	else if (famindex == 1)
 	{
-		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), dadsurf, Color(200, 0, 200));
+		if (!stunned)
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), dadsurf, Color(200, 0, 200));
+		}
+		else
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), dadsmellysurf, Color(200, 0, 200));
+		}
 	}
 	else if (famindex == 2)
 	{
-		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), joshsurf, Color(200, 0, 200));
+		if (!stunned)
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), izzysurf, Color(200, 0, 200));
+		}
+		else
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), izzysmellysurf, Color(200, 0, 200));
+		}
 	}
 	else if (famindex == 3)
 	{
-		gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), izzysurf, Color(200, 0, 200));
+		if (!stunned)
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), mumsurf, Color(200, 0, 200));
+		}
+		else
+		{
+			gfx.DrawSprite(int(sx + loc.x * dim), int(sy + loc.y * dim), mumsmellysurf, Color(200, 0, 200));
+		}
 	}
 }
 

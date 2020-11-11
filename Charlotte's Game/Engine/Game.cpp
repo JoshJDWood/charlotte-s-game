@@ -106,6 +106,15 @@ void Game::UpdateModel()
 				{
 					RestingCounter[i] += dt;
 				}
+
+				if (familymem[i].IsStunned())
+				{
+					FStunnedCounter[i] += dt;
+					if (FStunnedCounter[i] > StunnedPeriod)
+					{
+						familymem[i].UnStun();
+					}
+				}
 			}
 			for (int i = 0; i < nFamily; ++i)
 			{
@@ -113,7 +122,7 @@ void Game::UpdateModel()
 			}
 			for (int i = 0; i < nFamily; ++i)
 			{
-				if (FMoveCounter[i] > FMovePeriod[i])
+				if (FMoveCounter[i] > FMovePeriod[i]  && !familymem[i].IsStunned())
 				{
 					if (familymem[i].IsResting())
 					{
@@ -229,7 +238,7 @@ void Game::UpdateModel()
 					SmellyCounter = 0;
 				}
 				LMoveCounter = 0;
-				if (wnd.kbd.KeyIsPressed(VK_SPACE))
+				if (wnd.kbd.KeyIsPressed(VK_SPACE))//to help check the game is running properly
 				{
 					if (!lady.IsSmelly())
 					{
@@ -243,6 +252,7 @@ void Game::UpdateModel()
 					}
 				}
 			}
+
 			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
 			{
 				if (!lady.IsSmelly())
@@ -253,6 +263,20 @@ void Game::UpdateModel()
 				{
 					charlie.Stun();
 					CStunnedCounter = 0;
+				}
+			}
+
+			if (lady.IsSmelly())
+			{
+				for (int i = 0; i < nFamily; ++i)
+				{
+					if (!familymem[i].IsStunned() &&
+						lady.GetLocation() == familymem[i].GetLoction() &&
+						lady.GetFloor() == familymem[i].GetFloor())
+					{
+						familymem[i].Stun();
+						FStunnedCounter[i] = 0;
+					}
 				}
 			}
 			delta_L = { 0, 0 };

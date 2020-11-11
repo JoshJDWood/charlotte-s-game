@@ -16,6 +16,9 @@ public:
 	bool IsResting();
 	void SetToResting();
 	void SetRestingEnd();
+	bool IsStunned();
+	void Stun();
+	void UnStun();
 	int GetDI();
 private:
 	//family specific
@@ -34,6 +37,7 @@ private:
 	Vec2 Destination[2] = { {0,0}, {0,0} };
 	int Destinationindex = 0;
 	bool resting = false;
+	bool stunned = false;
 	
 	//shared with charlotte
 	Vec2 loc = { 9,7 };
