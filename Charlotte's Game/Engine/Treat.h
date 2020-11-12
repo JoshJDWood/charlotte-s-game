@@ -12,7 +12,7 @@ public:
 	void Draw(Board& brd);	
 	Vec2 GetLocation();
 	float GetFloor();
-	bool GetEaten();
+	bool IsEaten();
 	void SetToEaten();
 private:
 	Vec2 loc = { 0,0 };

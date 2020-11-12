@@ -30,7 +30,7 @@ float Treat::GetFloor()
 	return floor;
 }
 
-bool Treat::GetEaten()
+bool Treat::IsEaten()
 {
 	return eaten;
 }

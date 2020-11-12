@@ -88,11 +88,11 @@ private:
 	float CStunnedCounter = 0;
 
 	float FMoveCounter[nFamily] = { 0,0,0,0 };
-	float FMovePeriod[nFamily] = { 0.45,0.5,0.55,0.6 };	
+	float FMovePeriod[nFamily] = { 0.7,0.8,0.85,0.9 };	
 	float RestingCounter[nFamily] = { 0,0,0,0 };
 	float FStunnedCounter[nFamily] = { 0,0,0,0 };
-	float RestingPeriod = 2.5;
-	float StunnedPeriod = 10;
+	float RestingPeriod = 6;
+	float StunnedPeriod = 3;
 	int TreatsEatenCounter = 0;
 
 	//surfaces

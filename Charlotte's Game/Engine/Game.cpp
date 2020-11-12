@@ -206,16 +206,15 @@ void Game::UpdateModel()
 						if (lady.GetLocation() == treats[i].GetLocation()
 							&& lady.GetFloor().x == treats[i].GetFloor())
 						{
-							if (treats[i].GetEaten() == false)
+							if (treats[i].IsEaten() == false)
 							{
 								treats[i].SetToEaten();
 								TreatsEatenCounter += 1;
 								if (TreatsEatenCounter == ntreats)
 								{
-									GameIsWon = true;
+									GameIsWon = true; 
 								}
-							}
-							break;
+							}						
 						}
 					}
 					for (int i = 0; i < nPoos; ++i)
@@ -226,8 +225,7 @@ void Game::UpdateModel()
 						{
 							poos[i].SetToRolledIn();
 							lady.SetToSmelly();
-							LMovePeriod *= smellyboost;
-							break;
+							LMovePeriod *= smellyboost;							
 						}
 					}
 				}
@@ -311,7 +309,7 @@ void Game::ComposeFrame()
 
 		for (int i = 0; i < ntreats; ++i)
 		{
-			if (!treats[i].GetEaten() && treats[i].GetFloor() == lady.GetFloor().x)
+			if (!treats[i].IsEaten() && treats[i].GetFloor() == lady.GetFloor().x)
 			{
 				treats[i].Draw(brd);
 			}
