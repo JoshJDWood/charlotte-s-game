@@ -27,7 +27,7 @@ private:
 	Vec2 Destinationloc[nDestinations] = { 
 		{21,2}, {18,8}, {21,15}, {8,14}, {4,14}, {6,8}, {13,14}, {21,8},  //F0
 		{6,1}, {15,1}, //F1
-		{2,2}, {4,2}, {6,2}, {2,10}, {12,5}, {5,16}, //F2
+		{2,2}, {4,2}, {6,2}, {2,10}, {11,5}, {5,16}, //F2
 		{8,14}, {21,7}, {15,3}, {2,8}, {3,15}, {11,7}, {17,4} }; //F3
 	Vec2 Destinationfloor[nDestinations] = { 
 		{0,2}, {0,3}, {0,5}, {0,6}, {0,6}, {0,4}, {0,5}, {0,3}, //F0
@@ -42,7 +42,7 @@ private:
 	//shared with charlotte
 	Vec2 loc = { 9,7 };
 	Vec2 oldloc = { 0,0 };
-	Vec2 floor = { 0, 6 };
+	Vec2 floor = { 0, 7 };
 	Vec2 delta_F = { 0,0 };
 	bool moved = false;
 	float MovePrefAlt = 1;

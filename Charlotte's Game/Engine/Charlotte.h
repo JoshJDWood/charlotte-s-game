@@ -16,7 +16,7 @@ public:
 private:
 	Vec2 loc = { 14,7 };
 	Vec2 oldloc = { 0,0 };
-	Vec2 floor = { 0, 6 };
+	Vec2 floor = { 0, 7 };
 	Vec2 delta_C = { 0,0 };
 	bool stunned = false;
 	bool moved = false;
