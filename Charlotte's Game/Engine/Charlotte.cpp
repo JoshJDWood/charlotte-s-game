@@ -24,7 +24,7 @@ void Charlotte::Update(Vec2& target, Vec2& Lloc, float Lfloor, bool smelly,
 		//fake move so it can change floor
 		moved = true;
 	}
-	else if (abs(diff.x) > abs(diff.y))
+	else if (abs(diff.x) >= abs(diff.y))
 	{
 		delta_C = { diff.x / abs(diff.x), 0 };
 		Vec2 next = loc + delta_C;
