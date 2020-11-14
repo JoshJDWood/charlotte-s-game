@@ -32,6 +32,7 @@
 #include "Poo.h"
 #include "Family.h"
 #include "Surface.h"
+#include "Sound.h"
 #include <random>
 
 class Game
@@ -101,5 +102,18 @@ private:
 	Surface frontsurf = Surface("front_Ftextured.bmp");
 	Surface backsurf = Surface("back_Ftextured.bmp");
 	Surface titlesurf = Surface("title_screen.bmp");
+	//sound effects
+	
+	
+	static constexpr int FBn = 4;
+	int b = 0;
+	Sound fart0sound;
+	Sound fart1sound;
+	Sound fart2sound;
+	Sound fart3sound;
+	Sound bark0sound;
+	Sound bark1sound;
+	Sound bark2sound;
+	Sound bark3sound;
 	/********************************/
 };

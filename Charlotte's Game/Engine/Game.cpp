@@ -27,7 +27,15 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	brd( gfx ),
-	rng( std::random_device()())
+	rng( std::random_device()()),
+	fart0sound(L"Sounds\\fart0.wav"),
+	fart1sound(L"Sounds\\fart1.wav"),
+	fart2sound(L"Sounds\\fart2.wav"),
+	fart3sound(L"Sounds\\fart3.wav"),
+	bark0sound(L"Sounds\\bark_1.wav"),
+	bark1sound(L"Sounds\\bark_2.wav"),
+	bark2sound(L"Sounds\\bark_3.wav"),
+	bark3sound(L"Sounds\\bark_4.wav")
 {
 	std::uniform_int_distribution<int> FDist(0, 7);
 	for (int i = 0; i < nPoos; ++i)
@@ -76,6 +84,8 @@ void Game::UpdateModel()
 	{
 		if (!GameIsOver && !GameIsWon)
 		{
+			std::uniform_int_distribution<int> BarkDist(0, 3);
+			std::uniform_int_distribution<int> FartDist(0, 6);
 			float dt = ft.Mark();
 
 			if (wnd.kbd.KeyIsPressed(VK_UP))
@@ -207,7 +217,24 @@ void Game::UpdateModel()
 							&& lady.GetFloor().x == treats[i].GetFloor())
 						{
 							if (treats[i].IsEaten() == false)
-							{
+							{								
+								int a = BarkDist(rng);
+								if (a == 0)
+								{
+									bark0sound.Play();
+								}
+								if (a == 1)
+								{
+									bark1sound.Play();
+								}
+								if (a == 2)
+								{
+									bark2sound.Play();
+								}
+								if (a == 3)
+								{
+									bark3sound.Play();
+								}
 								treats[i].SetToEaten();
 								TreatsEatenCounter += 1;
 								if (TreatsEatenCounter == ntreats)
@@ -223,6 +250,23 @@ void Game::UpdateModel()
 							&& lady.GetFloor().x == poos[i].GetFloor()
 							&& !poos[i].IsRolledIn())
 						{
+							int a = FartDist(rng) % 4;
+							if (a == 0)
+							{
+								fart0sound.Play();
+							}
+							if (a == 1)
+							{
+								fart1sound.Play();
+							}
+							if (a == 2)
+							{
+								fart2sound.Play();
+							}
+							if (a == 3)
+							{
+								fart3sound.Play();
+							}
 							poos[i].SetToRolledIn();
 							lady.SetToSmelly();
 							LMovePeriod *= smellyboost;							
@@ -259,6 +303,23 @@ void Game::UpdateModel()
 				}
 				else if (!charlie.IsStunned())
 				{
+					int a = FartDist(rng) % 4;
+					if (a == 0)
+					{
+						fart0sound.Play();
+					}
+					if (a == 1)
+					{
+						fart1sound.Play();
+					}
+					if (a == 2)
+					{
+						fart2sound.Play();
+					}
+					if (a == 3)
+					{
+						fart3sound.Play();
+					}
 					charlie.Stun();
 					CStunnedCounter = 0;
 				}
@@ -272,6 +333,23 @@ void Game::UpdateModel()
 						lady.GetLocation() == familymem[i].GetLoction() &&
 						lady.GetFloor() == familymem[i].GetFloor())
 					{
+						int a = FartDist(rng) % 4;
+						if (a == 0)
+						{
+							fart0sound.Play();
+						}
+						if (a == 1)
+						{
+							fart1sound.Play();
+						}
+						if (a == 2)
+						{
+							fart2sound.Play();
+						}
+						if (a == 3)
+						{
+							fart3sound.Play();
+						}
 						familymem[i].Stun();
 						FStunnedCounter[i] = 0;
 					}
