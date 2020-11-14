@@ -76,7 +76,8 @@ private:
 
 	//counters
 	float LMoveCounter = 0;
-	float LMovePeriod = 0.5;
+	float LMovePeriodbase = 0.5;
+	float LMovePeriod = LMovePeriodbase;
 	float smellyboost = 0.8;
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
@@ -96,12 +97,20 @@ private:
 	float StunnedPeriod = 3;
 	int TreatsEatenCounter = 0;
 
+	//scoring
+	int score = 0;
+	static constexpr int sockS = 100;
+	static constexpr int pooS = 50;
+	static constexpr int FstunS = 150;
+	static constexpr int CstunS = 350;
 	//surfaces
 	Surface groundsurf = Surface("ground_Ftextured.bmp");
 	Surface alleysurf = Surface("alley_Ftextured.bmp");
 	Surface frontsurf = Surface("front_Ftextured.bmp");
 	Surface backsurf = Surface("back_Ftextured.bmp");
 	Surface titlesurf = Surface("title_screen.bmp");
+	Surface winsurf = Surface("win_screen.bmp");
+	Surface caughtsurf = Surface("lose_screen.bmp");
 	//sound effects
 	
 	

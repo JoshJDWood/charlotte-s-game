@@ -105,11 +105,6 @@ void Game::UpdateModel()
 				delta_L = { 1,0 };
 			}
 
-			if (lady.IsSmelly())
-			{
-				SmellyCounter += dt;
-			}
-
 			for (int i = 0; i < nFamily; ++i)
 			{
 				if (familymem[i].IsResting())
@@ -198,6 +193,10 @@ void Game::UpdateModel()
 				CMoveCounter = 0;
 			}
 
+			if (lady.IsSmelly())
+			{
+				SmellyCounter += dt;
+			}
 			LMoveCounter += dt;
 			if (LMoveCounter > LMovePeriod)
 			{
@@ -236,6 +235,7 @@ void Game::UpdateModel()
 									bark3sound.Play();
 								}
 								treats[i].SetToEaten();
+								score += sockS;
 								TreatsEatenCounter += 1;
 								if (TreatsEatenCounter == ntreats)
 								{
@@ -268,31 +268,14 @@ void Game::UpdateModel()
 								fart3sound.Play();
 							}
 							poos[i].SetToRolledIn();
+							score += pooS;
 							lady.SetToSmelly();
-							LMovePeriod *= smellyboost;							
+							LMovePeriod *= smellyboost;	
+							SmellyCounter = 0;
 						}
 					}
-				}
-				if (SmellyCounter > SmellyPeriod)
-				{
-					lady.SetSmellyOver();
-					LMovePeriod /= smellyboost;
-					SmellyCounter = 0;
-				}
-				LMoveCounter = 0;
-				if (wnd.kbd.KeyIsPressed(VK_SPACE))//to help check the game is running properly
-				{
-					if (!lady.IsSmelly())
-					{
-						lady.SetToSmelly();
-						LMovePeriod *= smellyboost;
-					}
-					else
-					{
-						lady.SetSmellyOver();
-						LMovePeriod /= smellyboost;
-					}
-				}
+				}				
+				LMoveCounter = 0;				
 			}
 
 			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
@@ -321,6 +304,7 @@ void Game::UpdateModel()
 						fart3sound.Play();
 					}
 					charlie.Stun();
+					score += CstunS;
 					CStunnedCounter = 0;
 				}
 			}
@@ -351,9 +335,16 @@ void Game::UpdateModel()
 							fart3sound.Play();
 						}
 						familymem[i].Stun();
+						score += FstunS;
 						FStunnedCounter[i] = 0;
 					}
 				}
+			}
+
+			if (SmellyCounter > SmellyPeriod)
+			{
+				lady.SetSmellyOver();
+				LMovePeriod = LMovePeriodbase;
 			}
 			delta_L = { 0, 0 };
 		}
@@ -365,6 +356,14 @@ void Game::ComposeFrame()
 	if (!GameIsStarted)
 	{
 		gfx.DrawSpriteNonChroma(0, 0, titlesurf);
+	}
+	else if (GameIsOver)
+	{
+		gfx.DrawSpriteNonChroma(0, 0, caughtsurf);
+	}
+	else if (GameIsWon)
+	{
+		gfx.DrawSpriteNonChroma(0, 0, winsurf);
 	}
 	else
 	{
@@ -416,17 +415,7 @@ void Game::ComposeFrame()
 
 		lady.Draw(brd);
 
-
 		//test to see wall locations
 		//brd.DrawWalls(lady.GetFloor().x);
-
-		if (GameIsOver)
-		{
-			gfx.DrawRectDim(50, 50, 50, 50, Colors::Red);
-		}
-		if (GameIsWon)
-		{
-			gfx.DrawRectDim(50, 50, 50, 50, Colors::Green);
-		}
 	}
 }
