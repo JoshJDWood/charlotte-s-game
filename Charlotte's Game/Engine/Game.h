@@ -47,7 +47,8 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-
+	void formatscore();
+	void DrawScore(int x, int y);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -98,7 +99,9 @@ private:
 	int TreatsEatenCounter = 0;
 
 	//scoring
-	int score = 0;
+	int scoreRF[4] = { 0,0,0,0 };
+	int score = 3854;
+	int TS = 0;
 	static constexpr int sockS = 100;
 	static constexpr int pooS = 50;
 	static constexpr int FstunS = 150;
@@ -111,9 +114,18 @@ private:
 	Surface titlesurf = Surface("title_screen.bmp");
 	Surface winsurf = Surface("win_screen.bmp");
 	Surface caughtsurf = Surface("lose_screen.bmp");
-	//sound effects
-	
-	
+	Surface S0 = Surface("score0.bmp");
+	Surface S1 = Surface("score1.bmp");
+	Surface S2 = Surface("score2.bmp");
+	Surface S3 = Surface("score3.bmp");
+	Surface S4 = Surface("score4.bmp");
+	Surface S5 = Surface("score5.bmp");
+	Surface S6 = Surface("score6.bmp");
+	Surface S7 = Surface("score7.bmp");
+	Surface S8 = Surface("score8.bmp");
+	Surface S9 = Surface("score9.bmp");
+
+	//sound effects	
 	static constexpr int FBn = 4;
 	int b = 0;
 	Sound fart0sound;

@@ -75,6 +75,7 @@ void Game::UpdateModel()
 {
 	if (!GameIsStarted)
 	{
+		formatscore();
 		if (wnd.kbd.KeyIsPressed(VK_RETURN))
 		{
 			GameIsStarted = true;
@@ -351,6 +352,64 @@ void Game::UpdateModel()
 	}
 }
 
+void Game::formatscore()
+{
+	TS = score;
+	for (int i = 3; i >= 0; --i)
+	{
+		scoreRF[i] = TS % 10;
+		TS -= scoreRF[i];
+		TS /= 10;
+	}
+}
+
+void Game::DrawScore(int x, int y)
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		if (scoreRF[i] == 0)
+		{
+			gfx.DrawSpriteNonChroma(x + 80*i, y, S0);
+		}
+		else if (scoreRF[i] == 1)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S1);
+		}
+		else if (scoreRF[i] == 2)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S2);
+		}
+		else if (scoreRF[i] == 3)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S3);
+		}
+		else if (scoreRF[i] == 4)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S4);
+		}
+		else if (scoreRF[i] == 5)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S5);
+		}
+		else if (scoreRF[i] == 6)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S6);
+		}
+		else if (scoreRF[i] == 7)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S7);
+		}
+		else if (scoreRF[i] == 8)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S8);
+		}
+		else if (scoreRF[i] == 9)
+		{
+			gfx.DrawSpriteNonChroma(x + 80 * i, y, S9);
+		}
+	}
+}
+
 void Game::ComposeFrame()
 {
 	if (!GameIsStarted)
@@ -360,10 +419,14 @@ void Game::ComposeFrame()
 	else if (GameIsOver)
 	{
 		gfx.DrawSpriteNonChroma(0, 0, caughtsurf);
+		formatscore();
+		DrawScore(440, 393);
 	}
 	else if (GameIsWon)
 	{
 		gfx.DrawSpriteNonChroma(0, 0, winsurf);
+		formatscore();
+		DrawScore(360, 280);
 	}
 	else
 	{
