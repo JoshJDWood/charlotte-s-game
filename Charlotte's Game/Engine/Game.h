@@ -100,17 +100,17 @@ private:
 
 	//scoring
 	int scoreRF[4] = { 0,0,0,0 };
-	int score = 3854;
+	int score = 0;
 	int TS = 0;
 	static constexpr int sockS = 100;
 	static constexpr int pooS = 50;
 	static constexpr int FstunS = 150;
 	static constexpr int CstunS = 350;
 	//surfaces
-	Surface groundsurf = Surface("ground_Ftextured.bmp");
+	Surface groundsurf = Surface("ground_final.bmp");
 	Surface alleysurf = Surface("alley_Ftextured.bmp");
 	Surface frontsurf = Surface("front_Ftextured.bmp");
-	Surface backsurf = Surface("back_Ftextured.bmp");
+	Surface backsurf = Surface("back_final.bmp");
 	Surface titlesurf = Surface("title_screen.bmp");
 	Surface winsurf = Surface("win_screen.bmp");
 	Surface caughtsurf = Surface("lose_screen.bmp");
