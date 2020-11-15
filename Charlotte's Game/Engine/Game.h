@@ -62,9 +62,9 @@ private:
 	Vec2 delta_L = { 0,0 };
 	Charlotte charlie;
 	std::mt19937 rng;
-	static constexpr int ntreats = 10;
+	static constexpr int ntreats = 15;
 	Treat treats[ntreats];
-	static constexpr int nPoos = 3;
+	static constexpr int nPoos = 4;
 	Poo poos[nPoos];
 	static constexpr int nFamily = 4;
 	Family familymem[nFamily];
@@ -80,7 +80,7 @@ private:
 	float LMoveCounter = 0;
 	float LMovePeriodbase = 0.5;
 	float LMovePeriod = LMovePeriodbase;
-	float smellyboost = 0.8;
+	float smellyboost = 0.7;
 	float SmellyCounter = 0;
 	float SmellyPeriod = 8;
 
@@ -95,22 +95,23 @@ private:
 	float FMovePeriod[nFamily] = { 0.65,0.7,0.75,0.8 };	
 	float RestingCounter[nFamily] = { 0,0,0,0 };
 	float FStunnedCounter[nFamily] = { 0,0,0,0 };
-	float RestingPeriod = 6;
-	float StunnedPeriod = 3;
+	float RestingPeriod = 8;
+	float StunnedPeriod = 5;
 	int TreatsEatenCounter = 0;
 
 	//scoring
 	int scoreRF[4] = { 0,0,0,0 };
 	int score = 0;
 	int TS = 0;
-	static constexpr int sockS = 100;
+	static constexpr int sockS = 200;
 	static constexpr int pooS = 50;
-	static constexpr int FstunS = 150;
-	static constexpr int CstunS = 350;
+	static constexpr int FstunS = 300;
+	static constexpr int CstunS = 500;
 	std::chrono::steady_clock::time_point start;
 	std::chrono::steady_clock::time_point end;
-	static constexpr float maxtime = 300;
-	static constexpr int PpS = 15;
+	static constexpr float maxtime = 135;
+	static constexpr float buffertime = 45;
+	static constexpr int PpS = 20;
 	int timepoints = 0;
 
 	//surfaces

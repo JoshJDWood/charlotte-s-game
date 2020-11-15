@@ -243,10 +243,10 @@ void Game::UpdateModel()
 									GameIsWon = true;
 									end = std::chrono::steady_clock::now();
 									std::chrono::duration<float> gametimeC = end - start;
-									float gametime = gametimeC.count();
+									float gametime = gametimeC.count() - buffertime;
 									if (gametime < maxtime)
 									{
-										int timepoints = int(maxtime - gametime) * PpS;
+										int timepoints = int(maxtime - (gametime)) * PpS;
 										score += timepoints;
 									}
 								}
