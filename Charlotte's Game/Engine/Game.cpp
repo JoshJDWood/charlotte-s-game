@@ -291,7 +291,7 @@ void Game::UpdateModel()
 			{
 				if (!lady.IsSmelly())
 				{
-					GameIsOver = true;
+					//GameIsOver = true;
 				}
 				else if (!charlie.IsStunned())
 				{

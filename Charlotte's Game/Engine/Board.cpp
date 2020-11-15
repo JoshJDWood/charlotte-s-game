@@ -638,7 +638,7 @@ Vec2 Board::FindTarget(Vec2& loc, Vec2& floor, Vec2& targetloc, Vec2& targetfloo
 	{
 		if (targetfloor.x == 3)
 		{
-			if (floor.y == 0 && loc.x < 10 && loc.y > 10)
+			if (floor.y == 0 && loc.x < 10 && loc.y > 11)
 			{
 				return F3CPHa;
 			}

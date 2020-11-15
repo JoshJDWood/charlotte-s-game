@@ -139,8 +139,8 @@ private:
 	Vec2 F3CPLa = { 4,15 };
 	Vec2 F3CPHb = { 16,11 };
 	Vec2 F3CPLb = { 16,10 };
-	Vec2 F3CPHc = { 18,8 };
-	Vec2 F3CPLc = { 18,7 };
+	Vec2 F3CPHc = { 18,10 };
+	Vec2 F3CPLc = { 18,9 };
 	Vec2 F3CPHd = { 17,13 };
 	Vec2 F3CPLd = { 18,13 };
 	static constexpr int F3R0En = 4;
