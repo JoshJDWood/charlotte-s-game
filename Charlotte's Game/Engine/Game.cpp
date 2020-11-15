@@ -73,7 +73,24 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (!GameIsStarted)
+	if (!sequenceover)
+	{
+		sequencecounter += ft.Mark();
+		if (sequencecounter > sequenceperiod)
+		{
+			sequenceside = -sequenceside;
+			sequencecounter = 0;
+			if (wnd.kbd.KeyIsPressed(VK_SPACE))
+			{
+				sequenceindex += 1;
+				if (sequenceindex == 8)
+				{
+					sequenceover = true;
+				}
+			}
+		}		
+	}
+	else if (!GameIsStarted)
 	{
 		if (wnd.kbd.KeyIsPressed(VK_RETURN))
 		{
@@ -291,7 +308,7 @@ void Game::UpdateModel()
 			{
 				if (!lady.IsSmelly())
 				{
-					//GameIsOver = true;
+					GameIsOver = true;
 				}
 				else if (!charlie.IsStunned())
 				{
@@ -420,7 +437,18 @@ void Game::DrawScore(int x, int y)
 
 void Game::ComposeFrame()
 {
-	if (!GameIsStarted)
+	if (!sequenceover)
+	{
+		if (sequenceside > 0)
+		{
+			gfx.DrawSpriteNonChroma(0, 0, titleset1[sequenceindex]);
+		}
+		else
+		{
+			gfx.DrawSpriteNonChroma(0, 0, titleset2[sequenceindex]);
+		}
+	}
+	else if (!GameIsStarted)
 	{
 		gfx.DrawSpriteNonChroma(0, 0, titlesurf);
 	}
