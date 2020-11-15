@@ -34,6 +34,7 @@
 #include "Surface.h"
 #include "Sound.h"
 #include <random>
+#include <chrono>
 
 class Game
 {
@@ -91,7 +92,7 @@ private:
 	float CStunnedCounter = 0;
 
 	float FMoveCounter[nFamily] = { 0,0,0,0 };
-	float FMovePeriod[nFamily] = { 0.7,0.8,0.85,0.9 };	
+	float FMovePeriod[nFamily] = { 0.65,0.7,0.75,0.8 };	
 	float RestingCounter[nFamily] = { 0,0,0,0 };
 	float FStunnedCounter[nFamily] = { 0,0,0,0 };
 	float RestingPeriod = 6;
@@ -106,6 +107,11 @@ private:
 	static constexpr int pooS = 50;
 	static constexpr int FstunS = 150;
 	static constexpr int CstunS = 350;
+	std::chrono::steady_clock::time_point start;
+	std::chrono::steady_clock::time_point end;
+	static constexpr float maxtime = 300;
+	static constexpr int PpS = 15;
+	int timepoints = 0;
 
 	//surfaces
 	Surface groundsurf = Surface("ground_final.bmp");

@@ -75,10 +75,10 @@ void Game::UpdateModel()
 {
 	if (!GameIsStarted)
 	{
-		formatscore();
 		if (wnd.kbd.KeyIsPressed(VK_RETURN))
 		{
 			GameIsStarted = true;
+			start = std::chrono::steady_clock::now();
 		}
 	}
 	else
@@ -240,7 +240,15 @@ void Game::UpdateModel()
 								TreatsEatenCounter += 1;
 								if (TreatsEatenCounter == ntreats)
 								{
-									GameIsWon = true; 
+									GameIsWon = true;
+									end = std::chrono::steady_clock::now();
+									std::chrono::duration<float> gametimeC = end - start;
+									float gametime = gametimeC.count();
+									if (gametime < maxtime)
+									{
+										int timepoints = int(maxtime - gametime) * PpS;
+										score += timepoints;
+									}
 								}
 							}						
 						}
@@ -353,7 +361,7 @@ void Game::UpdateModel()
 }
 
 void Game::formatscore()
-{
+{	
 	TS = score;
 	for (int i = 3; i >= 0; --i)
 	{
@@ -418,14 +426,15 @@ void Game::ComposeFrame()
 	}
 	else if (GameIsOver)
 	{
-		gfx.DrawSpriteNonChroma(0, 0, caughtsurf);
 		formatscore();
+		gfx.DrawSpriteNonChroma(0, 0, caughtsurf);		
 		DrawScore(440, 393);
 	}
 	else if (GameIsWon)
 	{
-		gfx.DrawSpriteNonChroma(0, 0, winsurf);
+				
 		formatscore();
+		gfx.DrawSpriteNonChroma(0, 0, winsurf);
 		DrawScore(360, 280);
 	}
 	else
