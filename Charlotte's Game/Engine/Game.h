@@ -74,8 +74,7 @@ private:
 	float MWf[nMW];
 	bool GameIsOver = false;
 	bool GameIsWon = false;
-	bool GameIsStarted = false;
-	bool sequenceover = false;	
+	bool GameIsStarted = false;	
 
 	//counters
 	float LMoveCounter = 0;
@@ -98,12 +97,7 @@ private:
 	float FStunnedCounter[nFamily] = { 0,0,0,0 };
 	float RestingPeriod = 8;
 	float StunnedPeriod = 5;
-	int TreatsEatenCounter = 0;
-
-	int sequenceindex = 0;
-	int sequenceside = 1;
-	float sequencecounter = 0;
-	static constexpr float sequenceperiod = 0.6;
+	int TreatsEatenCounter = 0;	
 
 	//scoring
 	int scoreRF[4] = { 0,0,0,0 };
@@ -138,28 +132,35 @@ private:
 	Surface S7 = Surface("score7.bmp");
 	Surface S8 = Surface("score8.bmp");
 	Surface S9 = Surface("score9.bmp");
-	Surface sequence11 = Surface("title_sequence1.bmp");
-	Surface sequence21 = Surface("title_sequence2.bmp");
-	Surface sequence12 = Surface("title_sequence3.bmp");
-	Surface sequence22 = Surface("title_sequence4.bmp");
-	Surface sequence13 = Surface("sequence13.bmp");
-	Surface sequence23 = Surface("sequence23.bmp");
-	Surface sequence14 = Surface("sequence14.bmp");
-	Surface sequence24 = Surface("sequence24.bmp");
-	Surface sequence15 = Surface("title_sequence5.bmp");
-	Surface sequence25 = Surface("title_sequence6.bmp");
-	Surface sequence16 = Surface("title_sequence7.bmp");
-	Surface sequence26 = Surface("title_sequence8.bmp");
-	Surface sequence17 = Surface("sequence17.bmp");
-	Surface sequence27 = Surface("sequence27.bmp");
-	Surface sequence18 = Surface("sequence18.bmp");
-	Surface sequence28 = Surface("sequence28.bmp");
 
-
-	Surface titleset1[8] = { sequence11, sequence12, sequence13, sequence14,
-							sequence15, sequence16, sequence17, sequence18};
-	Surface titleset2[8] = { sequence21, sequence22, sequence23, sequence24,
-							sequence25, sequence26, sequence27, sequence28 };
+	//all the shit for the title sequence
+	//bool sequenceover = false;
+	//int sequenceindex = 0;
+	//int sequenceside = 1;
+	//float sequencecounter = 0;
+	//static constexpr float sequenceperiod = 0.6;
+	//Surface sequence11 = Surface("title_sequence1.bmp");
+	//Surface sequence21 = Surface("title_sequence2.bmp");
+	//Surface sequence12 = Surface("title_sequence3.bmp");
+	//Surface sequence22 = Surface("title_sequence4.bmp");
+	//Surface sequence13 = Surface("sequence13.bmp");
+	//Surface sequence23 = Surface("sequence23.bmp");
+	//Surface sequence14 = Surface("sequence14.bmp");
+	//Surface sequence24 = Surface("sequence24.bmp");
+	//Surface sequence15 = Surface("title_sequence5.bmp");
+	//Surface sequence25 = Surface("title_sequence6.bmp");
+	//Surface sequence16 = Surface("title_sequence7.bmp");
+	//Surface sequence26 = Surface("title_sequence8.bmp");
+	//Surface sequence17 = Surface("sequence17.bmp");
+	//Surface sequence27 = Surface("sequence27.bmp");
+	//Surface sequence18 = Surface("sequence18.bmp");
+	//Surface sequence28 = Surface("sequence28.bmp");
+	//
+	//
+	//Surface titleset1[8] = { sequence11, sequence12, sequence13, sequence14,
+	//						sequence15, sequence16, sequence17, sequence18};
+	//Surface titleset2[8] = { sequence21, sequence22, sequence23, sequence24,
+	//						sequence25, sequence26, sequence27, sequence28 };
 
 	//sound effects	
 	static constexpr int FBn = 4;
