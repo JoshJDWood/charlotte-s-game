@@ -106,6 +106,7 @@ private:
 	static constexpr int pooS = 50;
 	static constexpr int FstunS = 150;
 	static constexpr int CstunS = 350;
+
 	//surfaces
 	Surface groundsurf = Surface("ground_final.bmp");
 	Surface alleysurf = Surface("alley_Ftextured.bmp");
