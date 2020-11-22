@@ -75,6 +75,8 @@ private:
 	bool GameIsOver = false;
 	bool GameIsWon = false;
 	bool GameIsStarted = false;	
+	int gamestate = 0; //0:title, 1:inplay, 2:caught, 3:won
+
 
 	//counters
 	float LMoveCounter = 0;

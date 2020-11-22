@@ -129,6 +129,12 @@ void Charlotte::Update(Vec2& target, Vec2& Lloc, float Lfloor, bool smelly,
 	moved = false;	
 }
 
+void Charlotte::Restart()
+{
+	loc = startloc;
+	floor = startfloor;
+}
+
 Vec2 Charlotte::GetLoction()
 {
 	return loc;

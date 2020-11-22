@@ -90,289 +90,333 @@ void Game::UpdateModel()
 	//		}
 	//	}		
 	//}
-	if (!GameIsStarted)
+	if (gamestate == 0)
 	{
 		if (wnd.kbd.KeyIsPressed(VK_RETURN))
 		{
 			GameIsStarted = true;
+			gamestate = 1;
 			start = std::chrono::steady_clock::now();
 		}
 	}
-	else
-	{
-		if (!GameIsOver && !GameIsWon)
+	else if (gamestate == 1)
+	{		
+		std::uniform_int_distribution<int> BarkDist(0, 3);
+		std::uniform_int_distribution<int> FartDist(0, 6);
+		float dt = ft.Mark();
+
+		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			std::uniform_int_distribution<int> BarkDist(0, 3);
-			std::uniform_int_distribution<int> FartDist(0, 6);
-			float dt = ft.Mark();
+			delta_L = { 0,-1 };
+		}
+		if (wnd.kbd.KeyIsPressed(VK_DOWN))
+		{
+			delta_L = { 0,1 };
+		}
+		if (wnd.kbd.KeyIsPressed(VK_LEFT))
+		{
+			delta_L = { -1,0 };
+		}
+		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+		{
+			delta_L = { 1,0 };
+		}
 
-			if (wnd.kbd.KeyIsPressed(VK_UP))
+		for (int i = 0; i < nFamily; ++i)
+		{
+			if (familymem[i].IsResting())
 			{
-				delta_L = { 0,-1 };
-			}
-			if (wnd.kbd.KeyIsPressed(VK_DOWN))
-			{
-				delta_L = { 0,1 };
-			}
-			if (wnd.kbd.KeyIsPressed(VK_LEFT))
-			{
-				delta_L = { -1,0 };
-			}
-			if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-			{
-				delta_L = { 1,0 };
+				RestingCounter[i] += dt;
 			}
 
-			for (int i = 0; i < nFamily; ++i)
+			if (familymem[i].IsStunned())
+			{
+				FStunnedCounter[i] += dt;
+				if (FStunnedCounter[i] > StunnedPeriod)
+				{
+					familymem[i].UnStun();
+				}
+			}
+		}
+		for (int i = 0; i < nFamily; ++i)
+		{
+			FMoveCounter[i] += dt;
+		}
+		for (int i = 0; i < nFamily; ++i)
+		{
+			if (FMoveCounter[i] > FMovePeriod[i]  && !familymem[i].IsStunned())
 			{
 				if (familymem[i].IsResting())
 				{
-					RestingCounter[i] += dt;
-				}
-
-				if (familymem[i].IsStunned())
-				{
-					FStunnedCounter[i] += dt;
-					if (FStunnedCounter[i] > StunnedPeriod)
+					if (RestingCounter[i] > RestingPeriod)
 					{
-						familymem[i].UnStun();
+						familymem[i].FindNewDestination(rng, familymem[(i + 1) % nFamily].GetDI(),
+							familymem[(i + 2) % nFamily].GetDI(), familymem[(i + 3) % nFamily].GetDI());
+						familymem[i].SetRestingEnd();
+						RestingCounter[i] = 0;
 					}
 				}
+				else
+				{
+					for (int a = 0; a < nFamily; ++a)
+					{
+						MWx[a] = familymem[(a + (4 - i)) % nFamily].GetLoction().x;
+						MWy[a] = familymem[(a + (4 - i)) % nFamily].GetLoction().y;
+						MWf[a] = familymem[(a + (4 - i)) % nFamily].GetFloor().x;
+					}
+					MWx[4] = lady.GetLocation().x;
+					MWy[4] = lady.GetLocation().y;
+					MWf[4] = lady.GetFloor().x;
+					MWx[5] = charlie.GetLoction().x;
+					MWy[5] = charlie.GetLoction().y;
+					MWf[5] = charlie.GetFloor().x;
+					familymem[i].Update(&MWx[1], &MWy[1], &MWf[1], nMW - 1, brd);
+				}
+				FMoveCounter[i] = 0;
 			}
+		}
+
+		if (charlie.IsStunned())
+		{
+			CStunnedCounter += dt;
+			if (CStunnedCounter > StunnedPeriod)
+			{
+				charlie.UnStun();
+			}
+		}
+		CMovePeriod += CMovePeriodCR * dt;
+		if (CMovePeriod > CMovePeriodMax)
+		{
+			CMovePeriod = CMovePeriodMax;
+			CMovePeriodCR = -CMovePeriodCR;
+		}
+		else if (CMovePeriod < CMovePeriodMin)
+		{
+			CMovePeriod = CMovePeriodMin;
+			CMovePeriodCR = -CMovePeriodCR;
+		}
+		CMoveCounter += dt;
+		if (CMoveCounter > CMovePeriod && !charlie.IsStunned())
+		{
 			for (int i = 0; i < nFamily; ++i)
 			{
-				FMoveCounter[i] += dt;
+				MWx[i] = familymem[i].GetLoction().x;
+				MWy[i] = familymem[i].GetLoction().y;
+				MWf[i] = familymem[i].GetFloor().x;
 			}
+			charlie.Update(brd.FindTarget(charlie.GetLoction(), charlie.GetFloor(), lady.GetLocation(), lady.GetFloor()),
+				lady.GetLocation(), lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nFamily, brd);
+
+			CMoveCounter = 0;
+		}
+
+		if (lady.IsSmelly())
+		{
+			SmellyCounter += dt;
+		}
+		LMoveCounter += dt;
+		if (LMoveCounter > LMovePeriod)
+		{
 			for (int i = 0; i < nFamily; ++i)
 			{
-				if (FMoveCounter[i] > FMovePeriod[i]  && !familymem[i].IsStunned())
+				MWx[i] = familymem[i].GetLoction().x;
+				MWy[i] = familymem[i].GetLoction().y;
+				MWf[i] = familymem[i].GetFloor().x;
+			}
+
+			lady.Update(delta_L, MWx, MWy, MWf, nFamily, brd);
+			if (lady.DidMove())
+			{
+				for (int i = 0; i < ntreats; i++)
 				{
-					if (familymem[i].IsResting())
+					if (lady.GetLocation() == treats[i].GetLocation()
+						&& lady.GetFloor().x == treats[i].GetFloor())
 					{
-						if (RestingCounter[i] > RestingPeriod)
-						{
-							familymem[i].FindNewDestination(rng, familymem[(i + 1) % nFamily].GetDI(),
-								familymem[(i + 2) % nFamily].GetDI(), familymem[(i + 3) % nFamily].GetDI());
-							familymem[i].SetRestingEnd();
-							RestingCounter[i] = 0;
-						}
-					}
-					else
-					{
-						for (int a = 0; a < nFamily; ++a)
-						{
-							MWx[a] = familymem[(a + (4 - i)) % nFamily].GetLoction().x;
-							MWy[a] = familymem[(a + (4 - i)) % nFamily].GetLoction().y;
-							MWf[a] = familymem[(a + (4 - i)) % nFamily].GetFloor().x;
-						}
-						MWx[4] = lady.GetLocation().x;
-						MWy[4] = lady.GetLocation().y;
-						MWf[4] = lady.GetFloor().x;
-						MWx[5] = charlie.GetLoction().x;
-						MWy[5] = charlie.GetLoction().y;
-						MWf[5] = charlie.GetFloor().x;
-						familymem[i].Update(&MWx[1], &MWy[1], &MWf[1], nMW - 1, brd);
-					}
-					FMoveCounter[i] = 0;
-				}
-			}
-
-			if (charlie.IsStunned())
-			{
-				CStunnedCounter += dt;
-				if (CStunnedCounter > StunnedPeriod)
-				{
-					charlie.UnStun();
-				}
-			}
-			CMovePeriod += CMovePeriodCR * dt;
-			if (CMovePeriod > CMovePeriodMax)
-			{
-				CMovePeriod = CMovePeriodMax;
-				CMovePeriodCR = -CMovePeriodCR;
-			}
-			else if (CMovePeriod < CMovePeriodMin)
-			{
-				CMovePeriod = CMovePeriodMin;
-				CMovePeriodCR = -CMovePeriodCR;
-			}
-			CMoveCounter += dt;
-			if (CMoveCounter > CMovePeriod && !charlie.IsStunned())
-			{
-				for (int i = 0; i < nFamily; ++i)
-				{
-					MWx[i] = familymem[i].GetLoction().x;
-					MWy[i] = familymem[i].GetLoction().y;
-					MWf[i] = familymem[i].GetFloor().x;
-				}
-				charlie.Update(brd.FindTarget(charlie.GetLoction(), charlie.GetFloor(), lady.GetLocation(), lady.GetFloor()),
-					lady.GetLocation(), lady.GetFloor().x, lady.IsSmelly(), MWx, MWy, MWf, nFamily, brd);
-
-				CMoveCounter = 0;
-			}
-
-			if (lady.IsSmelly())
-			{
-				SmellyCounter += dt;
-			}
-			LMoveCounter += dt;
-			if (LMoveCounter > LMovePeriod)
-			{
-				for (int i = 0; i < nFamily; ++i)
-				{
-					MWx[i] = familymem[i].GetLoction().x;
-					MWy[i] = familymem[i].GetLoction().y;
-					MWf[i] = familymem[i].GetFloor().x;
-				}
-
-				lady.Update(delta_L, MWx, MWy, MWf, nFamily, brd);
-				if (lady.DidMove())
-				{
-					for (int i = 0; i < ntreats; i++)
-					{
-						if (lady.GetLocation() == treats[i].GetLocation()
-							&& lady.GetFloor().x == treats[i].GetFloor())
-						{
-							if (treats[i].IsEaten() == false)
-							{								
-								int a = BarkDist(rng);
-								if (a == 0)
+						if (treats[i].IsEaten() == false)
+						{								
+							int a = BarkDist(rng);
+							if (a == 0)
 								{
 									bark0sound.Play();
 								}
-								if (a == 1)
+							if (a == 1)
 								{
 									bark1sound.Play();
 								}
-								if (a == 2)
+							if (a == 2)
 								{
 									bark2sound.Play();
 								}
-								if (a == 3)
+							if (a == 3)
 								{
 									bark3sound.Play();
 								}
-								treats[i].SetToEaten();
-								score += sockS;
-								TreatsEatenCounter += 1;
-								if (TreatsEatenCounter == ntreats)
+							treats[i].SetToEaten();
+							score += sockS;
+							TreatsEatenCounter += 1;
+							if (TreatsEatenCounter == ntreats)
+							{
+								gamestate = 3;
+								end = std::chrono::steady_clock::now();
+								std::chrono::duration<float> gametimeC = end - start;
+								float gametime = gametimeC.count() - buffertime;
+								if (gametime < maxtime)
 								{
-									GameIsWon = true;
-									end = std::chrono::steady_clock::now();
-									std::chrono::duration<float> gametimeC = end - start;
-									float gametime = gametimeC.count() - buffertime;
-									if (gametime < maxtime)
-									{
-										int timepoints = int(maxtime - (gametime)) * PpS;
-										score += timepoints;
-									}
+									int timepoints = int(maxtime - (gametime)) * PpS;
+									score += timepoints;
 								}
-							}						
-						}
+							}
+						}						
 					}
-					for (int i = 0; i < nPoos; ++i)
-					{
-						if (lady.GetLocation() == poos[i].GetLocation()
-							&& lady.GetFloor().x == poos[i].GetFloor()
-							&& !poos[i].IsRolledIn())
-						{
-							int a = FartDist(rng) % 4;
-							if (a == 0)
-							{
-								fart0sound.Play();
-							}
-							if (a == 1)
-							{
-								fart1sound.Play();
-							}
-							if (a == 2)
-							{
-								fart2sound.Play();
-							}
-							if (a == 3)
-							{
-								fart3sound.Play();
-							}
-							poos[i].SetToRolledIn();
-							score += pooS;
-							lady.SetToSmelly();
-							LMovePeriod *= smellyboost;	
-							SmellyCounter = 0;
-						}
-					}
-				}				
-				LMoveCounter = 0;				
-			}
-
-			if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
-			{
-				if (!lady.IsSmelly())
-				{
-					GameIsOver = true;
 				}
-				else if (!charlie.IsStunned())
+				for (int i = 0; i < nPoos; ++i)
 				{
-					int a = FartDist(rng) % 4;
-					if (a == 0)
-					{
-						fart0sound.Play();
-					}
-					if (a == 1)
-					{
-						fart1sound.Play();
-					}
-					if (a == 2)
-					{
-						fart2sound.Play();
-					}
-					if (a == 3)
-					{
-						fart3sound.Play();
-					}
-					charlie.Stun();
-					score += CstunS;
-					CStunnedCounter = 0;
-				}
-			}
-
-			if (lady.IsSmelly())
-			{
-				for (int i = 0; i < nFamily; ++i)
-				{
-					if (!familymem[i].IsStunned() &&
-						lady.GetLocation() == familymem[i].GetLoction() &&
-						lady.GetFloor() == familymem[i].GetFloor())
+					if (lady.GetLocation() == poos[i].GetLocation()
+						&& lady.GetFloor().x == poos[i].GetFloor()
+						&& !poos[i].IsRolledIn())
 					{
 						int a = FartDist(rng) % 4;
 						if (a == 0)
+							{
+								fart0sound.Play();
+							}
+						if (a == 1)
+							{
+								fart1sound.Play();
+							}
+						if (a == 2)
+							{
+								fart2sound.Play();
+							}
+						if (a == 3)
+							{
+								fart3sound.Play();
+							}
+						poos[i].SetToRolledIn();
+						score += pooS;
+						lady.SetToSmelly();
+						LMovePeriod *= smellyboost;	
+						SmellyCounter = 0;
+					}
+				}
+			}				
+			LMoveCounter = 0;				
+		}
+
+		if (lady.GetLocation() == charlie.GetLoction() && lady.GetFloor() == charlie.GetFloor())
+		{
+			if (!lady.IsSmelly())
+			{
+				gamestate = 2;
+			}
+			else if (!charlie.IsStunned())
+			{
+				int a = FartDist(rng) % 4;
+				if (a == 0)
+					{
+						fart0sound.Play();
+					}
+				if (a == 1)
+					{
+						fart1sound.Play();
+					}
+				if (a == 2)
+					{
+						fart2sound.Play();
+					}
+				if (a == 3)
+					{
+						fart3sound.Play();
+					}
+				charlie.Stun();
+				score += CstunS;
+				CStunnedCounter = 0;
+			}
+		}
+
+		if (lady.IsSmelly())
+		{
+			for (int i = 0; i < nFamily; ++i)
+			{
+				if (!familymem[i].IsStunned() &&
+					lady.GetLocation() == familymem[i].GetLoction() &&
+					lady.GetFloor() == familymem[i].GetFloor())
+				{
+					int a = FartDist(rng) % 4;
+					if (a == 0)
 						{
 							fart0sound.Play();
 						}
-						if (a == 1)
+					if (a == 1)
 						{
 							fart1sound.Play();
 						}
-						if (a == 2)
+					if (a == 2)
 						{
 							fart2sound.Play();
 						}
-						if (a == 3)
+					if (a == 3)
 						{
 							fart3sound.Play();
 						}
-						familymem[i].Stun();
-						score += FstunS;
-						FStunnedCounter[i] = 0;
-					}
+					familymem[i].Stun();
+					score += FstunS;
+					FStunnedCounter[i] = 0;
 				}
 			}
+		}
 
-			if (SmellyCounter > SmellyPeriod)
+		if (SmellyCounter > SmellyPeriod)
+		{
+			lady.SetSmellyOver();
+			LMovePeriod = LMovePeriodbase;
+		}
+		delta_L = { 0, 0 };	
+	}
+	else
+	{
+		if (wnd.kbd.KeyIsPressed(VK_SPACE))
+		{
+			gamestate = 0;
+			score = 0;
+			TreatsEatenCounter = 0;
+			lady.Restart();
+			charlie.Restart();
+			std::uniform_int_distribution<int> FDist(0, 7);
+			for (int i = 0; i < nPoos; ++i)
 			{
-				lady.SetSmellyOver();
-				LMovePeriod = LMovePeriodbase;
+				int setfloor;
+				do
+				{
+					setfloor = FDist(rng);
+				} while (setfloor == 5);
+				poos[i] = Poo(rng, brd, setfloor % 4);
 			}
-			delta_L = { 0, 0 };
+			for (int i = 0; i < ntreats; ++i)
+			{
+				int setfloor;
+				do
+				{
+					setfloor = FDist(rng);
+				} while (setfloor == 5);
+				treats[i] = Treat(rng, brd, setfloor % 4);
+			}
+			for (int i = 0; i < nFamily; ++i)
+			{
+				familymem[i] = Family(i, rng, familymem[(i + 1) % nFamily].GetDI(),
+					familymem[(i + 2) % nFamily].GetDI(), familymem[(i + 3) % nFamily].GetDI());
+			}
+			LMoveCounter = 0;
+			SmellyCounter = 0;
+			CMoveCounter = 0;
+			CMovePeriod = 0.65;
+			CStunnedCounter = 0;
+			for (int i = 0; i < nFamily; ++i)
+			{
+				FMoveCounter[i] = 0;
+				RestingCounter[i] = 0;
+				FStunnedCounter[i] = 0;
+			}			
 		}
 	}
 }
@@ -448,19 +492,18 @@ void Game::ComposeFrame()
 	//		gfx.DrawSpriteNonChroma(0, 0, titleset2[sequenceindex]);
 	//	}
 	//}
-	if (!GameIsStarted)
+	if (gamestate == 0)
 	{
 		gfx.DrawSpriteNonChroma(0, 0, titlesurf);
 	}
-	else if (GameIsOver)
+	else if (gamestate == 2)
 	{
 		formatscore();
 		gfx.DrawSpriteNonChroma(0, 0, caughtsurf);		
 		DrawScore(440, 393);
 	}
-	else if (GameIsWon)
-	{
-				
+	else if (gamestate == 3)
+	{				
 		formatscore();
 		gfx.DrawSpriteNonChroma(0, 0, winsurf);
 		DrawScore(360, 280);
@@ -514,8 +557,5 @@ void Game::ComposeFrame()
 		}
 
 		lady.Draw(brd);
-
-		//test to see wall locations
-		//brd.DrawWalls(lady.GetFloor().x);
 	}
 }

@@ -39,6 +39,13 @@ void Lady::Update(Vec2& delta_L, float* MWx, float* MWy, float* MWf, int nMW, Bo
 	}
 }
 
+void Lady::Restart()
+{
+	loc = startloc;
+	floor = startfloor;
+	smelly = false;
+}
+
 Vec2 Lady::GetLocation()
 {
 	return loc;

@@ -3,6 +3,8 @@
 Family::Family(int index, std::mt19937& rng, int des1, int des2, int des3)
 {
 	selfindex = index;
+	loc = startloc;
+	floor = startfloor;
 	loc.x += index;
 	FindNewDestination(rng, des1, des2, des3);
 }

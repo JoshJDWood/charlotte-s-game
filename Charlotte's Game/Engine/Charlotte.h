@@ -8,12 +8,15 @@ public:
 	void Draw(Board& brd);
 	void Update(Vec2& target, Vec2& Lloc, float Lfloor, bool smelly, 
 		float* MWx, float* MWy, float* MWf, int nMW, Board& brd);
+	void Restart();
 	Vec2 GetLoction();
 	Vec2 GetFloor();
 	bool IsStunned();
 	void Stun();
 	void UnStun();
 private:
+	Vec2 startloc = { 14,7 };
+	Vec2 startfloor = { 0, 7 };
 	Vec2 loc = { 14,7 };
 	Vec2 oldloc = { 0,0 };
 	Vec2 floor = { 0, 7 };

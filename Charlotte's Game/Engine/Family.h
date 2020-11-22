@@ -40,6 +40,8 @@ private:
 	bool stunned = false;
 	
 	//shared with charlotte
+	Vec2 startloc = { 9,7 };
+	Vec2 startfloor = { 0, 7 };
 	Vec2 loc = { 9,7 };
 	Vec2 oldloc = { 0,0 };
 	Vec2 floor = { 0, 7 };
