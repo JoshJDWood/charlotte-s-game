@@ -321,6 +321,36 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
+void Graphics::DrawSpriteNonChroma(int x, int y, const Surface& s)
+{
+	const int width = s.GetWidth();
+	const int height = s.GetHeight();
+	for (int sy = 0; sy < height; sy++)
+	{
+		for (int sx = 0; sx < width; sx++)
+		{
+			PutPixel(x + sx, y + sy, s.GetPixel(sx, sy));			
+		}
+	}
+}
+
+void Graphics::DrawSprite(int x, int y, const Surface& s, Color chroma)
+{
+	const int width = s.GetWidth();
+	const int height = s.GetHeight();
+	for (int sy = 0; sy < height; sy++)
+	{
+		for (int sx = 0; sx < width; sx++)
+		{
+			const Color srcPixel = s.GetPixel(sx, sy);
+			if (srcPixel != chroma)
+			{
+				PutPixel(x + sx, y + sy, srcPixel);
+			}
+		}
+	}
+}
+
 void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
 {
 	if( x0 > x1 )

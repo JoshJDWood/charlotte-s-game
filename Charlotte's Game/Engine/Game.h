@@ -26,6 +26,15 @@
 #include "FrameTimer.h"
 #include "Sound.h"
 #include "board.h"
+#include "Lady.h"
+#include "Charlotte.h"
+#include "Treat.h"
+#include "Poo.h"
+#include "Family.h"
+#include "Surface.h"
+#include "Sound.h"
+#include <random>
+#include <chrono>
 
 class Game
 {
@@ -39,7 +48,8 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-
+	void formatscore();
+	void DrawScore(int x, int y);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -47,6 +57,123 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Board brd;
+	FrameTimer ft;
+	Lady lady;
+	Vec2 delta_L = { 0,0 };
+	Charlotte charlie;
+	std::mt19937 rng;
+	static constexpr int ntreats = 15;
+	Treat treats[ntreats];
+	static constexpr int nPoos = 4;
+	Poo poos[nPoos];
+	static constexpr int nFamily = 4;
+	Family familymem[nFamily];
+	static constexpr int nMW = nFamily + 2;
+	float MWx[nMW];
+	float MWy[nMW];
+	float MWf[nMW];
+	bool GameIsOver = false;
+	bool GameIsWon = false;
+	bool GameIsStarted = false;	
+	int gamestate = 0; //0:title, 1:inplay, 2:caught, 3:won
 
+
+	//counters
+	float LMoveCounter = 0;
+	float LMovePeriodbase = 0.5;
+	float LMovePeriod = LMovePeriodbase;
+	float smellyboost = 0.7;
+	float SmellyCounter = 0;
+	float SmellyPeriod = 8;
+
+	float CMoveCounter = 0;
+	float CMovePeriod = 0.65;
+	float CMovePeriodMax = 0.65;
+	float CMovePeriodMin = 0.4;
+	float CMovePeriodCR = 0.02;
+	float CStunnedCounter = 0;
+
+	float FMoveCounter[nFamily] = { 0,0,0,0 };
+	float FMovePeriod[nFamily] = { 0.65,0.7,0.75,0.8 };	
+	float RestingCounter[nFamily] = { 0,0,0,0 };
+	float FStunnedCounter[nFamily] = { 0,0,0,0 };
+	float RestingPeriod = 8;
+	float StunnedPeriod = 5;
+	int TreatsEatenCounter = 0;	
+
+	//scoring
+	int scoreRF[4] = { 0,0,0,0 };
+	int score = 0;
+	int TS = 0;
+	static constexpr int sockS = 200;
+	static constexpr int pooS = 50;
+	static constexpr int FstunS = 300;
+	static constexpr int CstunS = 500;
+	std::chrono::steady_clock::time_point start;
+	std::chrono::steady_clock::time_point end;
+	static constexpr float maxtime = 135;
+	static constexpr float buffertime = 45;
+	static constexpr int PpS = 20;
+	int timepoints = 0;
+
+	//surfaces
+	Surface groundsurf = Surface("ground_final.bmp");
+	Surface alleysurf = Surface("alley_Ftextured.bmp");
+	Surface frontsurf = Surface("front_Ftextured.bmp");
+	Surface backsurf = Surface("back_final.bmp");
+	Surface titlesurf = Surface("title_screen.bmp");
+	Surface winsurf = Surface("win_screen.bmp");
+	Surface caughtsurf = Surface("lose_screen.bmp");
+	Surface S0 = Surface("score0.bmp");
+	Surface S1 = Surface("score1.bmp");
+	Surface S2 = Surface("score2.bmp");
+	Surface S3 = Surface("score3.bmp");
+	Surface S4 = Surface("score4.bmp");
+	Surface S5 = Surface("score5.bmp");
+	Surface S6 = Surface("score6.bmp");
+	Surface S7 = Surface("score7.bmp");
+	Surface S8 = Surface("score8.bmp");
+	Surface S9 = Surface("score9.bmp");
+
+	//all the shit for the title sequence
+	//bool sequenceover = false;
+	//int sequenceindex = 0;
+	//int sequenceside = 1;
+	//float sequencecounter = 0;
+	//static constexpr float sequenceperiod = 0.6;
+	//Surface sequence11 = Surface("title_sequence1.bmp");
+	//Surface sequence21 = Surface("title_sequence2.bmp");
+	//Surface sequence12 = Surface("title_sequence3.bmp");
+	//Surface sequence22 = Surface("title_sequence4.bmp");
+	//Surface sequence13 = Surface("sequence13.bmp");
+	//Surface sequence23 = Surface("sequence23.bmp");
+	//Surface sequence14 = Surface("sequence14.bmp");
+	//Surface sequence24 = Surface("sequence24.bmp");
+	//Surface sequence15 = Surface("title_sequence5.bmp");
+	//Surface sequence25 = Surface("title_sequence6.bmp");
+	//Surface sequence16 = Surface("title_sequence7.bmp");
+	//Surface sequence26 = Surface("title_sequence8.bmp");
+	//Surface sequence17 = Surface("sequence17.bmp");
+	//Surface sequence27 = Surface("sequence27.bmp");
+	//Surface sequence18 = Surface("sequence18.bmp");
+	//Surface sequence28 = Surface("sequence28.bmp");
+	//
+	//
+	//Surface titleset1[8] = { sequence11, sequence12, sequence13, sequence14,
+	//						sequence15, sequence16, sequence17, sequence18};
+	//Surface titleset2[8] = { sequence21, sequence22, sequence23, sequence24,
+	//						sequence25, sequence26, sequence27, sequence28 };
+
+	//sound effects	
+	static constexpr int FBn = 4;
+	int b = 0;
+	Sound fart0sound;
+	Sound fart1sound;
+	Sound fart2sound;
+	Sound fart3sound;
+	Sound bark0sound;
+	Sound bark1sound;
+	Sound bark2sound;
+	Sound bark3sound;
 	/********************************/
 };
